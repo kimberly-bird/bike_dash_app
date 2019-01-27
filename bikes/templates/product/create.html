@@ -3,13 +3,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Bangazon</title>
+    <title>Bike Dash</title>
   </head>
   <body>
     <h1>Sell Product</h1>
 
 
-    <form action="{% url 'website:sell' %}" method="post">
+    <form action="{% url 'bikes:sell' %}" method="post">
       {% csrf_token %}
       {{ product_form.as_p }}
       <input type="submit" value="Sell It" />

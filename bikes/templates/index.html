@@ -3,17 +3,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Bangazon</title>
+    <title>Bike Dash</title>
   </head>
   <body>
-    <h1>Welcome to Bangazon!</h1>
+    <h1>Welcome to Bike Dash!</h1>
     {% if user.is_authenticated %}
-    <h1>Bangazon says... hello {{ user.username }}!</h1>
-    <a href="{% url 'website:logout' %}">Logout</a>
+    <h1>Bike Dash says... hello {{ user.username }}!</h1>
+    <a href="{% url 'bikes:logout' %}">Logout</a>
     {% else %}
-    <h1>Bangazon says...</h1>
-    <div><a href="{% url 'website:register' %}">Register</a></div>
-    <div><a href="{% url 'website:login' %}">Login</a></div>
+    <h1>Bike Dash says...</h1>
+    <div><a href="{% url 'bikes:register' %}">Register</a></div>
+    <div><a href="{% url 'bikes:login' %}">Login</a></div>
     {% endif %}
   </body>
 </html>
