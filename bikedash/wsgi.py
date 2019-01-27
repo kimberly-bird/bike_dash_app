@@ -1,5 +1,5 @@
 """
-WSGI config for bangazonweb project.
+WSGI config for bikedash project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bangazonweb.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bikedash.settings")
 
 application = get_wsgi_application()

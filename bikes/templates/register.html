@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bangazon</title>
+        <title>Bike Dash</title>
     </head>
 
     <body>
-        <h1>Register with Bangazon</h1>
+        <h1>Register with Bike Dash</h1>
 
         {% if registered %}
         <strong>Thank you for registering!</strong>
-        <a href="{% url 'website:index' %}">Return to the homepage.</a><br />
+        <a href="{% url 'bikes:index' %}">Return to the homepage.</a><br />
         {% else %}
         <strong>Register here!</strong><br />
 
-        <form id="user_form" method="post" action="{% url 'website:register' %}"
+        <form id="user_form" method="post" action="{% url 'bikes:register' %}"
                 enctype="multipart/form-data">
 
             {% csrf_token %}
