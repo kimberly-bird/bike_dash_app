@@ -3,7 +3,7 @@ from django.db.models import *
 
 
 class BikeModel(models.Model):
-    brand_id = models.ForeignKey(
+    brand = models.ForeignKey(
     "Brand",
     on_delete=models.CASCADE,
     )
