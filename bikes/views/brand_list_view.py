@@ -16,4 +16,4 @@ def brand_list(request):
         bike_brands = Brand.objects.all()
         bike_models = BikeModel.objects.all()
         context = {"bike_model_list": bike_models, "bike_brand_list": bike_brands}
-        return render(request, 'bikes/brands/list.html', context)
+        return render(request, 'brands/list.html', context)
