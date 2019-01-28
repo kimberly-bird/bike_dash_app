@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from bikes.models import Brand
+from bikes.models import BikeModel
 
 
 def brand_list(request):
@@ -8,11 +9,11 @@ def brand_list(request):
 
         Allowed verbs: GET
 
-        returns rendered list of all bike brands and lists associated bike models
+        returns rendered list of all bike brands and associated list of bike models
     '''
 
     if request.method == "GET":
-        brands = Brand.objects.all().order_by('name')
-        context = {"brand_list": brands}
-        print("context", context)
+        bike_brands = Brand.objects.all()
+        bike_models = BikeModel.objects.all()
+        context = {"bike_model_list": bike_models, "bike_brand_list": bike_brands}
         return render(request, 'bikes/brands/list.html', context)
