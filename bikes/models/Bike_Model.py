@@ -4,23 +4,23 @@ from django.db.models import *
 
 
 class Bike(models.Model):
-    bike_user_id = models.ForeignKey(
-        "Bike_User",
-        on_delete=models.CASCADE,
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE
     )
-    brand_id = models.ForeignKey(
+    brand = models.ForeignKey(
         "Brand",
         on_delete=models.CASCADE,
     )
-    bikemodel_id = models.ForeignKey(
+    bikemodel = models.ForeignKey(
         "BikeModel",
         on_delete=models.CASCADE,
     )
-    condition_id = models.ForeignKey(
+    condition = models.ForeignKey(
         "Condition",
         on_delete=models.CASCADE,
     )
-    status_id = models.ForeignKey(
+    status = models.ForeignKey(
         "Status",
         on_delete=models.CASCADE,
     )

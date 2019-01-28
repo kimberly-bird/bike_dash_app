@@ -7,7 +7,7 @@ class Labor(models.Model):
     date = models.DateField(auto_now=False, auto_now_add=True)
     time = models.PositiveIntegerField()
     rate_of_pay = models.PositiveIntegerField()
-    bike_id = models.ForeignKey(
+    bike = models.ForeignKey(
         'Bike', 
         on_delete=models.CASCADE,
     )

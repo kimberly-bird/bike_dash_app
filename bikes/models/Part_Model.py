@@ -3,15 +3,15 @@ from django.db.models import *
 
 
 class Part(models.Model):
-    bike_id = models.ForeignKey(
+    bike = models.ForeignKey(
         "Bike",
         on_delete=models.CASCADE,
     )
-    brand_id = models.ForeignKey(
+    brand = models.ForeignKey(
         "Brand",
         on_delete=models.CASCADE,
     )
-    bikemodel_id = models.ForeignKey(
+    bikemodel = models.ForeignKey(
         "BikeModel",
         on_delete=models.CASCADE,
     )
