@@ -5,9 +5,11 @@
 <p>{{ brand.location }}</p>
 <ul>
     {% for model in bike_model_list %}
-        {% if model.brand_id == brand.id %}
-        <li>{{ model.name }}</li>
-        {% endif %}
+    {% if model.brand_id == brand.id %}
+    <li>{{ model.name }}</li>
+    {% endif %}
     {% endfor %}
 </ul>
+<a href="{% url 'bikes:edit_brand' pk=brand.id %}">Edit</a>
+<hr>
 {% endfor %}

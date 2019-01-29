@@ -11,7 +11,6 @@ def brand_list(request):
 
         returns rendered list of all bike brands and associated list of bike models
     '''
-
     if request.method == "GET":
         bike_brands = Brand.objects.all()
         bike_models = BikeModel.objects.all()
