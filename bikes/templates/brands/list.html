@@ -1,0 +1,21 @@
+<h1>Bike Brands & Manufacturers</h1>
+
+{% for message in messages %}
+<div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+<hr>
+{% endfor %}
+
+<a href="{% url 'bikes:add_brand' %}">Add New Brand</a>
+{% for brand in bike_brand_list %}
+<h3>{{ brand.name }}</h3>
+<p>{{ brand.location }}</p>
+<ul>
+    {% for model in bike_model_list %}
+    {% if model.brand_id == brand.id %}
+    <li>{{ model.name }}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+<a href="{% url 'bikes:edit_brand' pk=brand.id %}">Edit</a>
+<hr>
+{% endfor %}

@@ -1,0 +1,7 @@
+<h1>Add New Bike Brand/Manufacturer</h1>
+
+<form action="{% url 'bikes:add_brand' %}" method="post">
+    {% csrf_token %}
+    {{ brand_form.as_p }}
+    <input type="submit" value="Add" />
+</form>
