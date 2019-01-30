@@ -1,6 +1,9 @@
 from bikes.forms import UserForm, BrandForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from bikes.models import Brand
 
@@ -25,5 +28,6 @@ def add_brand(request):
             location = form_data['location'],
         )
         newBrand.save()
+        messages.success(request, 'Saved!')
+        return HttpResponseRedirect(reverse("bikes:brand_list"))
 
-        return render(request, 'brands/success.html', {})
