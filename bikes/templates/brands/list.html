@@ -17,5 +17,6 @@
     {% endfor %}
 </ul>
 <a href="{% url 'bikes:edit_brand' pk=brand.id %}">Edit</a>
+<a href="{% url 'bikes:add_bike_model' pk=brand.id %}">Add New Model</a>
 <hr>
 {% endfor %}
