@@ -1,0 +1,13 @@
+<h1>All your bikes</h1>
+
+{% for message in messages %}
+<div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+<hr>
+{% endfor %}
+
+<a href="#">Add New Bike</a>
+{% for bike in bike_list %}
+<h3>{{ bike.name }}</h3>
+<p>{{ bike.description }}</p>
+<p>Status: {{ bike.status.name }}</p>
+{% endfor %}
