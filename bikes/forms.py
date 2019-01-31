@@ -23,5 +23,5 @@ class BrandForm(forms.ModelForm):
 class BikeModelForm(forms.ModelForm):
 
     class Meta:
-        model = Brand
+        model = BikeModel
         fields = ('name',)
