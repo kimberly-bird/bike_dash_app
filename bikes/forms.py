@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django import forms
 
 from bikes.models import Brand
+from bikes.models import BikeModel
 
 
 class UserForm(forms.ModelForm):
@@ -17,3 +18,10 @@ class BrandForm(forms.ModelForm):
     class Meta:
         model = Brand
         fields = ('name', 'location',)
+
+
+class BikeModelForm(forms.ModelForm):
+
+    class Meta:
+        model = Brand
+        fields = ('name',)
