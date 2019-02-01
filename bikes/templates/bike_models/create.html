@@ -1,3 +1,5 @@
+{% include "../navbar.html" %}
+
 <h1>Add New Bike Model for {{ brand.name }}</h1>
 
 <form action="{% url 'bikes:add_bike_model' pk=brand_id %}" method="post">

@@ -1,0 +1,25 @@
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Bike Dash</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+
+<nav>
+    <div class="nav-wrapper light-blue darken-4">
+        <a href="{% url 'bikes:bike_list' %}" class="brand-logo"><img src="{% static '/images/bike_dash_logo.png' %}" width="auto" height="63px"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:bike_list' %}">My Bikes</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:brand_list' %}">Brand List</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:logout' %}">Logout</a></li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:register' %}">Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
