@@ -1,0 +1,20 @@
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Bike Dash</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <!-- <a class="navbar-brand" href="{% url 'bikes:bike_list' %}">
+        <img src="{% static 'images/bike_dash_logo.png' %}" width="30" height="30" alt="bike_dash_logo">
+    </a> -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:bike_list' %}">My Bikes</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:brand_list' %}">Brand List</a></li>
+        </ul>
+    </div>
+</nav>

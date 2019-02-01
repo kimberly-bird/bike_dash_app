@@ -1,3 +1,5 @@
+{% include "../navbar.html" %}
+
 <h1>Add New Bike!</h1>
 
 <form action="{% url 'bikes:add_bike'%}" id="bikeForm"  method="post" data_models_url="{% url 'bikes:ajax_load_models' %}">
