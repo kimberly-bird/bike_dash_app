@@ -1,0 +1,30 @@
+<h1>{{ bike.name }}</h1>
+
+{% for message in messages %}
+<div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+<hr>
+{% endfor %}
+
+<div>
+    <h4>Bike Specs</h4>
+    <p>Brand: {{ bike.brand.name }}</p>
+    <p>Model: {{ bike.bikemodel.name }}</p>
+    <p>Year: {{ bike.year }}</p>
+    <p>Description: {{ bike.description }}</p>
+</div>
+<div>
+    <h4>Bike Details</h4>
+    <p>Added: {{ bike.created_at }}</p>
+    <p>Purchase Price: ${{ bike.purchase_price }}</p>
+    <p>Purchase Date: {{ bike.purchase_date }}</p>
+    <p>Current Status: {{ bike.status.name }}</p>
+    <p>Condition: {{ bike.condition.name }}</p>
+
+    {% if bike.status.name == "Sold" %}
+        <p>List Price: ${{ bike.list_price }}</p>
+        <p>Sale Price: ${{ bike.sale_price }}</p>
+        <p>Sale Date: {{ bike.sale_date }}</p>
+    {% elif bike.status.name == "Listed" %}
+        <p>List Price: ${{ bike.list_price }}</p>
+    {% endif %}
+</div>

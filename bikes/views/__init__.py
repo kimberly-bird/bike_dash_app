@@ -6,3 +6,5 @@ from .brand_edit_view import edit_brand
 from .bike_model_add_view import add_bike_model
 from .bike_model_edit_view import edit_bike_model
 from .bike_list_view import bike_list
+from .bike_add_view import add_bike, load_models
+from .bike_detail_view import bike_detail
