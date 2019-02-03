@@ -1,0 +1,17 @@
+.nav-link {
+    color: white !important;
+}
+
+a {
+    color: #eca400;
+}
+
+.nav_bike_img {
+    margin: -5px;
+}
+
+.btn-success {
+    background-color: #eca400 !important;
+    border-color: #eca400 !important;
+    color: #27476e !important;
+}

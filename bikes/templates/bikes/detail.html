@@ -1,3 +1,5 @@
+{% include "navbar.html" %}
+
 <h1>{{ bike.name }}</h1>
 
 <a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit Bike</a>
