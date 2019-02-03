@@ -17,6 +17,7 @@ urlpatterns = [
     path('brands/edit/<int:pk>/', views.edit_brand, name='edit_brand'),
     path('models/add/<int:pk>', views.add_bike_model, name='add_bike_model'),
     path('models/edit/<int:pk>/', views.edit_bike_model, name='edit_bike_model'),
+    # path('parts/', views.parts_list, name='parts_list'),
     url(r'^login$', views.login_user, name='login'),
     url(r'^logout$', views.user_logout, name='logout'),
     url(r'^register$', views.register, name='register'),

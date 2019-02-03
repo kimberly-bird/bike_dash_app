@@ -27,6 +27,9 @@ insert into bikes_parttype values (null, null, 'Headset');
 insert into bikes_parttype values (null, null, 'Saddle & Seat Post');
 insert into bikes_parttype values (null, null, 'Misc');
 
+insert into bikes_part values (null, null, 'chain', 'brand of chain', 'chain model', '2018-12-21', 'chain off of some bike', 34, 1, null, null, 4, 1);
+insert into bikes_part values (null, null, 'pedals', 'brand of pedals', 'pedals model', '2018-12-21', 'pedals off of some bike', 34, null, null, null, 4, 1);
+
 
 
 
