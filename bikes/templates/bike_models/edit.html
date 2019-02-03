@@ -2,7 +2,6 @@
 
 <h1>Edit Bike Model</h1>
 
-
 <form action="{% url 'bikes:edit_bike_model' pk %}" method="post">
   {% csrf_token %}
   {{ bike_model_form.as_p }}

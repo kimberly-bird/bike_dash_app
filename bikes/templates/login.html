@@ -5,6 +5,8 @@
     </head>
 
     <body>
+        {% include "navbar.html" %}
+        
         <h1>Login to Bike Dash</h1>
 
         <form id="login_form" method="post" action="{% url 'bikes:login' %}">

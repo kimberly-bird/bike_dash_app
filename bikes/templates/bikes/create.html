@@ -1,28 +1,42 @@
-{% include "../navbar.html" %}
+{% include "navbar.html" %}
+{% load crispy_forms_tags %}
+<head>
+    <meta charset="utf-8">
+    <title>Add Bike</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
 
-<h1>Add New Bike!</h1>
-
-<form action="{% url 'bikes:add_bike'%}" id="bikeForm"  method="post" data_models_url="{% url 'bikes:ajax_load_models' %}">
-    {% csrf_token %}
-    {{ bike_form.as_p }}
-    <input type="submit" value="Add" />
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h1 class="mt-2 text-center">Add New Bike!</h1>
+            <hr class="mt-0 mb-4">
+            <form action="{% url 'bikes:add_bike'%}" id="bikeForm" method="post" data_models_url="{% url 'bikes:ajax_load_models' %}">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ bike_form|crispy }}
+                    <button type="submit" class="btn btn-success">Save Bike</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-  $("#id_brand").change(function () {
-    var url = $("#bikeForm").attr("data_models_url");  // get the url of the `load_models` view
-    var brand_id = $(this).val();  // get the selected brand ID from the HTML input
+    $("#id_brand").change(function () {
+        var url = $("#bikeForm").attr("data_models_url");  // get the url of the `load_models` view
+        var brand_id = $(this).val();  // get the selected brand ID from the HTML input
 
-    $.ajax({                       // initialize an AJAX request
-      url: url,                    // set the url of the request (= localhost:8000/bikes/ajax/load_models/)
-      data: {
-        'brand': brand_id       // add the brand id to the GET parameters
-      },
-      success: function (data) {   // `data` is the return of the `load_models` view function
-        $("#id_bikemodel").html(data);  // replace the contents of the model input with the data that came from the server
-      }
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= localhost:8000/bikes/ajax/load_models/)
+            data: {
+                'brand': brand_id       // add the brand id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_models` view function
+                $("#id_bikemodel").html(data);  // replace the contents of the model input with the data that came from the server
+            }
+        });
+
     });
-
-  });
 </script>

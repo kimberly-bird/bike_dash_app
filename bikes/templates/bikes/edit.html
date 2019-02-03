@@ -1,7 +1,6 @@
-{% include "../navbar.html" %}
+{% include "navbar.html" %}
 
 <h1>Edit Bike</h1>
-
 
 <form action="{% url 'bikes:edit_bike' pk %}" method="post">
   {% csrf_token %}
