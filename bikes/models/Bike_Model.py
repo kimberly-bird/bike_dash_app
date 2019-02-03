@@ -9,11 +9,11 @@ from safedelete.models import SOFT_DELETE_CASCADE
 class Bike(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-    user = models.ForeignKey(User)
-    brand = models.ForeignKey("Brand")
-    bikemodel = models.ForeignKey("BikeModel")
-    condition = models.ForeignKey("Condition")
-    status = models.ForeignKey("Status")
+    user = models.ForeignKey(User, on_delete=_safedelete_policy)
+    brand = models.ForeignKey("Brand", on_delete=_safedelete_policy)
+    bikemodel = models.ForeignKey("BikeModel", on_delete=_safedelete_policy)
+    condition = models.ForeignKey("Condition", on_delete=_safedelete_policy)
+    status = models.ForeignKey("Status", on_delete=_safedelete_policy)
     created_at = models.DateField(auto_now=False, auto_now_add=True)
     name = models.CharField(max_length=255)
     year = models.CharField(max_length=4)

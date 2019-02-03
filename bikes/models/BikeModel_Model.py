@@ -8,7 +8,7 @@ from safedelete.models import SOFT_DELETE_CASCADE
 class BikeModel(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-    brand = models.ForeignKey("Brand")
+    brand = models.ForeignKey("Brand", on_delete=_safedelete_policy)
     name = models.CharField(max_length=255)
 
     def __str__(self):

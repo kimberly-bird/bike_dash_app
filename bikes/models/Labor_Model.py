@@ -12,10 +12,7 @@ class Labor(SafeDeleteModel):
     date = models.DateField(auto_now=False, auto_now_add=True)
     time = models.PositiveIntegerField()
     rate_of_pay = models.PositiveIntegerField()
-    bike = models.ForeignKey(
-        'Bike', 
-        on_delete=models.CASCADE,
-    )
+    bike = models.ForeignKey('Bike', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.date}'
