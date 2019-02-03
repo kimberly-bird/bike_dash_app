@@ -1,12 +1,14 @@
 from django.db import models
 from django.db.models import *
 
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE_NOCASCADE
 
-class BikeModel(models.Model):
-    brand = models.ForeignKey(
-    "Brand",
-    on_delete=models.CASCADE,
-    )
+
+class BikeModel(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_NOCASCADE
+
+    brand = models.ForeignKey("Brand")
     name = models.CharField(max_length=255)
 
     def __str__(self):

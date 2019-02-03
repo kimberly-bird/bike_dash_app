@@ -1,8 +1,13 @@
 from django.db import models
 from django.db.models import *
 
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE_NOCASCADE
 
-class Labor(models.Model):
+
+class Labor(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_NOCASCADE
+
     notes = models.CharField(max_length=55)
     date = models.DateField(auto_now=False, auto_now_add=True)
     time = models.PositiveIntegerField()

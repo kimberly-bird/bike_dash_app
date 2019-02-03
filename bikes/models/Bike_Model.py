@@ -2,28 +2,18 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import *
 
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE_NOCASCADE
 
-class Bike(models.Model):
-    user = models.ForeignKey(
-        User, 
-        on_delete=models.CASCADE
-    )
-    brand = models.ForeignKey(
-        "Brand",
-        on_delete=models.CASCADE,
-    )
-    bikemodel = models.ForeignKey(
-        "BikeModel",
-        on_delete=models.CASCADE,
-    )
-    condition = models.ForeignKey(
-        "Condition",
-        on_delete=models.CASCADE,
-    )
-    status = models.ForeignKey(
-        "Status",
-        on_delete=models.CASCADE,
-    )
+
+class Bike(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_NOCASCADE
+
+    user = models.ForeignKey(User)
+    brand = models.ForeignKey("Brand")
+    bikemodel = models.ForeignKey("BikeModel")
+    condition = models.ForeignKey("Condition")
+    status = models.ForeignKey("Status")
     created_at = models.DateField(auto_now=False, auto_now_add=True)
     name = models.CharField(max_length=255)
     year = models.CharField(max_length=4)

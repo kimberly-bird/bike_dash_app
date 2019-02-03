@@ -1,8 +1,13 @@
 from django.db import models
 from django.db.models import *
 
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE_NOCASCADE
 
-class Status(models.Model):
+
+class Status(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_NOCASCADE
+
     name = models.CharField(max_length=255)
 
     def __str__(self):
