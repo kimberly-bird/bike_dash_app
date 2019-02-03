@@ -2,11 +2,11 @@ from django.db import models
 from django.db.models import *
 
 from safedelete.models import SafeDeleteModel
-from safedelete.models import SOFT_DELETE_NOCASCADE
+from safedelete.models import SOFT_DELETE_CASCADE
 
 
 class Brand(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE_NOCASCADE
+    _safedelete_policy = SOFT_DELETE_CASCADE
 
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=100)
