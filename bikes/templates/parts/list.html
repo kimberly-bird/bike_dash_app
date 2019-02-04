@@ -12,7 +12,7 @@
 <div class="container">
     {% for part in part_list %}
 
-    <h3><a href="#">{{ part.name }}</a></h3>
+    <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name }}</a></h3>
     <p><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit Part</a></p>
     
     {% if part.bike.name %}

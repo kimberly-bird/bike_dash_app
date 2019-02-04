@@ -1,0 +1,14 @@
+{% include "navbar.html" %}
+
+<div class="container">
+    <h1>{{ part.name }}</h1>
+    
+    {% for message in messages %}
+    <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+    <hr>
+    {% endfor %}
+    
+    <div>
+        <p>Part: {{ part.name }}</p>
+    </div>
+</div>
