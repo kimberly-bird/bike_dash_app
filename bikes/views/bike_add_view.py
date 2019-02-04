@@ -56,4 +56,3 @@ def add_bike(request):
         newBike.save()
         messages.success(request, 'Saved!')
         return HttpResponseRedirect(reverse("bikes:bike_list"))
-
