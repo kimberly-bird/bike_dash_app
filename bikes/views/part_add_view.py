@@ -6,7 +6,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import datetime
 
+from bikes.models import Bike
+from bikes.models import BikeModel
+from bikes.models import Brand
 from bikes.models import Part
+from bikes.models import PartType
 
 
 @login_required
@@ -27,10 +31,10 @@ def add_part(request):
 
         newPart = Part(
             user = request.user,
-            bike = form_data['bike'],
-            brand = form_data['brand'],
-            bikemodel = form_data['bikemodel'],
-            parttype = form_data['parttype'],
+            bike = Bike.objects.get(id=form_data['bike']),
+            brand = Brand.objects.get(id=form_data['brand']),
+            bikemodel = BikeModel.objects.get(id=form_data['bikemodel']),
+            parttype = PartType.objects.get(id=form_data['parttype']),
             name = form_data['name'],
             part_make = form_data['part_make'],
             part_model = form_data['part_model'],
