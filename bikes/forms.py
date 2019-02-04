@@ -45,9 +45,6 @@ class BikeForm(forms.ModelForm):
 
 class PartForm(forms.ModelForm):
 
-    bike = forms.ChoiceField(required=False)
-    brand = forms.ChoiceField(required=False)
-    bikemodel = forms.ChoiceField(required=False)
     part_make = forms.CharField(required=False)
     part_model = forms.CharField(required=False)
 

@@ -15,11 +15,6 @@ from bikes.models import Condition
 from bikes.models import Status
 
 
-def load_models(request):
-    brand_id = request.GET.get('brand')
-    bikemodels = BikeModel.objects.filter(brand_id=brand_id).order_by('name')
-    return render(request, 'bikes/bikemodel_dropdown_list_options.html', {'bikemodels': bikemodels})
-
 @login_required
 def add_bike(request):
     '''View for adding bike
