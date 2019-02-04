@@ -1,22 +1,23 @@
 {% load static %}
 {% include "navbar.html" %}
 {% load crispy_forms_tags %}
+
 <head>
     <meta charset="utf-8">
-    <title>Add Bike</title>
+    <title>Add Bike Part</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
-            <h1 class="mt-2 text-center">Add New Bike!</h1>
+            <h1 class="mt-2 text-center">Add New Bike Part</h1>
             <hr class="mt-0 mb-4">
-            <form action="{% url 'bikes:add_bike'%}" id="bikeForm" method="post" data_models_url="{% url 'bikes:ajax_load_models' %}">
+            <form action="{% url 'bikes:add_part'%}" id="bikeForm" method="post" data_models_url="{% url 'bikes:ajax_load_models' %}">
                 <div class="form-group">
                     {% csrf_token %}
-                    {{ bike_form|crispy }}
-                    <button type="submit" class="btn btn-success">Save Bike</button>
+                    {{ part_form|crispy }}
+                    <button type="submit" class="btn btn-success">Save Part</button>
                 </div>
             </form>
         </div>
