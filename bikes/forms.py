@@ -54,16 +54,21 @@ class PartForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['bikemodel'].queryset = BikeModel.objects.none()
-    
-        if 'brand' in self.data:
-            try:
-                brand_id = int(self.data.get('brand'))
-                self.fields['bikemodel'].queryset = BikeModel.objects.filter(brand_id=brand_id).order_by('name')
-            except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty bike model queryset
-        elif self.instance.pk:
-            self.fields['bikemodel'].queryset = self.instance.brand.bikemodel_set.order_by('name')
+        try:
+            self.fields['bikemodel'].queryset = BikeModel.objects.none()
+        
+            if 'brand' in self.data:
+                try:
+                    brand_id = int(self.data.get('brand'))
+                    self.fields['bikemodel'].queryset = BikeModel.objects.filter(brand_id=brand_id).order_by('name')
+                except (ValueError, TypeError):
+                    pass  # invalid input from the client; ignore and fallback to empty bike model queryset
+            elif self.instance.pk:
+                self.fields['bikemodel'].queryset = self.instance.brand.bikemodel_set.order_by('name')
+        
+        # user cannot select bike model on dropdown unless they go back to the form after selecting brand
+        except AttributeError as err:
+            print("error", err)
 
 
         self.fields['bike'].required = False

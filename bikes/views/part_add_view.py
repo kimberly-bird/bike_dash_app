@@ -30,7 +30,21 @@ def add_part(request):
         form_data = request.POST
 
         # this is terrible - how to make DRY!?
-        if form_data['bike'] == '':
+        if form_data['brand'] == '' and form_data['bike'] == '':
+            newPart = Part(
+                user = request.user,
+                bike = None,
+                brand = None,
+                bikemodel = None,
+                parttype = PartType.objects.get(id=form_data['parttype']),
+                name = form_data['name'],
+                part_make = form_data['part_make'],
+                part_model = form_data['part_model'],
+                created_at = datetime.date.today(),
+                notes = form_data['notes'],
+                purchase_price = form_data['purchase_price'],
+            )
+        elif form_data['bike'] == '':
             newPart = Part(
                 user = request.user,
                 bike = None,
