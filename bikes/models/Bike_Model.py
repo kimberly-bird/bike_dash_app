@@ -22,7 +22,7 @@ class Bike(SafeDeleteModel):
     purchase_date = models.CharField(max_length=255)
     list_price = models.PositiveIntegerField(null=True)
     sale_price = models.PositiveIntegerField(null=True)
-    sale_date = models.CharField(max_length=255, null=True)
+    sale_date = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'

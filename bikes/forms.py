@@ -65,6 +65,11 @@ class PartForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields['bikemodel'].queryset = self.instance.brand.bikemodel_set.order_by('name')
 
+
+        self.fields['bike'].required = False
+        self.fields['brand'].required = False
+        self.fields['bikemodel'].required = False
+
     
 
                     
