@@ -9,6 +9,13 @@
     {% endfor %}
     
     <div>
+        <p><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit Part</a></p>
+
         <p>Part: {{ part.name }}</p>
+
+        {% if part.bike.name %}
+        <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
+        </a></h4>
+        {% endif %}
     </div>
 </div>

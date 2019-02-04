@@ -33,18 +33,21 @@
         <p>List Price: ${{ bike.list_price }}</p>
         {% endif %}
     </div>
+    {% if bike.part_set.all %}
     <div>
         <h4>Bike Parts</h4>
         {% for part in bike.part_set.all %}
         <ul>
             <li><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name }}</a></li>
-            <li>{{ part.parttype.name }}</li>
+            <li>Part Type: {{ part.parttype.name }}</li>
             {% if part.part_make %}
             <li>Make: {{ part.part_make }}</li>
             <li>Model: {{ part.part_model }}</li>
             {% endif %}
-            <li>{{ part.notes }}</li>
+            <li>Part Notes: {{ part.notes }}</li>
+            <li>Purchase Price: ${{ part.purchase_price }}</li>
         </ul>
         {% endfor %}
     </div>
+    {% endif %}
 </div>
