@@ -17,6 +17,7 @@ urlpatterns = [
     path('mybikes/add', views.add_bike, name='add_bike'),
     path('mybikes/<int:pk>', views.bike_detail, name='bike_detail'),
     path('mybikes/edit/<int:pk>/', views.edit_bike, name='edit_bike'),
+    path('mybikes/remove-part/<int:pk>/', views.remove_part_from_bike, name='remove_part_from_bike'),
     path('parts/', views.part_list, name='part_list'),
     path('parts/add', views.add_part, name='add_part'),
     path('parts/<int:pk>', views.part_detail, name='part_detail'),
