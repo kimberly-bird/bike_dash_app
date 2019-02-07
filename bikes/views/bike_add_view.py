@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import datetime
+import uuid
 
 from django.contrib.auth.models import User
 
@@ -47,9 +48,8 @@ def add_bike(request):
             list_price = None,
             sale_price = None,
             sale_date = None,
-            document = request.FILES['bike_image'],
+            document = request.FILES['document'],
         )
-        if newBike.is_valid():
-            newBike.save()
-            messages.success(request, 'Saved!')
-            return HttpResponseRedirect(reverse("bikes:bike_list"))
+        newBike.save()
+        messages.success(request, 'Saved!')
+        return HttpResponseRedirect(reverse("bikes:bike_list"))
