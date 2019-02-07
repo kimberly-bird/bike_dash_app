@@ -47,7 +47,9 @@ def add_bike(request):
             list_price = None,
             sale_price = None,
             sale_date = None,
+            document = request.FILES['bike_image'],
         )
-        newBike.save()
-        messages.success(request, 'Saved!')
-        return HttpResponseRedirect(reverse("bikes:bike_list"))
+        if newBike.is_valid():
+            newBike.save()
+            messages.success(request, 'Saved!')
+            return HttpResponseRedirect(reverse("bikes:bike_list"))

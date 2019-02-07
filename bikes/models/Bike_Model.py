@@ -23,6 +23,8 @@ class Bike(SafeDeleteModel):
     list_price = models.PositiveIntegerField(null=True)
     sale_price = models.PositiveIntegerField(null=True)
     sale_date = models.CharField(max_length=255, blank=True, null=True)
+    document = models.FileField(upload_to='documents/', null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return f'{self.name}'
