@@ -36,6 +36,8 @@
     {% if bike.part_set.all %}
     <div>
         <h4>Bike Parts</h4>
+        <a href="{% url 'bikes:add_part' %}">Add Part to {{ bike.name }}</a>
+        <br>
         {% for part in bike.part_set.all %}
         <a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name }}</a>
         <ul>
