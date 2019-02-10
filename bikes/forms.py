@@ -33,7 +33,6 @@ class BikeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['bikemodel'].queryset = BikeModel.objects.none()
-        self.fields['document'].widget.attrs['class'] = 'img_field'
     
         if 'brand' in self.data:
             try:
@@ -52,7 +51,7 @@ class PartForm(forms.ModelForm):
 
     class Meta:
         model = Part
-        fields = ('bike', 'brand', 'bikemodel', 'parttype', 'name', 'part_make', 'part_model', 'notes', 'purchase_price',)
+        fields = ('bike', 'brand', 'bikemodel', 'parttype', 'name', 'part_make', 'part_model', 'notes', 'purchase_price', 'document',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

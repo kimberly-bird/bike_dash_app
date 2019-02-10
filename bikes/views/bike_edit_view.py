@@ -12,7 +12,6 @@ def edit_bike(request, pk):
     if request.method == "POST":
         bike_form = BikeForm(request.POST, request.FILES, instance=bike)
         if bike_form.is_valid():
-            print("bike", bike.document)
             bike = bike_form.save()
             return redirect('bikes:bike_list')
     else:

@@ -3,7 +3,7 @@
 
 <h1>Edit Bike</h1>
 
-<form action="{% url 'bikes:edit_bike' pk %}" method="post">
+<form action="{% url 'bikes:edit_bike' pk %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ bike_form.as_p }}
   <input type="submit" value="Update" />

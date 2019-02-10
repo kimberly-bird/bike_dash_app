@@ -16,3 +16,8 @@ a {
     color: #27476e !important;
 }
 
+.bike_image, .part_image {
+    max-width: 300px;
+    max-height: auto;
+}
+

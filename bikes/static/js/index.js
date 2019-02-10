@@ -16,11 +16,11 @@ $("#id_brand").change(function () {
 
 
 // hide image upload if on edit page
-$(document).ready(function () {
-    if (window.location.pathname.includes("edit")) {
-        $("p").last().addClass("d-none");
-    };
-});
+// $(document).ready(function () {
+//     if (window.location.pathname.includes("edit")) {
+//         $("p").last().addClass("d-none");
+//     };
+// });
 
 
 

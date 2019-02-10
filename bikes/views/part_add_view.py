@@ -41,6 +41,7 @@ def add_part(request):
             created_at = datetime.date.today(),
             notes = form_data['notes'],
             purchase_price = form_data['purchase_price'],
+            document = request.FILES['document'],
         )
 
         newPart.save()
