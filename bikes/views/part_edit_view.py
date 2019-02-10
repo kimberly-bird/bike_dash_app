@@ -10,7 +10,7 @@ def edit_part(request, pk):
     part = get_object_or_404(Part, pk=pk)
 
     if request.method == "POST":
-        part_form = PartForm(request.POST, instance=part)
+        part_form = PartForm(request.POST, request.FILES, instance=part)
         if part_form.is_valid():
             part = part_form.save()
             return redirect('bikes:part_list')

@@ -10,8 +10,13 @@
     
     <div>
         <p><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit Part</a></p>
-
+        <img src="/media/{{ part.document }}" alt="image of part" class="part_image">
         <p>Part: {{ part.name }}</p>
+        <p>Type of Part: {{ part.parttype.name }}</p>
+        <p>Make: {{ part.part_make }}</p>
+        <p>Model: {{ part.part_model }}</p>
+        <p>Notes: {{ part.notes }}</p>
+        <p>Purchase Price: ${{ part.purchase_price }}</p>
 
         {% if part.bike.name %}
         <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}

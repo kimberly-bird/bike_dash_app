@@ -10,7 +10,7 @@ def edit_bike(request, pk):
     bike = get_object_or_404(Bike, pk=pk)
 
     if request.method == "POST":
-        bike_form = BikeForm(request.POST, instance=bike)
+        bike_form = BikeForm(request.POST, request.FILES, instance=bike)
         if bike_form.is_valid():
             bike = bike_form.save()
             return redirect('bikes:bike_list')

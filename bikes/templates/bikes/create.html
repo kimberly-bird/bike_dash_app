@@ -12,7 +12,7 @@
         <div class="col-8">
             <h1 class="mt-2 text-center">Add New Bike!</h1>
             <hr class="mt-0 mb-4">
-            <form action="{% url 'bikes:add_bike'%}" id="bikeForm" method="post" data_models_url="{% url 'bikes:ajax_load_models' %}">
+            <form action="{% url 'bikes:add_bike'%}" id="bikeForm" method="post" data_models_url="{% url 'bikes:ajax_load_models' %}" enctype="multipart/form-data">
                 <div class="form-group">
                     {% csrf_token %}
                     {{ bike_form|crispy }}

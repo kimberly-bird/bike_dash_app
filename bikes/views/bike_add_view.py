@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import datetime
+import uuid
 
 from django.contrib.auth.models import User
 
@@ -30,7 +31,6 @@ def add_bike(request):
 
     if request.method == "POST":
         form_data = request.POST
-        print("form data", form_data)
 
         newBike = Bike(
             user = request.user,
@@ -47,6 +47,7 @@ def add_bike(request):
             list_price = None,
             sale_price = None,
             sale_date = None,
+            document = request.FILES['document'],
         )
         newBike.save()
         messages.success(request, 'Saved!')

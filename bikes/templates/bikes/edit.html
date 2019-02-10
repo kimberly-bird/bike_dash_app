@@ -1,9 +1,13 @@
+{% load static %}
 {% include "navbar.html" %}
 
 <h1>Edit Bike</h1>
 
-<form action="{% url 'bikes:edit_bike' pk %}" method="post">
+<form action="{% url 'bikes:edit_bike' pk %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ bike_form.as_p }}
   <input type="submit" value="Update" />
 </form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/index.js' %}"></script>

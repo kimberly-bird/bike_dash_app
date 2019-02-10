@@ -28,7 +28,7 @@ class BikeModelForm(forms.ModelForm):
 class BikeForm(forms.ModelForm):
     class Meta:
         model = Bike
-        fields = ('brand', 'bikemodel', 'condition', 'status', 'name', 'year', 'description', 'purchase_price', 'purchase_date',)
+        fields = ('brand', 'bikemodel', 'condition', 'status', 'name', 'year', 'description', 'purchase_price', 'purchase_date', 'document',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,6 +43,7 @@ class BikeForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields['bikemodel'].queryset = self.instance.brand.bikemodel_set.order_by('name')
 
+
 class PartForm(forms.ModelForm):
 
     part_make = forms.CharField(required=False)
@@ -50,7 +51,7 @@ class PartForm(forms.ModelForm):
 
     class Meta:
         model = Part
-        fields = ('bike', 'brand', 'bikemodel', 'parttype', 'name', 'part_make', 'part_model', 'notes', 'purchase_price',)
+        fields = ('bike', 'brand', 'bikemodel', 'parttype', 'name', 'part_make', 'part_model', 'notes', 'purchase_price', 'document',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
