@@ -31,7 +31,6 @@ def add_bike(request):
 
     if request.method == "POST":
         form_data = request.POST
-        print("form data", form_data)
 
         newBike = Bike(
             user = request.user,

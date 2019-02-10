@@ -33,6 +33,7 @@ class BikeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['bikemodel'].queryset = BikeModel.objects.none()
+        self.fields['document'].widget.attrs['class'] = 'img_field'
     
         if 'brand' in self.data:
             try:
@@ -42,6 +43,7 @@ class BikeForm(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty bike model queryset
         elif self.instance.pk:
             self.fields['bikemodel'].queryset = self.instance.brand.bikemodel_set.order_by('name')
+
 
 class PartForm(forms.ModelForm):
 
