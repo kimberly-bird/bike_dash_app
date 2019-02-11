@@ -1,14 +1,18 @@
 {% include "navbar.html" %}
 
-<h1>All your bikes</h1>
+<div class="container">
 
-{% for message in messages %}
-<div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
-<hr>
-{% endfor %}
-
-<a href="{% url 'bikes:add_bike' %}">Add New Bike</a>
-{% for bike in bike_list %}
-<h3><a href="{% url 'bikes:bike_detail' pk=bike.id %}">{{ bike.name }}</a></h3>
-<p>{{ bike.brand.name }} | {{ bike.bikemodel.name }}</p>
-{% endfor %}
+    <h1>All your bikes</h1>
+    
+    {% for message in messages %}
+    <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+    <hr>
+    {% endfor %}
+    
+    <a href="{% url 'bikes:add_bike' %}">Add New Bike</a>
+    {% for bike in bike_list %}
+    <h3><a href="{% url 'bikes:bike_detail' pk=bike.id %}">{{ bike.name }}</a></h3>
+    <p>{{ bike.brand.name }} | {{ bike.bikemodel.name }}</p>
+    <p>{{ bike.status.name }}</p>
+    {% endfor %}
+</div>

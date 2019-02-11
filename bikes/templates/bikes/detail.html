@@ -3,7 +3,17 @@
 <div class="container">
     <h1>{{ bike.name }}</h1>
     
+    {% if bike.status.name != "Sold" %}
     <a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit Bike</a>
+    {% endif %}
+
+    {% if bike.status.name == "Listed" %}
+    <a href="{% url 'bikes:sell_bike' pk=bike.id %}">Mark as sold</a>
+    {% endif %}
+    
+    {% if bike.status.name == "In Process" %}
+    <a href="{% url 'bikes:list_bike_for_sale' pk=bike.id %}">List Bike For Sale</a>
+    {% endif %}
     
     {% for message in messages %}
     <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
