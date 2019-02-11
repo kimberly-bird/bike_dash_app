@@ -15,3 +15,5 @@ from .load_model_view import load_models
 from .part_edit_view import edit_part
 from .part_detail_view import part_detail
 from .part_remove_from_bike_view import remove_part_from_bike
+from .bike_sell_view import sell_bike
+from .bike_list_for_sale_view import list_bike_for_sale

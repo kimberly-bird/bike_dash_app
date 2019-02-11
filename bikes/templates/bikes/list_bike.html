@@ -1,0 +1,24 @@
+{% load static %}
+{% include "navbar.html" %}
+
+<div class="container">
+    <h1>You're ready to list the {{ bike.name }} for sale!</h1>
+
+    <form action="{% url 'bikes:list_bike_for_sale' bike.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="list_price">List Price</label>
+            <input type="text" class="form-control" name="list_price" />
+        </div>
+        
+        <div>
+            <button type="submit" class="btn btn-outline-secondary">Save</button>
+            <a href="{% url 'bikes:bike_list' %}">
+                <button type="button" class="btn btn-outline-secondary">Go Back</button>
+            </a>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/index.js' %}"></script>

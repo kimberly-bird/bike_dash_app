@@ -26,9 +26,14 @@ class BikeModelForm(forms.ModelForm):
         fields = ('name',)
 
 class BikeForm(forms.ModelForm):
+
+    list_price = forms.IntegerField(required=False)
+    sale_price = forms.IntegerField(required=False)
+    sale_date = forms.CharField(required=False)
+
     class Meta:
         model = Bike
-        fields = ('brand', 'bikemodel', 'condition', 'status', 'name', 'year', 'description', 'purchase_price', 'purchase_date', 'document',)
+        fields = ('brand', 'bikemodel', 'condition', 'status', 'name', 'year', 'description', 'purchase_price', 'purchase_date', 'list_price', 'sale_price', 'sale_date', 'document',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
