@@ -1,9 +1,12 @@
 // loading models based on select bike brand
 $("#id_brand").change(function () {
-    var url = $("#bikeForm").attr("data_models_url");  // get the url of the `load_models` view
-    var brand_id = $(this).val();  // get the selected brand ID from the HTML input
+    // get the url of the `load_models` view
+    var url = $("#bikeForm").attr("data_models_url");  
+    // get the selected brand ID from the HTML input
+    var brand_id = $(this).val();  
 
-    $.ajax({                       // initialize an AJAX request
+    // initialize an AJAX request
+    $.ajax({                       
         url: url,                    // set the url of the request (= localhost:8000/bikes/ajax/load_models/)
         data: {
             'brand': brand_id       // add the brand id to the GET parameters
