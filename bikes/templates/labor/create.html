@@ -1,0 +1,28 @@
+{% load static %}
+{% include "navbar.html" %}
+{% load crispy_forms_tags %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Add Labor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h1 class="mt-2 text-center">Add labor for a bike</h1>
+            <hr class="mt-0 mb-4">
+            <form action="{% url 'bikes:add_labor'%}" id="laborForm" method="post">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ labor_form|crispy }}
+                    <button type="submit" class="btn btn-success">Save Labor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/index.js' %}"></script>
