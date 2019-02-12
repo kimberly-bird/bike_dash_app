@@ -7,6 +7,14 @@ from safedelete.models import SOFT_DELETE_CASCADE
 
 
 class Labor(SafeDeleteModel):
+    """Labor Model
+    
+    Arguments:
+        SafeDeleteModel -- safe delete policy for all foreign keys
+    
+    Returns:
+        Labor instance
+    """
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     user = models.ForeignKey(User, on_delete=_safedelete_policy)
@@ -21,12 +29,11 @@ class Labor(SafeDeleteModel):
 
     @property
     def get_total_for_each_labor(self):
+        """method that calculates the total amount of labor in dollars based off of time and rate of pay
+        
+        Returns:
+            int -- calculated time*rate of pay
+        """
+
         return self.time * self.rate_of_pay
 
-    @property
-    def get_total_labor(self):
-        labor = Labor.objects.filter(pk=self.id)
-
-        for l in labor:
-            total_labor += l.time * l.rate_of_pay 
-        return total_labor

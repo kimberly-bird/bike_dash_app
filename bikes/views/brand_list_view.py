@@ -5,12 +5,13 @@ from bikes.models import BikeModel
 
 
 def brand_list(request):
-    '''View for Brands of bikes page
+    '''View for list of Brands 
 
         Allowed verbs: GET
 
         returns rendered list of all bike brands and associated list of bike models
     '''
+    
     if request.method == "GET":
         bike_brands = Brand.objects.all()
         bike_models = BikeModel.objects.all()

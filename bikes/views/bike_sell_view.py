@@ -10,6 +10,13 @@ from bikes.models import Status
 
 @login_required
 def sell_bike(request, pk):
+    '''View for marking a bike as sold. When a user is on the bike detail page and the bike status is "Listed", then the user can click on a "mark this bike sold" affordance that redirects to this view. This renders a simple form that allows users to put the price they sold the bike and the date the bike was sold. On POST, the bike is updated with the price, date, and status is changed from "Listed" to "Sold"
+
+    Allowed verbs: GET, POST
+
+    returns form with 2 fields and posts update to Bike
+    '''
+
     # get selected bike
     bike = get_object_or_404(Bike, pk=pk)
     status = get_object_or_404(Status, pk=1)

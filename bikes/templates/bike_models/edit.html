@@ -1,9 +1,11 @@
 {% include "../navbar.html" %}
 
-<h1>Edit Bike Model</h1>
-
-<form action="{% url 'bikes:edit_bike_model' pk %}" method="post">
-  {% csrf_token %}
-  {{ bike_model_form.as_p }}
-  <input type="submit" value="Update" />
-</form>
+<div class="container">
+    <h1>Edit Bike Model</h1>
+    
+    <form action="{% url 'bikes:edit_bike_model' pk %}" method="post">
+        {% csrf_token %}
+        {{ bike_model_form.as_p }}
+        <input type="submit" value="Update" />
+    </form>
+</div>

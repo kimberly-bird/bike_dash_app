@@ -7,6 +7,14 @@ from safedelete.models import SOFT_DELETE_CASCADE
 
 
 class Part(SafeDeleteModel):
+    """Part Model. Several of the properties on this model are nullable. In addition, in most cases, a user will select brand/bikemodel OR part_make/part_model (likely not both)
+    
+    Arguments:
+        SafeDeleteModel -- safe delete policy for all foreign keys
+    
+    Returns:
+        Part instance
+    """
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     user = models.ForeignKey(User, on_delete=_safedelete_policy)

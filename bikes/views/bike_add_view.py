@@ -18,12 +18,13 @@ from bikes.models import Status
 
 @login_required
 def add_bike(request):
-    '''View for adding bike
+    '''View for adding bike. When a user adds a bike, it will automatically be added to the status of "In Progress". User does not need to fill out the list price, sale price, or sale date, as those are change the user will make later on. File upload sends unique image file name to the "media" folder.
 
     Allowed verbs: GET, POST
 
     returns form to post new bike and redirects users to a list of user's bikes
     '''
+    
     if request.method == "GET":
         #render the form page
         bike_form = BikeForm()

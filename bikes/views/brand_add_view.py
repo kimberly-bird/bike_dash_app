@@ -9,12 +9,13 @@ from bikes.models import Brand
 
 @login_required
 def add_brand(request):
-    '''View for adding bike brands
+    '''View for adding bike brand. In a perfect world, this data would not be user generated, but I didn't want to scrape data off a website. Any user can add a brand or bike model. TO DO: check to make sure that duplicate bike brand can't be added.
 
     Allowed verbs: GET, POST
 
-    returns form to post new bike brands and redirects users to a link to list of bike brands
+    returns form to post new bike brands and redirects users to a link to list of bike brands, with the list of models
     '''
+
     if request.method == "GET":
         #render the form page
         brand_form = BrandForm()

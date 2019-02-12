@@ -12,12 +12,13 @@ from bikes.models import Labor
 
 @login_required
 def add_labor(request):
-    '''View for adding bike labor
+    '''View for adding bike labor. Whenever a user works on a bike, they can record some details about that work, including time and "rate of pay". The labor model has a @property decorator method that calculates the time*rate_of_pay for each labor entry.
 
     Allowed verbs: GET, POST
 
-    returns form to post new bike labor and redirects users to a link to list of bike labor
+    returns form to post new bike labor and redirects users to a list of bike labor
     '''
+
     if request.method == "GET":
         #render the form page
         labor_form = LaborForm()

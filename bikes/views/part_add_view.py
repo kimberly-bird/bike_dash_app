@@ -15,12 +15,13 @@ from bikes.models import PartType
 
 @login_required
 def add_part(request):
-    '''View for adding bike parts
+    '''View for adding bike parts. Bike parts sometimes have a specific bike brand and model, but other times, they are not associated with a specific bike manufacturer and have their own make/models. The user is not required to select both a bike brand/model AND part_make/part_model - it's likely that they will only fill out one pair. For example, a bike frame will have a bike manufactured brand/model, whereas a bike chain will not and will have its own make/model that the user can manually enter.
 
     Allowed verbs: GET, POST
 
-    returns form to post new bike parts and redirects users to a link to list of bike parts
+    returns form to post new bike parts and redirects users to a list of bike parts
     '''
+
     if request.method == "GET":
         #render the form page
         part_form = PartForm()

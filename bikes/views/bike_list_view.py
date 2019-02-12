@@ -11,6 +11,7 @@ def bike_list(request):
 
         returns rendered list of all bikes 
     '''
+    
     if request.method == "GET":
         current_user = request.user
         bikes = Bike.objects.filter(user_id=current_user.id)

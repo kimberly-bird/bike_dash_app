@@ -6,6 +6,13 @@ from bikes.models import Brand
 
 @login_required
 def edit_brand(request, pk):
+    '''View for editing bike brand.
+
+    Allowed verbs: GET, POST
+
+    returns form to edit bike brand and redirects users to a link to list of bike brands, with the list of models
+    '''
+
     brand = get_object_or_404(Brand, pk=pk)
 
     if request.method == "POST":

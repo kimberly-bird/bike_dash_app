@@ -7,12 +7,13 @@ from django.contrib.auth.models import User
 
 
 def bike_detail(request, pk):
-    '''View for bike detail
+    '''View for bike detail. This view also calculates the total amount of labor spent on this bike in both hours and dollars. The rendered template also calculates total labor for each itemized labor entry, but that calculation is done in the Labor model, with an @property decorator.
 
         Allowed verbs: GET
 
-        returns details about specific bike
+        returns details about specific bike and total labor spent on the bike
     '''
+    
     if request.method == "GET":
         current_user = request.user
         bike = get_object_or_404(Bike, pk=pk)

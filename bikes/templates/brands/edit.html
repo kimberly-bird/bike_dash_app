@@ -1,9 +1,12 @@
+{% load crispy_forms_tags %}
 {% include "navbar.html" %}
 
-<h1>Edit Brand</h1>
-
-<form action="{% url 'bikes:edit_brand' pk %}" method="post">
-  {% csrf_token %}
-  {{ brand_form.as_p }}
-  <input type="submit" value="Update" />
-</form>
+<div class="container">
+    <h1>Edit Brand</h1>
+    
+    <form action="{% url 'bikes:edit_brand' pk %}" method="post">
+        {% csrf_token %}
+        {{ brand_form|crispy }}
+        <input type="submit" value="Update" />
+    </form>
+</div>
