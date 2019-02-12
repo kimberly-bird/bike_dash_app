@@ -6,6 +6,15 @@ from safedelete.models import SOFT_DELETE_CASCADE
 
 
 class BikeModel(SafeDeleteModel):
+    """Bike Model Model (Each bike brand has multiple bike models that are manufactured by that brand)
+    
+    Arguments:
+        SafeDeleteModel -- safe delete policy for all foreign keys
+    
+    Returns:
+        Bike Model instance
+    """
+
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     brand = models.ForeignKey("Brand", on_delete=_safedelete_policy)

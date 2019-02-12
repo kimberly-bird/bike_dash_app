@@ -7,6 +7,15 @@ from safedelete.models import SOFT_DELETE_CASCADE
 
 
 class Bike(SafeDeleteModel):
+    """Bike Model
+    
+    Arguments:
+        SafeDeleteModel -- safe delete policy for all foreign keys
+    
+    Returns:
+        Bike instance
+    """
+
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     user = models.ForeignKey(User, on_delete=_safedelete_policy)
