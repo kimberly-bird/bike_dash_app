@@ -10,6 +10,7 @@ def part_detail(request, pk):
 
         returns details about specific part
     '''
+    
     if request.method == "GET":
         part = get_object_or_404(Part, pk=pk)
         context = {"part": part}

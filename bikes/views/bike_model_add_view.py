@@ -10,12 +10,13 @@ from bikes.models import BikeModel
 
 @login_required
 def add_bike_model(request, pk):
-    '''View for adding bike model for a bike brand
+    '''View for adding bike model for a bike brand. Each bike brand/manufacturer has many bike models, so this creates a connection between the model and the brand. In a perfect world, this data would not be user generated, but I didn't want to scrape data off a website. Any user can add a brand or bike model. TO DO: check to make sure that duplicate bike model can't be added.
 
     Allowed verbs: GET, POST
 
     returns form to post new bike models and redirects users to a link to list of bike brands, with the list of models
     '''
+
     if request.method == "GET":
         bike_model_form = BikeModelForm()
         brand = get_object_or_404(Brand, pk=pk)

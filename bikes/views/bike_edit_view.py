@@ -7,6 +7,13 @@ from bikes.models import Bike
 
 @login_required
 def edit_bike(request, pk):
+    '''View for edit bike. This view allows users to edit the main specs of the bike. It does not allow users to update the status or enter data for list price, sale price, or sale date.
+
+    Allowed verbs: GET, POST
+
+    returns a form to edit the bike and the posts to database
+    '''
+    
     bike = get_object_or_404(Bike, pk=pk)
 
     if request.method == "POST":
