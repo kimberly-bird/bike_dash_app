@@ -4,6 +4,7 @@ from django import forms
 from bikes.models import Brand
 from bikes.models import BikeModel
 from bikes.models import Bike
+from bikes.models import Labor
 from bikes.models import Part
 
 
@@ -47,6 +48,18 @@ class BikeForm(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty bike model queryset
         elif self.instance.pk:
             self.fields['bikemodel'].queryset = self.instance.brand.bikemodel_set.order_by('name')
+
+
+class LaborForm(forms.ModelForm):
+    class Meta:
+        model = Labor
+        fields = ('notes', 'time', 'rate_of_pay', 'bike')
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # only put bikes that are not sold in the drop down when adding labor
+        bikes_not_sold = Bike.objects.exclude(status=1)
+        self.fields['bike'].queryset = bikes_not_sold
 
 
 class PartForm(forms.ModelForm):

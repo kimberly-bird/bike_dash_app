@@ -1,0 +1,21 @@
+{% include "navbar.html" %}
+
+<div class="container">
+    <h1>Labor</h1>
+
+    {% for message in messages %}
+    <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+    <hr>
+    {% endfor %}
+
+    <a href="{% url 'bikes:add_labor' %}">Add Labor</a>
+    {% for labor in labor_list %}
+    <h3>Date: {{ labor.date }}</h3>
+    <p>{{ labor.notes }}</p>
+    <p>Time worked: {{ labor.time }} hrs.</p>
+    <p>Pay rate: ${{ labor.rate_of_pay }}</p>
+    <p>Bike worked on: <a href="{% url 'bikes:bike_detail' pk=labor.bike.id %}">{{ labor.bike.name }}</a></p>
+    
+    <a href="#">Edit</a>
+    {% endfor %}
+</div>
