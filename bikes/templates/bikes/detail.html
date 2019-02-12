@@ -5,6 +5,7 @@
     
     {% if bike.status.name != "Sold" %}
     <a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit Bike</a>
+    <a href="{% url 'bikes:add_labor' %}">Record work on this bike</a>
     {% endif %}
 
     {% if bike.status.name == "Listed" %}
@@ -28,6 +29,7 @@
         <p>Year: {{ bike.year }}</p>
         <p>Description: {{ bike.description }}</p>
     </div>
+    <hr>
     <div>
         <h4>Bike Details</h4>
         <p>Added: {{ bike.created_at }}</p>
@@ -43,10 +45,12 @@
         {% elif bike.status.name == "Listed" %}
         <p>List Price: ${{ bike.list_price }}</p>
         {% endif %}
+        <hr>
     </div>
+
     {% if bike.part_set.all %}
     <div>
-        <h4>Bike Parts</h4>
+        <h4>Parts currently on your {{ bike.name }}</h4>
         <a href="{% url 'bikes:add_part' %}">Add Part to {{ bike.name }}</a>
         <br>
         {% for part in bike.part_set.all %}
@@ -63,6 +67,28 @@
         <a href="/bikes/mybikes/remove-part/{{ part.id }}">Remove this part from {{ bike.name }}</a>
         <hr>
         {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if bike.labor_set.all %}
+    <div>
+        <h4>Work on {{ bike.name }}</h4>
+        <br>
+        <h5>Total labor spent so far</h5>
+        <p>Total Invested: ${{ total_labor }}</p>
+        <p>Total Time: {{ total_time }} hours</p>
+
+        <h5>Itemized Labor</h5>
+        {% for labor in bike.labor_set.all %}
+        <p>{{ labor.date }}</p>
+        <ul>
+            <li>{{ labor.notes }}</li>
+            <li>Hours: {{ labor.time }}</li>
+            <li>Pay Rate: ${{ labor.rate_of_pay }}</li>
+            <li>Total: ${{ labor.get_total_for_each_labor }}</li>
+        </ul>
+        {% endfor %}
+
     </div>
     {% endif %}
 </div>
