@@ -37,7 +37,7 @@ def add_bike(request):
             brand = Brand.objects.get(id=form_data['brand']),
             bikemodel = BikeModel.objects.get(id=form_data['bikemodel']),
             condition = Condition.objects.get(id=form_data['condition']),
-            status = Status.objects.get(id=form_data['status']),
+            status = Status.objects.get(pk=3),
             created_at = datetime.date.today(),
             name = form_data['name'],
             year = form_data['year'],

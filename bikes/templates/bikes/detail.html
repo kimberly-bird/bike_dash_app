@@ -29,6 +29,7 @@
         <p>Year: {{ bike.year }}</p>
         <p>Description: {{ bike.description }}</p>
     </div>
+    <hr>
     <div>
         <h4>Bike Details</h4>
         <p>Added: {{ bike.created_at }}</p>
@@ -73,15 +74,21 @@
     <div>
         <h4>Work on {{ bike.name }}</h4>
         <br>
+        <h5>Total labor spent so far</h5>
+        <p>Total Invested: ${{ total_labor }}</p>
+        <p>Total Time: {{ total_time }} hours</p>
+
+        <h5>Itemized Labor</h5>
         {% for labor in bike.labor_set.all %}
         <p>{{ labor.date }}</p>
         <ul>
             <li>{{ labor.notes }}</li>
             <li>Hours: {{ labor.time }}</li>
             <li>Pay Rate: ${{ labor.rate_of_pay }}</li>
-            <li>Total: ${% widthratio labor.time 1 labor.rate_of_pay%}</li>
+            <li>Total: ${{ labor.get_total_for_each_labor }}</li>
         </ul>
         {% endfor %}
+
     </div>
     {% endif %}
 </div>

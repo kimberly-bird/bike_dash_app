@@ -18,3 +18,15 @@ class Labor(SafeDeleteModel):
 
     def __str__(self):
         return f'{self.date}'
+
+    @property
+    def get_total_for_each_labor(self):
+        return self.time * self.rate_of_pay
+
+    @property
+    def get_total_labor(self):
+        labor = Labor.objects.filter(pk=self.id)
+
+        for l in labor:
+            total_labor += l.time * l.rate_of_pay 
+        return total_labor
