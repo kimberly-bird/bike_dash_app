@@ -2,6 +2,44 @@ a {
     color: #eca400;
 }
 
+a:hover {
+    text-decoration: none;
+    color: #01579b;
+}
+
+.btn-outline-info {
+    color: #eca400;
+    border: 1px solid #eca400;
+}
+
+.list-group-item-info {
+    background: #01579b !important;
+    color: white;
+}
+
+.list-group-item {
+    max-width: 400px;
+}
+
+.btn-outline-info:hover, .btn-outline-info:focus, .btn-outline-info:active, .btn-outline-info.active, .open > .dropdown-toggle.btn-outline-info {
+    background: #eca50034 !important;
+    border: 1px solid #eca400 !important;
+}
+
+.btn-outline-secondary {
+    color: #01579b !important;
+    border: 1px solid #01579b;
+}
+
+.secondary_link {
+    color: #01579b !important;
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:focus, .btn-outline-secondary:active, .btn-outline-secondary.active, .open > .dropdown-toggle.btn-outline-secondary {
+    background: #01589b5e !important;
+    border: 1px solid #01579b !important;    
+}
+
 .nav-link {
     color: white !important;
 }
