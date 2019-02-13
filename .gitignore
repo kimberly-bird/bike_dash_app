@@ -57,4 +57,3 @@ Pipfile*
 migrations
 db.sqlite3-journal
 env*
-media*
