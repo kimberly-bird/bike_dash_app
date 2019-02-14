@@ -55,7 +55,24 @@ a:hover {
 }
 
 .bike_image, .part_image {
-    max-width: 300px;
-    max-height: auto;
+    max-width: auto;
+    max-height: 500px;
+}
+
+.bike_details_wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100vw;
+    height: 2px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #eaf8bf;
+}
+
+.total_labor_report {
+    margin-left: 35%;
 }
 

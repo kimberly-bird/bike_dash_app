@@ -2,94 +2,127 @@
 
 <div class="container">
     <h1>{{ bike.name }}</h1>
-    
+
     {% if bike.status.name != "Sold" %}
-    <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit Bike</a></button>
-    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}" class="secondary_link">Record work on this bike</a></button>
+    <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit
+            Bike</a></button>
+    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}"
+            class="secondary_link">Record work on this bike</a></button>
     {% endif %}
 
     {% if bike.status.name == "Listed" %}
-    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:sell_bike' pk=bike.id %}" class="secondary_link">Mark as sold</a></button>
+    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:sell_bike' pk=bike.id %}"
+            class="secondary_link">Mark as sold</a></button>
     {% endif %}
-    
+
     {% if bike.status.name == "In Process" %}
-    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:list_bike_for_sale' pk=bike.id %}" class="secondary_link">List Bike For Sale</a></button>
+    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:list_bike_for_sale' pk=bike.id %}"
+            class="secondary_link">List Bike For Sale</a></button>
     {% endif %}
-    
+
     {% for message in messages %}
     <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
     <hr>
     {% endfor %}
-    
-    <div>
-        <img src="/media/{{ bike.document }}" alt="image of bike" class="bike_image">
-        <h4>Bike Specs</h4>
-        <p>Brand: {{ bike.brand.name }}</p>
-        <p>Model: {{ bike.bikemodel.name }}</p>
-        <p>Year: {{ bike.year }}</p>
-        <p>Description: {{ bike.description }}</p>
+
+    <div class="bike_details_wrapper"></div>
+    <div class="row">
+        <div class="col-sm text-center">
+            <img src="/media/{{ bike.document }}" alt="image of bike" class="bike_image">
+        </div>
+        <div class="col-sm text-center">
+            <h4>Bike Specs</h4>
+            <p>Brand: {{ bike.brand.name }}</p>
+            <p>Model: {{ bike.bikemodel.name }}</p>
+            <p>Year: {{ bike.year }}</p>
+            <p>Description: {{ bike.description }}</p>
+            <h4>Bike Details</h4>
+            <p>Added: {{ bike.created_at }}</p>
+            <p>Purchase Price: ${{ bike.purchase_price }}</p>
+            <p>Purchase Date: {{ bike.purchase_date }}</p>
+            <p>Current Status: {{ bike.status.name }}</p>
+            <p>Condition: {{ bike.condition.name }}</p>
+
+            {% if bike.status.name == "Sold" %}
+            <p>List Price: ${{ bike.list_price }}</p>
+            <p>Sale Price: ${{ bike.sale_price }}</p>
+            <p>Sale Date: {{ bike.sale_date }}</p>
+            {% elif bike.status.name == "Listed" %}
+            <p>List Price: ${{ bike.list_price }}</p>
+            {% endif %}
+        </div>
     </div>
-    <hr>
-    <div>
-        <h4>Bike Details</h4>
-        <p>Added: {{ bike.created_at }}</p>
-        <p>Purchase Price: ${{ bike.purchase_price }}</p>
-        <p>Purchase Date: {{ bike.purchase_date }}</p>
-        <p>Current Status: {{ bike.status.name }}</p>
-        <p>Condition: {{ bike.condition.name }}</p>
-        
-        {% if bike.status.name == "Sold" %}
-        <p>List Price: ${{ bike.list_price }}</p>
-        <p>Sale Price: ${{ bike.sale_price }}</p>
-        <p>Sale Date: {{ bike.sale_date }}</p>
-        {% elif bike.status.name == "Listed" %}
-        <p>List Price: ${{ bike.list_price }}</p>
-        {% endif %}
-        <hr>
-    </div>
+    <div class="bike_details_wrapper"></div>
 
     {% if bike.part_set.all %}
     <div>
-        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_part' %}" class="secondary_link">Add a part to {{ bike.name }}</a></button>
         <h4>Parts currently on your {{ bike.name }}</h4>
-        {% for part in bike.part_set.all %}
-        <a href="{% url 'bikes:part_detail' pk=part.id %}"><p>{{ part.name }}</p></a>
-        <ul>
-            <li>Part Type: {{ part.parttype.name }}</li>
-            {% if part.part_make %}
-            <li>Make: {{ part.part_make }}</li>
-            <li>Model: {{ part.part_model }}</li>
-            {% endif %}
-            <li>Part Notes: {{ part.notes }}</li>
-            <li>Purchase Price: ${{ part.purchase_price }}</li>
-        </ul>
-        <button type="button" class="btn btn-outline-info"><a href="/bikes/mybikes/remove-part/{{ part.id }}">Remove {{ part.name }} from {{ bike.name }}</a></button>
-        <hr>
-        {% endfor %}
+        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_part' %}"
+                class="secondary_link">Add a part to {{ bike.name }}</a></button>
+        <div class="card-deck">
+            {% for part in bike.part_set.all %}
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <a href="{% url 'bikes:part_detail' pk=part.id %}">
+                            <h5>{{ part.name }}</h5>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Part Type: {{ part.parttype.name }}</li>
+                            {% if part.part_make %}
+                            <li class="list-group-item">Make: {{ part.part_make }}</li>
+                            <li class="list-group-item">Model: {{ part.part_model }}</li>
+                            {% endif %}
+                            <li class="list-group-item">Part Notes: {{ part.notes }}</li>
+                            <li class="list-group-item">Purchase Price: ${{ part.purchase_price }}</li>
+                            <li class="list-group-item text-center"><button type="button"
+                                    class="btn btn-outline-info"><a
+                                        href="/bikes/mybikes/remove-part/{{ part.id }}">Remove
+                                        {{ part.name }}</a></button></li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     {% endif %}
-
+    <div class="bike_details_wrapper"></div>
     {% if bike.labor_set.all %}
     <div>
-        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}" class="secondary_link">Record work on {{ bike.name }}</a></button>
-        <h4>{{ bike.name }} Labor Report</h4>
-        <br>
-        <h5>Total labor spent so far</h5>
-        <p>Total Invested: ${{ total_labor }}</p>
-        <p>Total Time: {{ total_time }} hours</p>
-
-        <h5>Itemized Labor</h5>
-        {% for labor in bike.labor_set.all %}
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-info">{{ labor.date }}</li>
-            <li class="list-group-item">{{ labor.notes }}</li>
-            <li class="list-group-item">Hours: {{ labor.time }}</li>
-            <li class="list-group-item">Pay Rate: ${{ labor.rate_of_pay }}</li>
-            <li class="list-group-item">Total: ${{ labor.get_total_for_each_labor }}</li>
-        </ul>
-        <br>
-        {% endfor %}
+        <div class="text-center">
+            <h4>{{ bike.name }} Labor Report</h4>
+            <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}" class="secondary_link">Record work on {{ bike.name }}</a></button>
+        </div>
+            <br>
+            <div class="card mx-auto" style="width: 18rem;">
+                    <ul class="list-group text-center" >
+                        <li class="list-group-item list-group-item-info">Total labor spent so far</li>
+                        <li class="list-group-item">Total Invested: ${{ total_labor }}</li>
+                        <li class="list-group-item">Total Time: {{ total_time }} hours</li>
+                    </ul>
+                </div>
+            <br>
+        <h5 class="text-center">Itemized Labor</h5>
+        <div class="row">
+            {% for labor in bike.labor_set.all %}
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-info">{{ labor.date }}</li>
+                    <li class="list-group-item">{{ labor.notes }}</li>
+                    <li class="list-group-item">Hours: {{ labor.time }}</li>
+                    <li class="list-group-item">Pay Rate: ${{ labor.rate_of_pay }}</li>
+                    <li class="list-group-item list-group-item-dark">Total: ${{ labor.get_total_for_each_labor }}</li>
+                </ul>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
 
     </div>
+    <br>
     {% endif %}
 </div>
