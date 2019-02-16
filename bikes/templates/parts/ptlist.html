@@ -2,37 +2,35 @@
 
 <div class="container">
     <div>
-        <h1>{{ parttype.name }} parts</h1>
+        <h1>{{ parttype.name|title }} Parts</h1>
 
         <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:add_part' %}">Add New
                 Part</a></button>
-        <button type="button" class="btn btn-outline-secondary"><a class="secondary_link" href="{% url 'bikes:part_list' %}">Back</a></button>
+        <button type="button" class="btn btn-outline-secondary"><a class="secondary_link"
+                href="{% url 'bikes:part_list' %}">Back</a></button>
     </div>
     <br>
-    
-    {% for part in parttype.part_set.all %}
 
-    <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name }}</a></h3>
-    <p><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit Part</a></p>
+    <div class="row">
 
-    {% if part.bike.name %}
-    <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
-        </a></h4>
-    {% endif %}
+        {% for part in part_list %}
+        <div class="col-sm-2 col-md-2 col-lg-1">
 
-    {% if part.bike.brand.id %}
-    <p>Brand: {{ part.bike.brand.name }}</p>
-    <p>Model: {{ part.bike.bikemodel.name }}</p>
-    {% endif %}
+            <img src="/media/{{ part.document }}" alt="image of part" class="part_list_image">
+        </div>
+        <div class="col-sm-10 col-md-10 col-lg-11">
+            <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name|title }}</a></h3>
 
-    {% if part.part_make %}
-    <p>Make: {{ part.part_make }}</p>
-    {% endif %}
 
-    {% if part.part_model %}
-    <p>Model: {{ part.part_model }}</p>
-    {% endif %}
+            {% if part.bike.name %}
+            <h6 class="text-muted">Currently on your <a
+                    href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
+                </a></h6>
+            {% endif %}
 
-    <hr class="mt-0 mb-4">
-    {% endfor %}
+            <p>Purchased for ${{ part.purchase_price }}</p>
+            <hr/>
+        </div>
+        {% endfor %}
+    </div>
 </div>

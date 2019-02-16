@@ -17,7 +17,7 @@ def parttype_list(request, pk):
 
     if request.method == "GET":
         current_user = request.user
-        parts = Part.objects.filter(user_id=current_user.id)
         parttype = get_object_or_404(PartType, pk=pk)
+        parts = parttype.part_set.order_by('name').filter(user_id=current_user.id)
         context = {"part_list": parts, "parttype": parttype}
         return render(request, 'parts/ptlist.html', context)

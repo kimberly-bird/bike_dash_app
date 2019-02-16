@@ -1,26 +1,34 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1>{{ part.name }}</h1>
-    
-    {% for message in messages %}
-    <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
-    <hr>
-    {% endfor %}
-    
     <div>
-        <p><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit Part</a></p>
-        <img src="/media/{{ part.document }}" alt="image of part" class="part_image">
-        <p>Part: {{ part.name }}</p>
-        <p>Type of Part: {{ part.parttype.name }}</p>
-        <p>Make: {{ part.part_make }}</p>
-        <p>Model: {{ part.part_model }}</p>
-        <p>Notes: {{ part.notes }}</p>
-        <p>Purchase Price: ${{ part.purchase_price }}</p>
+        <h1>{{ part.name }}</h1>
 
-        {% if part.bike.name %}
-        <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
-        </a></h4>
-        {% endif %}
+        {% for message in messages %}
+        <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+        <hr>
+        {% endfor %}
+
+        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit
+                Part</a></button>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+            <img src="/media/{{ part.document }}" alt="image of part" class="part_image">
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+            <p>Part: {{ part.name }}</p>
+            <p>Type of Part: {{ part.parttype.name }}</p>
+            <p>Make: {{ part.part_make }}</p>
+            <p>Model: {{ part.part_model }}</p>
+            <p>Notes: {{ part.notes }}</p>
+            <p>Purchase Price: ${{ part.purchase_price }}</p>
+
+            {% if part.bike.name %}
+            <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
+                </a></h4>
+            {% endif %}
+        </div>
     </div>
 </div>

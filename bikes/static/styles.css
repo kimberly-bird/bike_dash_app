@@ -108,9 +108,14 @@ a:hover {
 }
 
 .parttype-img {
-    max-width: 300px;
+    max-width: 350px;
     max-height: auto;
     opacity: 0.5;
+}
+
+.part_list_image {
+    max-width: 75px;
+    max-height: auto;
 }
 
 .parttype-container {
