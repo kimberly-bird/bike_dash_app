@@ -110,7 +110,7 @@ a:hover {
 .parttype-img {
     max-width: 300px;
     max-height: auto;
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .parttype-container {
@@ -123,7 +123,6 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white !important;
     font-size: 3em;
 }
 
