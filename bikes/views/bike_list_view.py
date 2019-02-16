@@ -14,6 +14,6 @@ def bike_list(request):
     
     if request.method == "GET":
         current_user = request.user
-        bikes = Bike.objects.filter(user_id=current_user.id)
+        bikes = Bike.objects.order_by('name').filter(user_id=current_user.id)
         context = {"bike_list": bikes}
         return render(request, 'bikes/list.html', context)

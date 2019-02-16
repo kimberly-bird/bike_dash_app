@@ -2,6 +2,80 @@ a {
     color: #eca400;
 }
 
+a:hover {
+    text-decoration: none;
+    color: #01579b;
+}
+
+.btn-outline-info {
+    color: #eca400;
+    border: 1px solid #eca400;
+}
+
+.list-group-item-info {
+    background: #01579b !important;
+    color: white;
+}
+
+.list-group-item {
+    max-width: 400px;
+}
+
+.btn-outline-info:hover, .btn-outline-info:focus, .btn-outline-info:active, .btn-outline-info.active, .open > .dropdown-toggle.btn-outline-info {
+    background: #eca50034 !important;
+    border: 1px solid #eca400 !important;
+}
+
+.btn-outline-secondary {
+    color: #01579b !important;
+    border: 1px solid #01579b;
+}
+
+.secondary_link {
+    color: #01579b !important;
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:focus, .btn-outline-secondary:active, .btn-outline-secondary.active, .open > .dropdown-toggle.btn-outline-secondary {
+    background: #01589b5e !important;
+    border: 1px solid #01579b !important;    
+}
+
+/* card css for bike list */
+.bg-success {
+    background-color: #eca400 !important;
+}
+
+.border-success {
+    border-color: #eca400 !important;
+}
+
+.bg-info {
+    background-color: #01589b75 !important;
+}
+
+.border-info {
+    border-color: #01589b75 !important;
+}
+
+.bg-secondary {
+    background-color: #01579b !important;
+}
+
+.border-secondary {
+    border-color: #01579b !important;
+}
+
+.list-header {
+    background-color: white !important;
+}
+
+.list-footer {
+    font-size: 1.5em;
+    border-color: white;
+}
+
+/* navs */
+
 .nav-link {
     color: white !important;
 }
@@ -16,8 +90,64 @@ a {
     color: #27476e !important;
 }
 
-.bike_image, .part_image {
+/* IMAGES */
+
+.bike_image {
+    max-height: auto;
+    max-width: 600px;
+}
+
+.part_image {
+    max-width: auto;
+    max-height: 500px;
+}
+
+.bike_list_img {
     max-width: 300px;
     max-height: auto;
+}
+
+.parttype-img {
+    max-width: 350px;
+    max-height: auto;
+    opacity: 0.5;
+}
+
+.part_list_image {
+    max-width: 75px;
+    max-height: auto;
+}
+
+.parttype-container {
+    position: relative;
+    text-align: center;
+}
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+}
+
+/* BIKE DETAILS */
+
+.bike_details_wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100vw;
+    height: 2px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #eaf8bf;
+}
+
+/* LABOR REPORT  */
+.total_labor_report {
+    margin-left: 35%;
 }
 

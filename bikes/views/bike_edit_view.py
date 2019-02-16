@@ -1,5 +1,7 @@
 from bikes.forms import BikeForm
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from bikes.models import Bike
@@ -20,7 +22,7 @@ def edit_bike(request, pk):
         bike_form = BikeForm(request.POST, request.FILES, instance=bike)
         if bike_form.is_valid():
             bike = bike_form.save()
-            return redirect('bikes:bike_list')
+            return HttpResponseRedirect(reverse('bikes:bike_detail', args=(bike.id,)))
     else:
         bike_form = BikeForm(instance=bike)
 
