@@ -107,6 +107,26 @@ a:hover {
     max-height: auto;
 }
 
+.parttype-img {
+    max-width: 300px;
+    max-height: auto;
+    opacity: 0.7;
+}
+
+.parttype-container {
+    position: relative;
+    text-align: center;
+}
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 3em;
+}
+
 /* BIKE DETAILS */
 
 .bike_details_wrapper {

@@ -16,29 +16,17 @@
     </div>
     <br>
 
-    {% for part in part_list %}
-
-    <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name }}</a></h3>
-    <p><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit Part</a></p>
-
-    {% if part.bike.name %}
-    <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
-        </a></h4>
-    {% endif %}
-
-    {% if part.bike.brand.id %}
-    <p>Brand: {{ part.bike.brand.name }}</p>
-    <p>Model: {{ part.bike.bikemodel.name }}</p>
-    {% endif %}
-
-    {% if part.part_make %}
-    <p>Make: {{ part.part_make }}</p>
-    {% endif %}
-
-    {% if part.part_model %}
-    <p>Model: {{ part.part_model }}</p>
-    {% endif %}
-
-    <hr class="mt-0 mb-4">
-    {% endfor %}
+    <div class="parttype-container">
+        <div class="row">
+            {% for parttype in parttypes %}
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="thumbnail">
+                    <img src="../../static/images/{{ parttype.id }}_pt.jpg" alt="image of {{ parttype.name }}"
+                    class="parttype-img">
+                    <p><a href="{% url 'bikes:parttype_list' pk=parttype.id %}" class="centered-text">{{ parttype.name }}</a></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>

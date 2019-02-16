@@ -19,3 +19,4 @@ from .bike_sell_view import sell_bike
 from .bike_list_for_sale_view import list_bike_for_sale
 from .labor_list_view import labor_list
 from .labor_add_view import add_labor
+from .parttype_list_view import parttype_list

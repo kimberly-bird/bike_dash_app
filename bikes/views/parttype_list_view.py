@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from bikes.models import Part
 from bikes.models import PartType
 from django.contrib.auth.models import User
 
 
-def part_list(request):
-    '''View for list of user's parts
+def parttype_list(request, pk):
+    '''View for list of user's parts grouped by parttype
 
         Allowed verbs: GET
 
@@ -18,6 +18,6 @@ def part_list(request):
     if request.method == "GET":
         current_user = request.user
         parts = Part.objects.filter(user_id=current_user.id)
-        parttypes = PartType.objects.order_by('name')
-        context = {"part_list": parts, "parttypes": parttypes}
-        return render(request, 'parts/list.html', context)
+        parttype = get_object_or_404(PartType, pk=pk)
+        context = {"part_list": parts, "parttype": parttype}
+        return render(request, 'parts/ptlist.html', context)
