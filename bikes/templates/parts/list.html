@@ -1,38 +1,44 @@
 {% include "navbar.html" %}
 
-<h1 class="text-center">All your bike parts</h1>
-
-{% for message in messages %}
-<div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
-<hr>
-{% endfor %}
-
-<a href="{% url 'bikes:add_part' %}"><p class="text-center">Add New Part</p></a>
-
 <div class="container">
+
+    <div>
+
+        <h1>All your bike parts</h1>
+
+        {% for message in messages %}
+        <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+        <hr>
+        {% endfor %}
+
+        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:add_part' %}">Add New
+                Part</a></button>
+    </div>
+    <br>
+
     {% for part in part_list %}
 
     <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name }}</a></h3>
     <p><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit Part</a></p>
-    
+
     {% if part.bike.name %}
     <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
-    </a></h4>
+        </a></h4>
     {% endif %}
-    
+
     {% if part.bike.brand.id %}
     <p>Brand: {{ part.bike.brand.name }}</p>
     <p>Model: {{ part.bike.bikemodel.name }}</p>
     {% endif %}
-    
+
     {% if part.part_make %}
     <p>Make: {{ part.part_make }}</p>
     {% endif %}
-    
+
     {% if part.part_model %}
     <p>Model: {{ part.part_model }}</p>
     {% endif %}
-    
+
     <hr class="mt-0 mb-4">
     {% endfor %}
 </div>

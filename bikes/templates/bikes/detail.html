@@ -56,9 +56,13 @@
 
     {% if bike.part_set.all %}
     <div>
-        <h4>Parts currently on your {{ bike.name }}</h4>
-        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_part' %}"
-                class="secondary_link">Add a part to {{ bike.name }}</a></button>
+        <div class="text-center">
+
+            <h4>Parts currently on your {{ bike.name }}</h4>
+            <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_part' %}"
+                    class="secondary_link">Add a part to {{ bike.name }}</a></button>
+        </div>
+        <br>
         <div class="card-deck">
             {% for part in bike.part_set.all %}
             <div class="col-sm-6 col-md-6 col-lg-4">
@@ -95,17 +99,18 @@
     <div>
         <div class="text-center">
             <h4>{{ bike.name }} Labor Report</h4>
-            <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}" class="secondary_link">Record work on {{ bike.name }}</a></button>
+            <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}"
+                    class="secondary_link">Record work on {{ bike.name }}</a></button>
         </div>
-            <br>
-            <div class="card mx-auto" style="width: 18rem;">
-                    <ul class="list-group text-center" >
-                        <li class="list-group-item list-group-item-info">Total labor spent so far</li>
-                        <li class="list-group-item">Total Invested: ${{ total_labor }}</li>
-                        <li class="list-group-item">Total Time: {{ total_time }} hours</li>
-                    </ul>
-                </div>
-            <br>
+        <br>
+        <div class="card mx-auto" style="width: 18rem;">
+            <ul class="list-group text-center">
+                <li class="list-group-item list-group-item-info">Total labor spent so far</li>
+                <li class="list-group-item">Total Invested: ${{ total_labor }}</li>
+                <li class="list-group-item">Total Time: {{ total_time }} hours</li>
+            </ul>
+        </div>
+        <br>
         <h5 class="text-center">Itemized Labor</h5>
         <div class="row">
             {% for labor in bike.labor_set.all %}

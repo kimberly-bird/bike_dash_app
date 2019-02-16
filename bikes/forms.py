@@ -34,6 +34,8 @@ class BikeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['bikemodel'].queryset = BikeModel.objects.none()
+        self.fields['document'].label = "Upload Image"
+        self.fields['bikemodel'].label = "Bike Model"
     
         if 'brand' in self.data:
             try:
@@ -70,6 +72,11 @@ class PartForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         try:
             self.fields['bikemodel'].queryset = BikeModel.objects.none()
+            self.fields['document'].label = "Upload Image"
+            self.fields['bikemodel'].label = "Bike Model"
+            self.fields['parttype'].label = "Type of Part"
+            self.fields['part_make'].label = "Part Make (if applicable)"
+            self.fields['part_model'].label = "Part Model (if applicable)"
         
             if 'brand' in self.data:
                 try:

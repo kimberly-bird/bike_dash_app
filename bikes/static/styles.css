@@ -40,6 +40,42 @@ a:hover {
     border: 1px solid #01579b !important;    
 }
 
+/* card css for bike list */
+.bg-success {
+    background-color: #eca400 !important;
+}
+
+.border-success {
+    border-color: #eca400 !important;
+}
+
+.bg-info {
+    background-color: #01589b75 !important;
+}
+
+.border-info {
+    border-color: #01589b75 !important;
+}
+
+.bg-secondary {
+    background-color: #01579b !important;
+}
+
+.border-secondary {
+    border-color: #01579b !important;
+}
+
+.list-header {
+    background-color: white !important;
+}
+
+.list-footer {
+    font-size: 1.5em;
+    border-color: white;
+}
+
+/* navs */
+
 .nav-link {
     color: white !important;
 }
@@ -54,10 +90,24 @@ a:hover {
     color: #27476e !important;
 }
 
-.bike_image, .part_image {
+/* IMAGES */
+
+.bike_image {
+    max-height: auto;
+    max-width: 600px;
+}
+
+.part_image {
     max-width: auto;
     max-height: 500px;
 }
+
+.bike_list_img {
+    max-width: 300px;
+    max-height: auto;
+}
+
+/* BIKE DETAILS */
 
 .bike_details_wrapper {
     margin-top: 20px;
@@ -72,6 +122,7 @@ a:hover {
     background: #eaf8bf;
 }
 
+/* LABOR REPORT  */
 .total_labor_report {
     margin-left: 35%;
 }
