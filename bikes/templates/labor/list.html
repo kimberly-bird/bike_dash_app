@@ -15,24 +15,29 @@
     </div>
     <br>
 
-    <div class="row">
-        {% for labor in labor_list %}
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <h4 class="text-center card-header">Date: {{ labor.date }}</h4>
-                <div class="card-body">
-                    <p class="card-subtitle mb-2 text-muted">{{ labor.notes }}</p>
-                    <p class="card-text">Time worked: {{ labor.time }} hrs.</p>
-                    <p class="card-text">Pay rate: ${{ labor.rate_of_pay }}</p>
-                    <p class="card-text">Bike worked on: <a
-                            href="{% url 'bikes:bike_detail' pk=labor.bike.id %}">{{ labor.bike.name }}</a></p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="#" class="card-link">Edit</a>
-                </div>
-            </div>
-            <br>
-        </div>
-        {% endfor %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="labor-header">
+                <tr class="d-flex">
+                    <th scope="col" class="col-2">Date</th>
+                    <th scope="col" class="col-4">Notes</th>
+                    <th scope="col" class="col-2">Time Worked</th>
+                    <th scope="col" class="col-2">Pay Rate</th>
+                    <th scope="col" class="col-2">Bike</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for labor in labor_list %}
+                <tr class="d-flex">
+                    <td  class="col-2">{{ labor.date }}</td>
+                    <td  class="col-4">{{ labor.notes }}</td>
+                    <td  class="col-2">{{ labor.time }} hrs.</td>
+                    <td  class="col-2">${{ labor.rate_of_pay }}</td>
+                    <td  class="col-2"><a href="{% url 'bikes:bike_detail' pk=labor.bike.id %}">{{ labor.bike.name }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+
 </div>
