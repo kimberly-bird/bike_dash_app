@@ -17,7 +17,7 @@ def bike_detail(request, pk):
     if request.method == "GET":
         current_user = request.user
         bike = get_object_or_404(Bike, pk=pk)
-        labor = Labor.objects.filter(bike_id=pk)
+        labor = Labor.objects.order_by('-date').filter(bike_id=pk)
 
         total_time = list(labor.aggregate(Sum('time')).values())[0]
 
@@ -25,5 +25,5 @@ def bike_detail(request, pk):
         for l in labor:
             total_labor += l.time * l.rate_of_pay 
             
-        context = {"bike": bike, "total_labor": total_labor, "total_time": total_time}
+        context = {"bike": bike, "total_labor": total_labor, "total_time": total_time, "labor_list": labor}
         return render(request, 'bikes/detail.html', context)

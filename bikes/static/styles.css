@@ -1,3 +1,11 @@
+h1, h2, h3, h4, h5, hr, th {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h6, p, a {
+    font-family: 'PT Sans', sans-serif;
+}
+
 a {
     color: #eca400;
 }
@@ -5,6 +13,10 @@ a {
 a:hover {
     text-decoration: none;
     color: #01579b;
+}
+
+.nav-item {
+    font-size: 1.25em !important;
 }
 
 .btn-outline-info {
@@ -129,6 +141,16 @@ a:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3em;
+}
+
+/* LABOR TABLE */
+.labor-header {
+    background-color: #01579b;
+    color: white;
+}
+
+.labor-header th {
+    font-weight: normal;
 }
 
 /* BIKE DETAILS */
