@@ -7,6 +7,7 @@ from pygal.style import DefaultStyle
 
 from bikes.models import Bike
 from bikes.charts import BikesInventoryPieChart
+from bikes.charts import BikesTotalSalesPieChart
 
 
 class BikeChartView(TemplateView):
@@ -24,7 +25,15 @@ class BikeChartView(TemplateView):
             style=DefaultStyle
         )
 
+        total_bikes = BikesTotalSalesPieChart(
+            height=400,
+            width=375,
+            explicit_size=True,
+            style=DefaultStyle
+        )
+
         # Call the `.generate()` method on our chart object
         # and pass it to template context.
         context['cht_bikes'] = cht_bikes.generate()
+        context['total_bikes'] = total_bikes.generate()
         return context
