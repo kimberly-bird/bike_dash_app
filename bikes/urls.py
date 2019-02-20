@@ -11,6 +11,7 @@ urlpatterns = [
     path('brands/', views.brand_list, name='brand_list'),
     path('brands/add', views.add_brand, name='add_brand'),
     path('brands/edit/<int:pk>/', views.edit_brand, name='edit_brand'),
+    path('dashboard/', views.BikeChartView.as_view(), name='dashboard'),
     path('models/add/<int:pk>', views.add_bike_model, name='add_bike_model'),
     path('models/edit/<int:pk>/', views.edit_bike_model, name='edit_bike_model'),
     path('labor/', views.labor_list, name='labor_list'),
