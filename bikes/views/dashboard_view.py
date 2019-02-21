@@ -8,6 +8,7 @@ from pygal.style import DefaultStyle
 from bikes.models import Bike
 from bikes.charts import BikesInventoryPieChart
 from bikes.charts import BikesTotalSalesPieChart
+from bikes.charts import LaborThisYearLineChart
 
 
 class BikeChartView(TemplateView):
@@ -20,14 +21,21 @@ class BikeChartView(TemplateView):
         # config here in the view instead of `charts.py`.
         cht_bikes = BikesInventoryPieChart(
             height=400,
-            width=375,
+            width=500,
             explicit_size=True,
             style=DefaultStyle
         )
 
         total_bikes = BikesTotalSalesPieChart(
             height=400,
-            width=375,
+            width=500,
+            explicit_size=True,
+            style=DefaultStyle
+        )
+
+        total_labor = LaborThisYearLineChart(
+            height=400,
+            width=500,
             explicit_size=True,
             style=DefaultStyle
         )
@@ -36,4 +44,5 @@ class BikeChartView(TemplateView):
         # and pass it to template context.
         context['cht_bikes'] = cht_bikes.generate()
         context['total_bikes'] = total_bikes.generate()
+        context['total_labor'] = total_labor.generate()
         return context
