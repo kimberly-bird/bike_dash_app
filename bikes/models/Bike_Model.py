@@ -38,3 +38,7 @@ class Bike(SafeDeleteModel):
     def __str__(self):
         return f'{self.name}'
 
+    @property
+    def get_current_user(self):  
+        return self.request.user
+

@@ -15,6 +15,23 @@ a:hover {
     color: #01579b;
 }
 
+.total-bikes-sold {
+    font-size: 10em;
+}
+
+.total-bikes-sold-div {
+    color: white;
+    background-color: #009688;
+    max-width: 500px;
+    max-height: 500px;
+    padding-top: 50px;
+    margin: 15px;
+}
+
+.total-bikes-text {
+    font-size: 3em;
+}
+
 .nav-item {
     font-size: 1.25em !important;
 }
