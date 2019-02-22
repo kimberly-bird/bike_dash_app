@@ -1,14 +1,36 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1>Welcome to your Bike Dashboard!</h1>
+    <h1 class="text-center">Welcome to your Bike Dashboard!</h1>
     <br>
     <div>
-        {{ cht_bikes|safe }}
-        {{ total_bikes|safe }}
-        <hr/>
-        {{ total_labor|safe }}
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {{ cht_bikes|safe }}
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {{ total_bikes|safe }}
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {{ total_labor|safe }}
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <h2 class="total-bikes-text">Total Bikes Sold</h2>
+                <p class="total-bikes-sold">{{ sold_bikes }}</p>
+            </div>
+            <div class="total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <h2 class="total-bikes-text">Total Bike Sales</h2>
+                <p class="total-bikes-sold">${{ total_sales }}</p>
+            </div>
+        </div>
+        <hr />
     </div>
 </div>
 
-<script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>  
+<script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>

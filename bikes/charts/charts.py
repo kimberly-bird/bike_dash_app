@@ -83,7 +83,7 @@ class LaborThisYearLineChart():
 
     def __init__(self, **kwargs):
         self.chart = pygal.Line(include_x_axis=True, **kwargs)
-        self.chart.title = 'Labor This Year in Hours'
+        self.chart.title = 'Labor This Year'
 
     def generate(self):
         '''get the total number of bikes marked as sold, grouped by date sold
@@ -91,7 +91,6 @@ class LaborThisYearLineChart():
         '''
         # get all recorded labor
         total_labor = Labor.objects.values('date').annotate(count=Sum('time'))
-        print("total labor", total_labor)
 
         labor_time = []
         labor_dates = []
@@ -104,7 +103,7 @@ class LaborThisYearLineChart():
         self.chart.x_labels = labor_dates
 
         # add the data to the chart
-        self.chart.add('Time Spent', labor_time)
+        self.chart.add('Hours', labor_time)
 
         # Return the rendered SVG
         return self.chart.render(is_unicode=True)
