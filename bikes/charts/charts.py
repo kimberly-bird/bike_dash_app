@@ -107,3 +107,33 @@ class LaborThisYearLineChart():
 
         # Return the rendered SVG
         return self.chart.render(is_unicode=True)
+
+class BikesTotalSalesThisYearAndLastBarChart():
+
+    def __init__(self, **kwargs):
+        self.chart = pygal.Bar(**kwargs)
+        self.chart.title = 'Sold Bikes 2018 vs 2019'
+
+    def generate(self):
+        '''get the total number of bikes marked as sold, grouped by date sold
+
+        '''
+
+        # get bikes that have a status of "sold" (id=1) and count the bikes sold, grouped by sale date
+        total_sold_2018 = Bike.objects.values('sale_date').annotate(count=Count('status_id')).filter(status_id=1, sale_date__icontains='2018')
+        sum_2018  = []
+        for count in total_sold_2018:
+            sum_2018.append(count['count'])
+        
+        total_sold_2019 = Bike.objects.values('sale_date').annotate(count=Count('status_id')).filter(status_id=1, sale_date__icontains='2019')
+        sum_2019 = []
+        for count in total_sold_2019:
+            sum_2019.append(count['count'])
+
+
+        self.chart.add('2018', sum(sum_2018))
+        self.chart.add('2019', sum(sum_2019))
+
+        # Return the rendered SVG
+        return self.chart.render(is_unicode=True)
+

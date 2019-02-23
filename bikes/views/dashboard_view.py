@@ -7,9 +7,11 @@ from django.db.models import Sum, F
 from pygal.style import DefaultStyle
 
 from bikes.models import Bike
+from bikes.models import Labor
 from bikes.charts import BikesInventoryPieChart
 from bikes.charts import BikesTotalSalesPieChart
 from bikes.charts import LaborThisYearLineChart
+from bikes.charts import BikesTotalSalesThisYearAndLastBarChart
 
 
 class BikeChartView(TemplateView):
@@ -42,23 +44,26 @@ class BikeChartView(TemplateView):
             style=DefaultStyle
         )
 
+        sales_this_year_vs = BikesTotalSalesThisYearAndLastBarChart(
+            height=400,
+            width=500,
+            explicit_size=True,
+            style=DefaultStyle
+        )
+
         # count the number of sold bikes by logged in user
-        sold_bikes = Bike.objects.filter(status_id=1, user_id=current_user).count()
+        sold_bikes = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').count()
 
-        sql = """select sum(sales) as "totalsales"
-                    from (
-                    select b.name, b.status_id, sum(b.sale_price - b.purchase_price) as "sales"
-                    from bikes_bike b
-                    where b.status_id = 1
-                    and b.user_id = {current_user}
-                    group by b.name
-                    );
-        """
+        total_sales = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').aggregate(sum=Sum(F('sale_price')+F('purchase_price')))
 
-        total_sales = Bike.objects.filter(status_id=1, user_id=current_user).aggregate(sum=Sum(F('sale_price')+F('purchase_price')))
+        labor_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum(F('time')*F('rate_of_pay')))
+        labor_hours_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum('time'))
 
-        print("total sales", total_sales['sum'])
+        print("labor", labor_hours_2019)
 
+        context['labor_hours_2019'] = labor_hours_2019['sum']
+        context['labor_2019'] = labor_2019['sum']
+        context['sales_this_year_vs'] = sales_this_year_vs.generate()
         context['total_sales'] = total_sales['sum']
         context['sold_bikes'] = sold_bikes
         # Call the `.generate()` method on chart object

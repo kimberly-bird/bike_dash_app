@@ -16,7 +16,11 @@ a:hover {
 }
 
 .total-bikes-sold {
-    font-size: 10em;
+    font-size: 8em;
+}
+
+.total-labor-investment {
+    font-size: 5em;
 }
 
 .total-bikes-sold-div {
@@ -28,8 +32,8 @@ a:hover {
     margin: 15px;
 }
 
-.total-bikes-text {
-    font-size: 3em;
+.total-labor-text {
+    font-size: 1em;
 }
 
 .nav-item {
