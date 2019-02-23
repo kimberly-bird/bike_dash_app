@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from django.db.models import Sum, F
 
 from pygal.style import DefaultStyle
+from pygal.style import Style
 
 from bikes.models import Bike
 from bikes.models import Labor
@@ -21,34 +22,32 @@ class BikeChartView(TemplateView):
         context = super(BikeChartView, self).get_context_data(**kwargs)
         current_user = self.request.user
 
+        custom_style = Style(
+            foreground='#00000',
+            font_family='googlefont:PT Sans', 
+            label_font_size=20,
+            major_label_font_size=25,
+            title_font_size=40,
+            legend_font_size=20,
+            tooltip_font_size=30,
+           )
+
         # Instantiate our chart. We'll keep the size/style/etc.
         # config here in the view instead of `charts.py`.
         cht_bikes = BikesInventoryPieChart(
-            height=400,
-            width=500,
-            explicit_size=True,
-            style=DefaultStyle
+            style=custom_style
         )
 
         total_bikes = BikesTotalSalesPieChart(
-            height=400,
-            width=500,
-            explicit_size=True,
-            style=DefaultStyle
+            style=custom_style
         )
 
         total_labor = LaborThisYearLineChart(
-            height=400,
-            width=500,
-            explicit_size=True,
-            style=DefaultStyle
+            style=custom_style
         )
 
         sales_this_year_vs = BikesTotalSalesThisYearAndLastBarChart(
-            height=400,
-            width=500,
-            explicit_size=True,
-            style=DefaultStyle
+            style=custom_style
         )
 
         # count the number of sold bikes by logged in user

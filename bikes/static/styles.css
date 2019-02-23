@@ -26,10 +26,13 @@ a:hover {
 .total-bikes-sold-div {
     color: white;
     background-color: #009688;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 450px;
     padding-top: 50px;
     margin: 15px;
+}
+
+.total-bikes-sold-div:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .total-labor-text {
