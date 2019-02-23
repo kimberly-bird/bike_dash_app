@@ -21,3 +21,6 @@ from .labor_list_view import labor_list
 from .labor_add_view import add_labor
 from .parttype_list_view import parttype_list
 from .dashboard_view import BikeChartView
+from .bike_sold_list_view import bike_sold_list
+from .bike_listed_list_view import bike_listed_list
+from .bike_inprocess_list_view import bike_inprocess_list
