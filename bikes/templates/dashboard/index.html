@@ -9,7 +9,7 @@
                 {{ cht_bikes|safe }}
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
-                {{ total_bikes|safe }}
+                {{ sales_this_year_vs|safe }}
             </div>
         </div>
         <hr />
@@ -17,15 +17,23 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
                 {{ total_labor|safe }}
             </div>
+            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <h2 class="total-bikes-text">2019 Total Labor</h2>
+                <hr style="background-color: white;" />
+                <p class="total-labor-investment">${{ labor_2019 }}</p>
+                <p class="total-labor-investment">{{ labor_hours_2019 }} Hours</p>
+            </div>
         </div>
         <hr />
         <div class="row">
-            <div class="total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                <h2 class="total-bikes-text">Total Bikes Sold</h2>
+            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <h2 class="total-bikes-text">2019 Total Bikes Sold</h2>
+                <hr style="background-color: white;" />
                 <p class="total-bikes-sold">{{ sold_bikes }}</p>
             </div>
-            <div class="total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                <h2 class="total-bikes-text">Total Bike Sales</h2>
+            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <h2 class="total-bikes-text">2019 Total Bike Sales</h2>
+                <hr style="background-color: white;" />
                 <p class="total-bikes-sold">${{ total_sales }}</p>
             </div>
         </div>

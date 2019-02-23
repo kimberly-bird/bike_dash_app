@@ -5,11 +5,14 @@ from django.views.generic import TemplateView
 from django.db.models import Sum, F
 
 from pygal.style import DefaultStyle
+from pygal.style import Style
 
 from bikes.models import Bike
+from bikes.models import Labor
 from bikes.charts import BikesInventoryPieChart
 from bikes.charts import BikesTotalSalesPieChart
 from bikes.charts import LaborThisYearLineChart
+from bikes.charts import BikesTotalSalesThisYearAndLastBarChart
 
 
 class BikeChartView(TemplateView):
@@ -19,46 +22,47 @@ class BikeChartView(TemplateView):
         context = super(BikeChartView, self).get_context_data(**kwargs)
         current_user = self.request.user
 
+        custom_style = Style(
+            foreground='#00000',
+            font_family='googlefont:PT Sans', 
+            label_font_size=20,
+            major_label_font_size=25,
+            title_font_size=40,
+            legend_font_size=20,
+            tooltip_font_size=30,
+           )
+
         # Instantiate our chart. We'll keep the size/style/etc.
         # config here in the view instead of `charts.py`.
         cht_bikes = BikesInventoryPieChart(
-            height=400,
-            width=500,
-            explicit_size=True,
-            style=DefaultStyle
+            style=custom_style
         )
 
         total_bikes = BikesTotalSalesPieChart(
-            height=400,
-            width=500,
-            explicit_size=True,
-            style=DefaultStyle
+            style=custom_style
         )
 
         total_labor = LaborThisYearLineChart(
-            height=400,
-            width=500,
-            explicit_size=True,
-            style=DefaultStyle
+            style=custom_style
+        )
+
+        sales_this_year_vs = BikesTotalSalesThisYearAndLastBarChart(
+            style=custom_style
         )
 
         # count the number of sold bikes by logged in user
-        sold_bikes = Bike.objects.filter(status_id=1, user_id=current_user).count()
+        sold_bikes = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').count()
 
-        sql = """select sum(sales) as "totalsales"
-                    from (
-                    select b.name, b.status_id, sum(b.sale_price - b.purchase_price) as "sales"
-                    from bikes_bike b
-                    where b.status_id = 1
-                    and b.user_id = {current_user}
-                    group by b.name
-                    );
-        """
+        total_sales = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').aggregate(sum=Sum(F('sale_price')+F('purchase_price')))
 
-        total_sales = Bike.objects.filter(status_id=1, user_id=current_user).aggregate(sum=Sum(F('sale_price')+F('purchase_price')))
+        labor_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum(F('time')*F('rate_of_pay')))
+        labor_hours_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum('time'))
 
-        print("total sales", total_sales['sum'])
+        print("labor", labor_hours_2019)
 
+        context['labor_hours_2019'] = labor_hours_2019['sum']
+        context['labor_2019'] = labor_2019['sum']
+        context['sales_this_year_vs'] = sales_this_year_vs.generate()
         context['total_sales'] = total_sales['sum']
         context['sold_bikes'] = sold_bikes
         # Call the `.generate()` method on chart object

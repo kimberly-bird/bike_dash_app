@@ -16,20 +16,27 @@ a:hover {
 }
 
 .total-bikes-sold {
-    font-size: 10em;
+    font-size: 8em;
+}
+
+.total-labor-investment {
+    font-size: 5em;
 }
 
 .total-bikes-sold-div {
     color: white;
     background-color: #009688;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 450px;
     padding-top: 50px;
     margin: 15px;
 }
 
-.total-bikes-text {
-    font-size: 3em;
+.total-bikes-sold-div:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.total-labor-text {
+    font-size: 1em;
 }
 
 .nav-item {

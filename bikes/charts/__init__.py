@@ -1,1 +1,1 @@
-from .charts import BikesInventoryPieChart, BikesTotalSalesPieChart, LaborThisYearLineChart
+from .charts import BikesInventoryPieChart, BikesTotalSalesPieChart, LaborThisYearLineChart, BikesTotalSalesThisYearAndLastBarChart
