@@ -10,7 +10,11 @@
         <hr>
         {% endfor %}
         
-        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:add_bike' %}">Add New Bike</a></button>
+        <button type="button" class="btn btn-outline-secondary"><a class="secondary_link" href="{% url 'bikes:add_bike' %}">Add New Bike</a></button>
+        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:sold_list' %}">Sold Bikes</a></button>
+        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:listed_list' %}">Listed Bikes</a></button>
+        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:process_list' %}">Bikes in Process</a></button>
+
     </div>
     <br>
     <div class="row">
