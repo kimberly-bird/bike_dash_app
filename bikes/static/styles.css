@@ -177,19 +177,24 @@ a:hover {
     font-weight: normal;
 }
 
+.table-hover tbody tr:hover {
+    background-color: #01589b1c;
+}
+
+
 /* BIKE DETAILS */
 
-.bike_details_wrapper {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.bike-detail-parts {
+    background-color: #01589b1c;
+    padding: 50px 150px;
+    margin: auto;
     width: 100vw;
-    height: 2px;
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    background: #eaf8bf;
+    margin-bottom: 40px;
 }
 
 /* LABOR REPORT  */
