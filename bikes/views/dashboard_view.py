@@ -53,17 +53,27 @@ class BikeChartView(TemplateView):
         # count the number of sold bikes by logged in user
         sold_bikes = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').count()
 
-        total_sales = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').aggregate(sum=Sum(F('sale_price')+F('purchase_price')))
+        total_sales = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').aggregate(sum=Sum(F('sale_price')-F('purchase_price')))
 
+        sold_bikes_labor_2019 = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019')
+
+        total_labor_2019 = 0
+        # loop over bikes that were sold in 2019
+        for bike in sold_bikes_labor_2019:
+            # for each bike, get the total labor reports
+            labor_calculation = bike.get_total_profit
+            total_labor_2019 += labor_calculation
+        # get total profit by subtracting labor costs from total sales
+        profit_2019 = total_sales.get('sum') - total_labor_2019
+        
         labor_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum(F('time')*F('rate_of_pay')))
-        labor_hours_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum('time'))
 
-        print("labor", labor_hours_2019)
+        labor_hours_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum('time'))
 
         context['labor_hours_2019'] = labor_hours_2019['sum']
         context['labor_2019'] = labor_2019['sum']
         context['sales_this_year_vs'] = sales_this_year_vs.generate()
-        context['total_sales'] = total_sales['sum']
+        context['total_sales'] = profit_2019
         context['sold_bikes'] = sold_bikes
         # Call the `.generate()` method on chart object
         # and pass it to template context.
