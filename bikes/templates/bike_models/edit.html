@@ -1,7 +1,7 @@
 {% include "../navbar.html" %}
 
 <div class="container">
-    <h1>Edit Bike Model</h1>
+    <h1 class="text-center display-4">Edit Bike Model</h1>
     
     <form action="{% url 'bikes:edit_bike_model' pk %}" method="post">
         {% csrf_token %}

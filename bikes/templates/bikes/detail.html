@@ -1,7 +1,7 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1>{{ bike.name }}</h1>
+    <h1 class="text-center display-4">{{ bike.name }}</h1>
 
     {% if bike.status.name != "Sold" %}
     <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit

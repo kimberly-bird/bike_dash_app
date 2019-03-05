@@ -15,29 +15,6 @@ a:hover {
     color: #01579b;
 }
 
-.total-bikes-sold {
-    font-size: 8em;
-}
-
-.total-labor-investment {
-    font-size: 5em;
-}
-
-.total-bikes-sold-div {
-    color: white;
-    background-color: #009688;
-    max-width: 450px;
-    padding-top: 50px;
-    margin: 15px;
-}
-
-.total-bikes-sold-div:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.total-labor-text {
-    font-size: 1em;
-}
 
 .nav-item {
     font-size: 1.25em !important;
@@ -202,3 +179,32 @@ a:hover {
     margin-left: 35%;
 }
 
+/* DASHBOARD STYLES */
+
+.dash-header {
+    margin: 20px 0px;
+}
+
+.total-bikes-sold {
+    font-size: 8em;
+}
+
+.total-labor-investment {
+    font-size: 5em;
+}
+
+.total-bikes-sold-div {
+    color: white;
+    background-color: #009688;
+    max-width: 450px;
+    padding-top: 50px;
+    margin: 15px;
+}
+
+.total-bikes-sold-div:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.total-labor-text {
+    font-size: 1em;
+}

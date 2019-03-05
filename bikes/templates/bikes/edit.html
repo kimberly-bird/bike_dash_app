@@ -3,7 +3,7 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1>Edit Bike</h1>
+    <h1 class="text-center display-4">Edit Bike</h1>
     
     <form action="{% url 'bikes:edit_bike' pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}

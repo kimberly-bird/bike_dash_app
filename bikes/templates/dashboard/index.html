@@ -1,9 +1,32 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1 class="text-center">Welcome to your Bike Dashboard!</h1>
-    <br>
+    <div class="dash-header">
+        <h1 class="text-center display-3">Welcome to your Bike Dashboard!</h1>
+        <hr />
+    </div>
     <div>
+        <h2 class="text-center display-4">Inventory</h2>
+        <div class="row">
+            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <a href="{% url 'bikes:bike_list' %}" style="color: white;">
+                        <h2 class="total-bikes-text">Bike inventory</h2>
+                        <hr style="background-color: white;" />
+                        <p class="total-bikes-sold">{{ bikes_in_inventory }}</p>
+                        <p class="lead">(Bikes in progress or listed)</p>
+                </a>
+            </div>
+            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <a href="{% url 'bikes:part_list' %}" style="color: white;">
+                    <h2 class="total-bikes-text">Parts inventory</h2>
+                    <hr style="background-color: white;" />
+                    <p class="total-bikes-sold">{{ parts_in_inventory }}</p>
+                    <p class="lead">(Parts not installed on a bike)</p>
+                </a>
+            </div>
+        </div>
+        <hr />
+        <h2 class="text-center display-4">Sales</h2>
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6">
                 {{ cht_bikes|safe }}
@@ -12,33 +35,40 @@
                 {{ sales_this_year_vs|safe }}
             </div>
         </div>
-        <hr />
+        <br>    
         <div class="row">
             <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                <h2 class="total-bikes-text">2019 Total Bikes Sold</h2>
-                <hr style="background-color: white;" />
-                <p class="total-bikes-sold">{{ sold_bikes }}</p>
-            </div>
-            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                <h2 class="total-bikes-text">2019 Total Bike Profit</h2>
-                <hr style="background-color: white;" />
-                <p class="total-bikes-sold">${{ total_sales }}</p>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                {{ total_labor|safe }}
-            </div>
-            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                <h2 class="total-bikes-text">2019 Total Labor</h2>
-                <hr style="background-color: white;" />
-                <p class="total-labor-investment">${{ labor_2019 }}</p>
-                <p class="total-labor-investment">{{ labor_hours_2019 }} Hours</p>
-            </div>
-        </div>
-        <hr />
+                <a href="{% url 'bikes:sold_list' %}" style="color: white;">
+                        <h2 class="total-bikes-text">2019 Total Bikes Sold</h2>
+                        <hr style="background-color: white;" />
+                        <p class="total-bikes-sold">{{ sold_bikes }}</p>
+                    </a>
+                </div>
+                <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                    <a href="{% url 'bikes:sold_list' %}" style="color: white;">
+                            <h2 class="total-bikes-text">2019 Total Bike Profit</h2>
+                            <hr style="background-color: white;" />
+                            <p class="total-bikes-sold">${{ total_sales }}</p>
+                        </a>
+                    </div>
+                </div>
+                <hr />
+                <h2 class="text-center display-4">Labor</h2>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        {{ total_labor|safe }}
+                    </div>
+                    <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                        <a href="{% url 'bikes:labor_list' %}" style="color: white;">
+                            <h2 class="total-bikes-text">2019 Total Labor</h2>
+                            <hr style="background-color: white;" />
+                            <p class="total-labor-investment">${{ labor_2019 }}</p>
+                            <p class="total-labor-investment">{{ labor_hours_2019 }} Hours</p>
+                        </a>
+                    </div>
+                </div>
     </div>
 </div>
+<br>
 
 <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>

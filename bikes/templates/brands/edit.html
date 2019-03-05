@@ -2,7 +2,7 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1>Edit Brand</h1>
+    <h1 class="text-center display-4">Edit Brand</h1>
     
     <form action="{% url 'bikes:edit_brand' pk %}" method="post">
         {% csrf_token %}

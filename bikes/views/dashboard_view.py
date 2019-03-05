@@ -2,13 +2,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.db.models import Sum, F
+from django.db.models import Sum, F, Q
 
 from pygal.style import DefaultStyle
 from pygal.style import Style
 
 from bikes.models import Bike
 from bikes.models import Labor
+from bikes.models import Part
 from bikes.charts import BikesInventoryPieChart
 from bikes.charts import BikesTotalSalesPieChart
 from bikes.charts import LaborThisYearLineChart
@@ -32,8 +33,6 @@ class BikeChartView(TemplateView):
             tooltip_font_size=30,
            )
 
-        # Instantiate our chart. We'll keep the size/style/etc.
-        # config here in the view instead of `charts.py`.
         cht_bikes = BikesInventoryPieChart(
             style=custom_style
         )
@@ -66,10 +65,22 @@ class BikeChartView(TemplateView):
         # get total profit by subtracting labor costs from total sales
         profit_2019 = total_sales.get('sum') - total_labor_2019
         
+        # calculate rate of pay*time for each labor instance - returns an int ($)
         labor_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum(F('time')*F('rate_of_pay')))
 
+        # get the total amount of time spent on labor in 2019 - returns an int (hours)
         labor_hours_2019 = Labor.objects.filter(user_id=current_user, date__icontains='2019').aggregate(sum=Sum('time'))
 
+        # total # of bikes in inventory that are not sold
+        bike_inventory = Bike.objects.filter(Q(user_id=current_user), Q(status_id=2) | Q(status_id=3)).count()
+
+        # total # of parts that are not installed on a bike
+        part_inventory = Part.objects.filter(user_id=current_user, bike_id=None, deleted=None).count()
+        print("# of parts", part_inventory)
+
+
+        context['parts_in_inventory'] = part_inventory
+        context['bikes_in_inventory'] = bike_inventory
         context['labor_hours_2019'] = labor_hours_2019['sum']
         context['labor_2019'] = labor_2019['sum']
         context['sales_this_year_vs'] = sales_this_year_vs.generate()
