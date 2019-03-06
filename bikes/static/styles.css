@@ -15,11 +15,6 @@ a:hover {
     color: #01579b;
 }
 
-
-.nav-item {
-    font-size: 1.25em !important;
-}
-
 .btn-outline-info {
     color: #eca400;
     border: 1px solid #eca400;
@@ -28,6 +23,12 @@ a:hover {
 .list-group-item-info {
     background: #01579b !important;
     color: white;
+}
+
+.list-group-item-detail {
+    background: #eca400 !important;
+    color: black;
+    font-size: 1.5em;
 }
 
 .list-group-item {
@@ -89,7 +90,7 @@ a:hover {
 
 /* navs */
 
-.nav-link {
+.main-nav-link {
     color: white !important;
 }
 
@@ -102,6 +103,12 @@ a:hover {
     border-color: #eca400 !important;
     color: #27476e !important;
 }
+
+.nav-item {
+    font-size: 1.25em !important;
+}
+
+
 
 /* IMAGES */
 
@@ -174,6 +181,10 @@ a:hover {
     margin-bottom: 40px;
 }
 
+.detail-btns {
+    margin-bottom: 25px;
+}
+
 /* LABOR REPORT  */
 .total_labor_report {
     margin-left: 35%;
@@ -207,4 +218,8 @@ a:hover {
 
 .total-labor-text {
     font-size: 1em;
+}
+
+.card-title {
+    margin-top: 10px;
 }

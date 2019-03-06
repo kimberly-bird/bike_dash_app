@@ -3,8 +3,10 @@
 <div class="container">
 
     <div>
-
-        <h1 class="text-center display-4">Labor</h1>
+        <div class="dash-header">
+            <h1 class="text-center display-4">Labor</h1>
+            <hr class="mt-0 mb-4">
+        </div>
 
         {% for message in messages %}
         <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
@@ -29,11 +31,12 @@
             <tbody>
                 {% for labor in labor_list %}
                 <tr class="d-flex">
-                    <td  class="col-2">{{ labor.date }}</td>
-                    <td  class="col-4">{{ labor.notes }}</td>
-                    <td  class="col-2">{{ labor.time }} hrs.</td>
-                    <td  class="col-2">${{ labor.rate_of_pay }}</td>
-                    <td  class="col-2"><a href="{% url 'bikes:bike_detail' pk=labor.bike.id %}">{{ labor.bike.name }}</a></td>
+                    <td class="col-2">{{ labor.date }}</td>
+                    <td class="col-4">{{ labor.notes }}</td>
+                    <td class="col-2">{{ labor.time }} hrs.</td>
+                    <td class="col-2">${{ labor.rate_of_pay }}</td>
+                    <td class="col-2"><a href="{% url 'bikes:bike_detail' pk=labor.bike.id %}">{{ labor.bike.name }}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

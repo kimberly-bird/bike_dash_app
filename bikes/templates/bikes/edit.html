@@ -3,8 +3,11 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1 class="text-center display-4">Edit Bike</h1>
-    
+    <div class="dash-header">
+        <h1 class="text-center display-4">Edit Bike</h1>
+        <hr class="mt-0 mb-4">
+    </div>
+
     <form action="{% url 'bikes:edit_bike' pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ bike_form|crispy }}

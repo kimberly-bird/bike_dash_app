@@ -2,8 +2,12 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1 class="text-center display-4">Edit Brand</h1>
-    
+
+    <div class="dash-header">
+        <h1 class="text-center display-4">Edit Brand</h1>
+        <hr class="mt-0 mb-4">
+    </div>
+
     <form action="{% url 'bikes:edit_brand' pk %}" method="post">
         {% csrf_token %}
         {{ brand_form|crispy }}

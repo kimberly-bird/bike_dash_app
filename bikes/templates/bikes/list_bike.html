@@ -2,7 +2,10 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1 class="text-center display-4">You're ready to list the {{ bike.name }} for sale!</h1>
+    <div class="dash-header">
+        <h1 class="text-center display-4">You're ready to list the {{ bike.name }} for sale!</h1>
+        <hr class="mt-0 mb-4">
+    </div>
 
     <form action="{% url 'bikes:list_bike_for_sale' bike.id %}" method="POST">
         {% csrf_token %}
@@ -10,7 +13,7 @@
             <label for="list_price">List Price</label>
             <input type="text" class="form-control" name="list_price" />
         </div>
-        
+
         <div>
             <button type="submit" class="btn btn-outline-secondary">Save</button>
             <a href="{% url 'bikes:bike_list' %}">

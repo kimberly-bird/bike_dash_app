@@ -2,7 +2,10 @@
 
 <div class="container">
     <div>
-        <h1 class="text-center display-4">{{ parttype.name|title }} Parts</h1>
+        <div class="dash-header">
+            <h1 class="text-center display-4">{{ parttype.name|title }} Parts</h1>
+            <hr class="mt-0 mb-4">
+        </div>
 
         <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:add_part' %}">Add New
                 Part</a></button>
@@ -29,7 +32,7 @@
             {% endif %}
 
             <p>Purchased for ${{ part.purchase_price }}</p>
-            <hr/>
+            <hr />
         </div>
         {% endfor %}
     </div>

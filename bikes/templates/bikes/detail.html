@@ -1,8 +1,12 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1 class="text-center display-4">{{ bike.name }}</h1>
+    <div class="dash-header">
+        <h1 class="text-center display-4">{{ bike.name }}</h1>
+        <hr class="mt-0 mb-4">
+    </div>
 
+    <div class="detail-btns">
     {% if bike.status.name != "Sold" %}
     <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit
             Bike</a></button>
@@ -19,6 +23,7 @@
     <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:list_bike_for_sale' pk=bike.id %}"
             class="secondary_link">List Bike For Sale</a></button>
     {% endif %}
+    </div>
 
     {% for message in messages %}
     <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
@@ -26,29 +31,39 @@
     {% endfor %}
 
     <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+        <div class="col-sm-12 col-md-6 col-lg-7 text-center">
             <img src="/media/{{ bike.document }}" alt="image of bike" class="bike_image">
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-6 text-center">
-            <h4>Bike Specs</h4>
-            <p>Brand: {{ bike.brand.name }}</p>
-            <p>Model: {{ bike.bikemodel.name }}</p>
-            <p>Year: {{ bike.year }}</p>
-            <p>Description: {{ bike.description }}</p>
-            <h4>Bike Details</h4>
-            <p>Added: {{ bike.created_at }}</p>
-            <p>Purchase Price: ${{ bike.purchase_price }}</p>
-            <p>Purchase Date: {{ bike.purchase_date }}</p>
-            <p>Current Status: {{ bike.status.name }}</p>
-            <p>Condition: {{ bike.condition.name }}</p>
+        <div class="col-sm-12 col-md-6 col-lg-5 text-center">
 
-            {% if bike.status.name == "Sold" %}
-            <p>List Price: ${{ bike.list_price }}</p>
-            <p>Sale Price: ${{ bike.sale_price }}</p>
-            <p>Sale Date: {{ bike.sale_date }}</p>
-            {% elif bike.status.name == "Listed" %}
-            <p>List Price: ${{ bike.list_price }}</p>
-            {% endif %}
+            <div class="card mx-auto" style="width: 22rem;">
+                    <ul class="list-group text-center">
+                        <li class="list-group-item list-group-item-detail">Bike Specs</li>
+                        <li class="list-group-item">Brand: {{ bike.brand.name }}</li>
+                        <li class="list-group-item">Model: {{ bike.bikemodel.name }}</li>
+                        <li class="list-group-item">Year: {{ bike.year }}</li>
+                        <li class="list-group-item">Description: {{ bike.description }}</li>
+                    </ul>
+                </div>
+                <br>
+                <div class="card mx-auto" style="width: 22rem;">
+                    <ul class="list-group text-center">
+                        <li class="list-group-item list-group-item-detail">Bike Details</li>
+                        <li class="list-group-item">Added: {{ bike.created_at }}</li>
+                        <li class="list-group-item">Purchase Price: ${{ bike.purchase_price }}</li>
+                        <li class="list-group-item">Purchase Date: {{ bike.purchase_date }}</li>
+                        <li class="list-group-item">Current Status: {{ bike.status.name }}</li>
+                        <li class="list-group-item">Condition: {{ bike.condition.name }}</li>
+                        {% if bike.status.name == "Sold" %}
+                        <li class="list-group-item">List Price: ${{ bike.list_price }}</li>
+                        <li class="list-group-item">Sale Price: ${{ bike.sale_price }}</li>
+                        <li class="list-group-item">Sale Date: {{ bike.sale_date }}</li>
+                        {% elif bike.status.name == "Listed" %}
+                        <li class="list-group-item">List Price: ${{ bike.list_price }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            <br>
         </div>
     </div>
 
@@ -62,23 +77,23 @@
         </div>
         <br>
         <div class="row">
-                {% for part in bike.part_set.all %}
-                <div class="col-sm-2 col-md-2 col-lg-1">
-        
-                    <img src="/media/{{ part.document }}" alt="image of part" class="part_list_image">
-                </div>
-                <div class="col-sm-10 col-md-10 col-lg-11">
-                    <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name|title }}</a></h3>
-                    {% if part.part_make and part.part_model %}
-                    <p>{{ part.part_make }} | {{ part.part_model }}</p>
-                    {% elif part.bikemodel_id and part.brand_id %}
-                    <p>{{ part.brand.name }} | {{ part.bikemodel.name }}</p>
-                    {% endif %}
-                    <p>Purchased for ${{ part.purchase_price }} | {{ part.notes }}</p>
-                    <hr/>
-                </div>
-                {% endfor %}
+            {% for part in bike.part_set.all %}
+            <div class="col-sm-2 col-md-2 col-lg-1">
+
+                <img src="/media/{{ part.document }}" alt="image of part" class="part_list_image">
             </div>
+            <div class="col-sm-10 col-md-10 col-lg-11">
+                <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name|title }}</a></h3>
+                {% if part.part_make and part.part_model %}
+                <p>{{ part.part_make }} | {{ part.part_model }}</p>
+                {% elif part.bikemodel_id and part.brand_id %}
+                <p>{{ part.brand.name }} | {{ part.bikemodel.name }}</p>
+                {% endif %}
+                <p>Purchased for ${{ part.purchase_price }} | {{ part.notes }}</p>
+                <hr />
+            </div>
+            {% endfor %}
+        </div>
     </div>
     {% endif %}
 

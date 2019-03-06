@@ -21,13 +21,14 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
             {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:dashboard' %}">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:dashboard' %}">Dashboard</a></li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{% url 'bikes:bike_list' %}" id="navbarDropdown" role="button"
+                <a class="nav-link dropdown-toggle main-nav-link" href="{% url 'bikes:bike_list' %}" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     My Bikes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'bikes:add_bike' %}">Add new bike</a>
                     <a class="dropdown-item" href="{% url 'bikes:bike_list' %}">Bikes</a>
                     <a class="dropdown-item" href="{% url 'bikes:part_list' %}">Parts</a>
                     <a class="dropdown-item" href="{% url 'bikes:labor_list' %}">Labor</a>
@@ -35,13 +36,17 @@
                     <a class="dropdown-item" href="{% url 'bikes:brand_list' %}">Brand List</a>
                 </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:logout' %}">Logout</a></li>
+            <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:logout' %}">Logout</a></li>
             {% else %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:register' %}">Register</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'bikes:login' %}">Login</a></li>
+            <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:register' %}">Register</a></li>
+            <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:login' %}">Login</a></li>
             {% endif %}
         </ul>
     </div>
+
+    {%block content%}
+
+    {%endblock%}
 </nav>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
