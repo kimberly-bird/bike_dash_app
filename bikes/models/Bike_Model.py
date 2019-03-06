@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import *
 
 from .Labor_Model import Labor
+from .Part_Model import Part
 
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
@@ -59,6 +60,21 @@ class Bike(SafeDeleteModel):
                 labor_calculation = labor.get_total_for_each_labor
                 total_labor += labor_calculation
             return total_labor
+
+    @property
+    def get_part_total_on_bike(self):
+        '''This method is to get all of the parts on a bike and calculate their total purchase price sum
+
+        Returns:
+            intger -- total $ of parts per bike
+        '''
+        all_parts = Part.objects.filter(bike_id=self.id)
+        total_part_investment = 0
+        for part in all_parts:
+            total_part_investment += part.purchase_price
+        return total_part_investment
+
+
 
 
 

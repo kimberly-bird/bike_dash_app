@@ -17,7 +17,7 @@ from bikes.charts import BikesTotalSalesThisYearAndLastBarChart
 
 
 class BikeChartView(TemplateView):
-    '''This view handles all of the data sent to the dashboard template. Some of the charts are rendered using pygal and others just through data sent to the template without a chart.
+    '''This view handles all of the data sent to the dashboard template. Some of the charts are rendered using pygal and others just through data sent to the template without a chart. Pygal chart data is sent from charts.py
 
     The following charts/data are returned: 
     1. Bike inventory
@@ -58,7 +58,6 @@ class BikeChartView(TemplateView):
         # 2. Part inventory
         # total # of parts that are not installed on a bike
         part_inventory = Part.objects.filter(user_id=current_user, bike_id=None, deleted=None).count()
-        print("# of parts", part_inventory)
 
         # ----------------------------------------------------------------------
 
@@ -87,8 +86,9 @@ class BikeChartView(TemplateView):
         # This calculation is to get the total profit for all bikes sold in 2019. It does the following: 
         # 1. Get all sold bikes
         # 2. Get calculation for sale_price - purchase_price
-        # 3. Iterate over all of the sold bikes and get the labor total for each bike and add that total to the total_labor_2019 variable
-        # 4. Subtract total sales sum - total labor
+        # 3. Iterate over all sold bikes and get the total parts cost and add that total to the total_parts_investment variable
+        # 4. Iterate over all of the sold bikes and get the labor total for each bike and add that total to the total_labor_2019 variable
+        # 5. Subtract total sales from total labor and parts cost
         
         # get all sold bikes
         sold_bikes_labor_2019 = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019')
@@ -97,14 +97,19 @@ class BikeChartView(TemplateView):
         total_sales = Bike.objects.filter(status_id=1, user_id=current_user, sale_date__icontains='2019').aggregate(sum=Sum(F('sale_price')-F('purchase_price')))
 
         total_labor_2019 = 0
+        total_parts_investment = 0
         # loop over bikes that were sold in 2019
         for bike in sold_bikes_labor_2019:
+            # for each bike, get the total cost of parts (get_part_total_on_bike is a method on the bike model)
+            parts = bike.get_part_total_on_bike
+            # add that amount to the variable total_parts_investment
+            total_parts_investment += parts
             # for each bike, get the total labor reports (get_total_profit is a method on the bike model)
             labor_calculation = bike.get_total_profit
             # add that amount to the total_labor_2019 total
             total_labor_2019 += labor_calculation
-        # get total profit by subtracting labor costs from total sales
-        profit_2019 = total_sales.get('sum') - total_labor_2019
+        # get total profit by subtracting labor costs and part costs from total sales
+        profit_2019 = total_sales.get('sum') - total_labor_2019 - total_parts_investment
 
         # ----------------------------------------------------------------------
 
