@@ -223,3 +223,13 @@ a:hover {
 .card-title {
     margin-top: 10px;
 }
+
+.badge-light-active {
+    background-color: #009688;
+    color: white;
+}
+
+.badge-light {
+    background-color: #00968788;
+    color: white;
+}
