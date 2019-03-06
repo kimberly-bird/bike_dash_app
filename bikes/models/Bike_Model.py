@@ -2,6 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import *
 
+from .Labor_Model import Labor
+from .Part_Model import Part
+
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 
@@ -41,4 +44,37 @@ class Bike(SafeDeleteModel):
     @property
     def get_current_user(self):  
         return self.request.user
+    
+    @property
+    def get_total_profit(self):
+        '''this method calculates the total labor recorded on a sold bike to be used in the bike dashboard to be deducted from the total bike sales
+        
+        Returns:
+            integer -- total $ of labor per bike
+        '''
+        if self.status.name == "Sold":
+            all_labor = Labor.objects.filter(bike_id=self.id)
+            total_labor = 0
+            for labor in all_labor:
+                # call property method on labor model that multiplies rate of pay * time
+                labor_calculation = labor.get_total_for_each_labor
+                total_labor += labor_calculation
+            return total_labor
+
+    @property
+    def get_part_total_on_bike(self):
+        '''This method is to get all of the parts on a bike and calculate their total purchase price sum
+
+        Returns:
+            intger -- total $ of parts per bike
+        '''
+        all_parts = Part.objects.filter(bike_id=self.id)
+        total_part_investment = 0
+        for part in all_parts:
+            total_part_investment += part.purchase_price
+        return total_part_investment
+
+
+
+
 

@@ -2,7 +2,7 @@
 {% include "navbar.html" %}
 
 <div class="container">
-    <h1>You're ready to list the {{ bike.name }} for sale!</h1>
+    <h1 class="text-center display-4">You're ready to list the {{ bike.name }} for sale!</h1>
 
     <form action="{% url 'bikes:list_bike_for_sale' bike.id %}" method="POST">
         {% csrf_token %}
