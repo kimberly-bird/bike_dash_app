@@ -4,8 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
-            <h1 class="text-center display-4">Add New Bike Brand/Manufacturer</h1>
-            <hr class="mt-0 mb-4">
+
+            <div class="dash-header">
+                <h1 class="text-center display-4">Add New Bike Brand/Manufacturer</h1>
+                <hr class="mt-0 mb-4">
+            </div>
+
             <form action="{% url 'bikes:add_brand'%}" method="post">
                 {% csrf_token %}
                 {{ brand_form|crispy }}
