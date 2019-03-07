@@ -43,6 +43,7 @@
                         alt="image of {{ bike.name }}">
                     <h5 class="card-title">{{ bike.brand.name }}</h5>
                     <p class="card-text"> {{ bike.bikemodel.name }}</p>
+                    <p class="card-text">Listed Price ${{ bike.list_price }}</p>
                     <a href="{% url 'bikes:bike_detail' pk=bike.id %}" class="btn btn-outline-secondary">Details</a>
                 </div>
 

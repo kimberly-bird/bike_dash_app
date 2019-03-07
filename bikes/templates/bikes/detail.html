@@ -2,27 +2,29 @@
 
 <div class="container">
     <div class="dash-header">
-        <h1 class="text-center display-4">{{ bike.name }}</h1>
+        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:bike_list' %}">Back</a></button>
+        <h1 class="text-center display-4" style="display: inline-block;">{{ bike.name }}</h1>
         <hr class="mt-0 mb-4">
     </div>
 
-    <div class="detail-btns">
-    {% if bike.status.name != "Sold" %}
-    <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit
-            Bike</a></button>
-    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}"
-            class="secondary_link">Record work on this bike</a></button>
-    {% endif %}
-
-    {% if bike.status.name == "Listed" %}
-    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:sell_bike' pk=bike.id %}"
-            class="secondary_link">Mark as sold</a></button>
-    {% endif %}
-
-    {% if bike.status.name == "In Process" %}
-    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:list_bike_for_sale' pk=bike.id %}"
-            class="secondary_link">List Bike For Sale</a></button>
-    {% endif %}
+    <div class="btn-group btn-detail-group" role="group" aria-label="Basic example">
+        {% if bike.status.name != "Sold" %}
+        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit
+                Bike</a></button>
+        <div class="vertical-line"></div>
+        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:add_labor' %}">Record work on this
+            bike</a></button>
+            {% endif %}
+            {% if bike.status.name == "Listed" %}
+        <div class="vertical-line"></div>
+        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:sell_bike' pk=bike.id %}">Mark as
+            sold</a></button>
+            {% endif %}
+            {% if bike.status.name == "In Process" %}
+        <div class="vertical-line"></div>
+        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:list_bike_for_sale' pk=bike.id %}">List
+            Bike for Sale</a></button>
+        {% endif %}
     </div>
 
     {% for message in messages %}
@@ -32,37 +34,36 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-7 text-center">
-            <img src="/media/{{ bike.document }}" alt="image of bike" class="bike_image">
+            <img src="/media/{{ bike.document }}" alt="image of bike" class="bike_image img-fluid img-thumbnail">
         </div>
         <div class="col-sm-12 col-md-6 col-lg-5 text-center">
-
             <div class="card mx-auto" style="width: 22rem;">
-                    <ul class="list-group text-center">
-                        <li class="list-group-item list-group-item-detail">Bike Specs</li>
-                        <li class="list-group-item">Brand: {{ bike.brand.name }}</li>
-                        <li class="list-group-item">Model: {{ bike.bikemodel.name }}</li>
-                        <li class="list-group-item">Year: {{ bike.year }}</li>
-                        <li class="list-group-item">Description: {{ bike.description }}</li>
-                    </ul>
-                </div>
-                <br>
-                <div class="card mx-auto" style="width: 22rem;">
-                    <ul class="list-group text-center">
-                        <li class="list-group-item list-group-item-detail">Bike Details</li>
-                        <li class="list-group-item">Added: {{ bike.created_at }}</li>
-                        <li class="list-group-item">Purchase Price: ${{ bike.purchase_price }}</li>
-                        <li class="list-group-item">Purchase Date: {{ bike.purchase_date }}</li>
-                        <li class="list-group-item">Current Status: {{ bike.status.name }}</li>
-                        <li class="list-group-item">Condition: {{ bike.condition.name }}</li>
-                        {% if bike.status.name == "Sold" %}
-                        <li class="list-group-item">List Price: ${{ bike.list_price }}</li>
-                        <li class="list-group-item">Sale Price: ${{ bike.sale_price }}</li>
-                        <li class="list-group-item">Sale Date: {{ bike.sale_date }}</li>
-                        {% elif bike.status.name == "Listed" %}
-                        <li class="list-group-item">List Price: ${{ bike.list_price }}</li>
-                        {% endif %}
-                    </ul>
-                </div>
+                <ul class="list-group text-center">
+                    <li class="list-group-item list-group-item-detail">Bike Specs</li>
+                    <li class="list-group-item">Brand: {{ bike.brand.name }}</li>
+                    <li class="list-group-item">Model: {{ bike.bikemodel.name }}</li>
+                    <li class="list-group-item">Year: {{ bike.year }}</li>
+                    <li class="list-group-item">Description: {{ bike.description }}</li>
+                </ul>
+            </div>
+            <br>
+            <div class="card mx-auto" style="width: 22rem;">
+                <ul class="list-group text-center">
+                    <li class="list-group-item list-group-item-detail">Bike Details</li>
+                    <li class="list-group-item">Added: {{ bike.created_at }}</li>
+                    <li class="list-group-item">Purchase Price: ${{ bike.purchase_price }}</li>
+                    <li class="list-group-item">Purchase Date: {{ bike.purchase_date }}</li>
+                    <li class="list-group-item">Current Status: {{ bike.status.name }}</li>
+                    <li class="list-group-item">Condition: {{ bike.condition.name }}</li>
+                    {% if bike.status.name == "Sold" %}
+                    <li class="list-group-item">List Price: ${{ bike.list_price }}</li>
+                    <li class="list-group-item">Sale Price: ${{ bike.sale_price }}</li>
+                    <li class="list-group-item">Sale Date: {{ bike.sale_date }}</li>
+                    {% elif bike.status.name == "Listed" %}
+                    <li class="list-group-item">List Price: ${{ bike.list_price }}</li>
+                    {% endif %}
+                </ul>
+            </div>
             <br>
         </div>
     </div>
