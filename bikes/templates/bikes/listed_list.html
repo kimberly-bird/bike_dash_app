@@ -4,7 +4,7 @@
 
     <div>
         <div class="dash-header">
-            <h1 class="text-center display-4">All listed bikes</h1>
+            <h1 class="text-center display-4">Listed bikes</h1>
         </div>
 
         {% for message in messages %}
@@ -15,16 +15,16 @@
         {% block content %}
         <ul class="nav nav-tabs">
             <li class="nav-item ">
-                <a class="nav-link" href="{% url 'bikes:bike_list' %}">All Bikes</a>
+                <a class="nav-link" href="{% url 'bikes:bike_list' %}">All Bikes <span class="badge badge-light">{{ all_bike_count }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{% url 'bikes:sold_list' %}">Sold Bikes</a>
+                <a class="nav-link" href="{% url 'bikes:sold_list' %}">Sold Bikes <span class="badge badge-light">{{ sold_bikes }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link active" href="{% url 'bikes:listed_list' %}">Listed Bikes</a>
+                <a class="nav-link active" href="{% url 'bikes:listed_list' %}">Listed Bikes <span class="badge badge-light-active">{{ listed_bikes }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{% url 'bikes:process_list' %}">Bikes in Process</a>
+                <a class="nav-link" href="{% url 'bikes:process_list' %}">Bikes in Process <span class="badge badge-light">{{ in_process_bikes }}</span></a>
             </li>
         </ul>
         {% endblock %}
@@ -43,6 +43,7 @@
                         alt="image of {{ bike.name }}">
                     <h5 class="card-title">{{ bike.brand.name }}</h5>
                     <p class="card-text"> {{ bike.bikemodel.name }}</p>
+                    <p class="card-text">Listed Price ${{ bike.list_price }}</p>
                     <a href="{% url 'bikes:bike_detail' pk=bike.id %}" class="btn btn-outline-secondary">Details</a>
                 </div>
 

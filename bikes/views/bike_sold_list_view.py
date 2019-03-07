@@ -14,7 +14,12 @@ def bike_sold_list(request):
     
     if request.method == "GET":
         current_user = request.user
-        bikes = Bike.objects.order_by('-status_id').filter(user_id=current_user.id, status_id=1)
-        context = {"bike_list": bikes}
+        bikes = Bike.objects.order_by('-status_id').filter(user_id=current_user.id)
+        bikes_sold = Bike.objects.filter(user_id=current_user.id, status_id=1)
+        all_bike_count = bikes.count()
+        sold_bikes = bikes.filter(status_id=1).count()
+        listed_bikes = bikes.filter(status_id=2).count()
+        in_process_bikes = bikes.filter(status_id=3).count()
+        context = {"bike_list": bikes_sold, "all_bike_count": all_bike_count, "sold_bikes": sold_bikes, "listed_bikes": listed_bikes, "in_process_bikes": in_process_bikes}
         return render(request, 'bikes/sold_list.html', context)
         

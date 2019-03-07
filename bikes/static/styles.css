@@ -194,6 +194,7 @@ a:hover {
 
 .dash-header {
     margin: 20px 0px;
+    text-align: center;
 }
 
 .total-bikes-sold {
@@ -222,4 +223,42 @@ a:hover {
 
 .card-title {
     margin-top: 10px;
+}
+
+.badge-light-active {
+    background-color: #009688;
+    color: white;
+}
+
+.badge-light {
+    background-color: #00968788;
+    color: white;
+}
+
+.vertical-line {
+    border-left: thin solid white;
+}
+
+.btn-detail-group {
+    margin-bottom: 25px;
+}
+
+.btn-detail-group > button > a {
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #01579b;
+    border-color: #01579b;
+}
+
+.btn-secondary:hover {
+    background-color: #01589bd5;
+    border-color: #01589bd5;
+}
+
+.back-btn {
+    margin-top: 20px;
+    /* margin-right: 20px; */
+    float: left;
 }
