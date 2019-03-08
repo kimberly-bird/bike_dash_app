@@ -4,17 +4,19 @@
 
     <div>
         <div class="dash-header">
-            <h1 class="text-center display-4">All your bike parts</h1>
-            <hr class="mt-0 mb-4">
+            <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:add_part' %}">Add New Part</a></button>
+                <h1 class="text-center display-4" style="margin-right: 125px;">Parts</h1>
+                <hr class="mt-0 mb-4">
+        </div>
+
+        <div>
+            {% include "parts/search_form.html" %}
         </div>
 
         {% for message in messages %}
         <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
         <hr>
         {% endfor %}
-
-        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:add_part' %}">Add New
-                Part</a></button>
     </div>
     <br>
 
@@ -24,8 +26,8 @@
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <img src="../../static/images/{{ parttype.id }}_pt.jpg" alt="image of {{ parttype.name }}"
                     class="parttype-img rounded">
-                <p><a href="{% url 'bikes:parttype_list' pk=parttype.id %}"
-                        class="centered-text text-dark">{{ parttype.name }}</a></p>
+                <h1 class="display-4"><a href="{% url 'bikes:parttype_list' pk=parttype.id %}"
+                        class="centered-text text-dark">{{ parttype.name }}</a></h1>
             </div>
             {% endfor %}
         </div>

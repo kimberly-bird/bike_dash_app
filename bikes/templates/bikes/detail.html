@@ -2,18 +2,16 @@
 
 <div class="container">
     <div class="dash-header">
-        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:bike_list' %}">Back</a></button>
+        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:bike_list' %}"><i class="fas fa-chevron-left"></i> Back</a></button>
         <h1 class="text-center display-4" style="display: inline-block;">{{ bike.name }}</h1>
         <hr class="mt-0 mb-4">
     </div>
 
     <div class="btn-group btn-detail-group" role="group" aria-label="Basic example">
         {% if bike.status.name != "Sold" %}
-        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit
-                Bike</a></button>
+        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit</a></button>
         <div class="vertical-line"></div>
-        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:add_labor' %}">Record work on this
-            bike</a></button>
+        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:add_labor' %}">Record work</a></button>
             {% endif %}
             {% if bike.status.name == "Listed" %}
         <div class="vertical-line"></div>
@@ -91,6 +89,7 @@
                 <p>{{ part.brand.name }} | {{ part.bikemodel.name }}</p>
                 {% endif %}
                 <p>Purchased for ${{ part.purchase_price }} | {{ part.notes }}</p>
+                <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:remove_part_from_bike' pk=part.id %}" class="secondary_link">Remove part from bike</a></button>
                 <hr />
             </div>
             {% endfor %}

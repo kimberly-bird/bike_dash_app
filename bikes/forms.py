@@ -70,6 +70,7 @@ class PartForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        bikes_not_sold = Bike.objects.exclude(status=1)
         try:
             self.fields['bikemodel'].queryset = BikeModel.objects.none()
             self.fields['document'].label = "Upload Image"
@@ -77,6 +78,8 @@ class PartForm(forms.ModelForm):
             self.fields['parttype'].label = "Type of Part"
             self.fields['part_make'].label = "Part Make (if applicable)"
             self.fields['part_model'].label = "Part Model (if applicable)"
+            # Filter out bikes that are already sold - those bike parts cannot be edited
+            self.fields['bike'].queryset = bikes_not_sold
         
             if 'brand' in self.data:
                 try:

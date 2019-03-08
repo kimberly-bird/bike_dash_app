@@ -1,0 +1,8 @@
+<form class="form-inline my-2 my-lg-0" action="{% url 'bikes:part_search' %}" method="POST">
+    {% csrf_token %}
+    <div class="input-group">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
+            name="search_text" id="search_text">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+    </div>
+</form>

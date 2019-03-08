@@ -18,7 +18,7 @@ def remove_part_from_bike(request, pk):
     '''
 
     part = get_object_or_404(Part, pk=pk)
-
+    print("part to be updated", Part)
     part.bike = None
     part.save()
 

@@ -1,0 +1,48 @@
+{% include "navbar.html" %}
+
+<div class="container">
+
+    <div class="dash-header">
+        <button type="button" class="btn btn-outline-secondary back-btn"><a class="secondary_link"
+                href="{% url 'bikes:part_list' %}"><i class="fas fa-chevron-left"></i> Back</a></button>
+        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:add_part' %}">Add New
+                Part</a></button>
+        <h1 class="text-center display-4" style="display: inline-block; margin-right: 150px;">Search Results</h1>
+        <hr class="mt-0 mb-4">
+
+        {% include "parts/search_form.html" %}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {% if no_results %}
+            <h6>There are no search results for {{ search_text }}</h6>
+            {% else %}
+
+            <h4>{{ length }} results for {{ search_text }}</h4>
+            <br>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        {% for part in results %}
+        <div class="col-sm-2 col-md-2 col-lg-1">
+            <img src="/media/{{ part.document }}" alt="image of part" class="part_list_image">
+        </div>
+        <div class="col-sm-10 col-md-10 col-lg-11">
+            <h3><a href="{% url 'bikes:part_detail' pk=part.id %}">{{ part.name|title }}</a></h3>
+
+            {% if part.bike.name %}
+            <h6 class="text-muted">Currently on your <a
+                    href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
+                </a></h6>
+            {% endif %}
+
+            <p>Purchased for ${{ part.purchase_price }}</p>
+            <hr />
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
