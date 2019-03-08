@@ -59,28 +59,20 @@ a:hover {
     background-color: #eca400 !important;
 }
 
-.border-success {
-    border-color: #eca400 !important;
-}
-
 .bg-info {
     background-color: #01589b75 !important;
-}
-
-.border-info {
-    border-color: #01589b75 !important;
 }
 
 .bg-secondary {
     background-color: #01579b !important;
 }
 
-.border-secondary {
-    border-color: #01579b !important;
-}
-
 .list-header {
     background-color: white !important;
+}
+
+.list-header > h3 > a {
+    color: #01579b;
 }
 
 .list-footer {
@@ -130,7 +122,7 @@ a:hover {
 .parttype-img {
     max-width: 350px;
     max-height: auto;
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .part_list_image {
@@ -148,7 +140,7 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3em;
+    /* font-size: 3em; */
 }
 
 /* LABOR TABLE */
@@ -259,6 +251,6 @@ a:hover {
 
 .back-btn {
     margin-top: 20px;
-    /* margin-right: 20px; */
+    margin-right: 10px;
     float: left;
 }

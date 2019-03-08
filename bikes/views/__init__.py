@@ -24,3 +24,4 @@ from .dashboard_view import BikeChartView
 from .bike_sold_list_view import bike_sold_list
 from .bike_listed_list_view import bike_listed_list
 from .bike_inprocess_list_view import bike_inprocess_list
+from .part_search_view import part_search

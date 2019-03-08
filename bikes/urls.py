@@ -30,6 +30,7 @@ urlpatterns = [
     path('parts/add', views.add_part, name='add_part'),
     path('parts/<int:pk>', views.part_detail, name='part_detail'),
     path('parts/edit/<int:pk>/', views.edit_part, name='edit_part'),
+    path("parts/search", views.part_search, name="part_search"),
     path('parttypes/<int:pk>/', views.parttype_list, name='parttype_list'),
     url(r'^login$', views.login_user, name='login'),
     url(r'^logout$', views.user_logout, name='logout'),
