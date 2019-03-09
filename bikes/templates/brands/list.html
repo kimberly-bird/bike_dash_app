@@ -16,24 +16,28 @@
                 Brand</a></button>
     </div>
     <br>
+    <div class="row">
     {% for brand in bike_brand_list %}
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title text-center">{{ brand.name }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted text-center">{{ brand.location }}</h6>
-            {% for model in bike_model_list %}
-            {% if model.brand_id == brand.id %}
-            <p class="card-text text-center">{{ model.name }} <a
-                    href="{% url 'bikes:edit_bike_model' pk=model.id %}">Edit</a></p>
-            {% endif %}
-            {% endfor %}
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h4 class="card-title text-center">{{ brand.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted text-center">{{ brand.location }}</h6>
+                    {% for model in bike_model_list %}
+                    {% if model.brand_id == brand.id %}
+                    <hr>
+                    <p class="card-text text-center">{{ model.name }} <a
+                            href="{% url 'bikes:edit_bike_model' pk=model.id %}">Edit</a></p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="card-footer text-center" style="background-color: rgba(36, 35, 35, 0.041)">
+                    <a href="{% url 'bikes:edit_brand' pk=brand.id %}" class="card-link">Edit</a>
+                    <a href="{% url 'bikes:add_bike_model' pk=brand.id %}" class="card-link">Add Model</a>
+                </div>
+            </div>
+            <br>
         </div>
-        <div class="card-footer text-center" style="background-color: rgba(36, 35, 35, 0.041)">
-            <a href="{% url 'bikes:edit_brand' pk=brand.id %}" class="card-link">Edit</a>
-            <a href="{% url 'bikes:add_bike_model' pk=brand.id %}" class="card-link">Add New Model</a>
-        </div>
+        {% endfor %}
     </div>
-    <br>
-    {% endfor %}
 </div>

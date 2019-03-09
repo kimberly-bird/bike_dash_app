@@ -3,7 +3,9 @@
 <div class="container">
     <div>
         <div class="dash-header">
-            <h1 class="text-center display-4">{{ part.name }}</h1>
+                <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit
+                        Part</a></button>
+            <h1 class="text-center display-4" style="display: inline-block; margin-right: 125px;">{{ part.name }}</h1>
             <hr class="mt-0 mb-4">
         </div>
 
@@ -11,27 +13,36 @@
         <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
         <hr>
         {% endfor %}
-
-        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:edit_part' pk=part.id %}">Edit
-                Part</a></button>
+        
     </div>
 
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6 text-center">
-            <img src="/media/{{ part.document }}" alt="image of part" class="part_image">
+            <img src="/media/{{ part.document }}" alt="image of part" class="part_image  img-fluid img-thumbnail">
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 text-center">
-            <p>Part: {{ part.name }}</p>
-            <p>Type of Part: {{ part.parttype.name }}</p>
-            <p>Make: {{ part.part_make }}</p>
-            <p>Model: {{ part.part_model }}</p>
-            <p>Notes: {{ part.notes }}</p>
-            <p>Purchase Price: ${{ part.purchase_price }}</p>
 
-            {% if part.bike.name %}
-            <h4>Currently on your <a href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
-                </a></h4>
-            {% endif %}
+            <div class="card mx-auto" style="width: 22rem;">
+                <ul class="list-group text-center">
+                    <li class="list-group-item list-group-item-detail">{{ part.name }}</li>
+                    <li class="list-group-item">Type: {{ part.parttype.name }}</li>
+                    {% if part.part_make %}
+                    <li class="list-group-item">Make: {{ part.part_make }}</li>
+                    {% endif %}
+                    {% if part.part_model %}
+                    <li class="list-group-item">Model: {{ part.part_model }}</li>
+                    {% endif %}
+                    <li class="list-group-item">Notes: {{ part.notes }}</li>
+                    <li class="list-group-item">Purchase Price: ${{ part.purchase_price }}</li>
+                    {% if part.bike.name %}
+                    <li class="list-group-item">Currently on your <a
+                            href="{% url 'bikes:bike_detail' pk=part.bike.id %}">{{ part.bike.name }}
+                        </a>
+                        <button type="button" class="btn btn-outline-secondary" style="margin-top: 10px;"><a href="{% url 'bikes:remove_part_from_bike' pk=part.id %}" class="secondary_link">Remove part from bike</a></button>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>

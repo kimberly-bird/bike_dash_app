@@ -11,7 +11,7 @@ class BikesInventoryPieChart():
 
     def __init__(self, **kwargs):
         self.chart = pygal.Pie(**kwargs)
-        self.chart.title = 'Bikes by Status'
+        self.chart.title = 'Bikes by Status - All Time'
 
     def get_data(self):
         '''

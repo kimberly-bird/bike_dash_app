@@ -1,7 +1,8 @@
-from bikes.forms import PartForm
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 
+from bikes.forms import PartForm
 from bikes.models import Part
 
 
@@ -20,7 +21,8 @@ def edit_part(request, pk):
         part_form = PartForm(request.POST, request.FILES, instance=part)
         if part_form.is_valid():
             part = part_form.save()
-            return redirect('bikes:part_list')
+            redirect_url = reverse('bikes:part_detail', args=[part.id])
+            return HttpResponseRedirect(redirect_url)
     else:
         part_form = PartForm(instance=part)
 
