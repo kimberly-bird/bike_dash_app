@@ -254,3 +254,7 @@ a:hover {
     margin-right: 10px;
     float: left;
 }
+
+.part-list-group:hover {
+    background-color: #01589b1c;
+}
