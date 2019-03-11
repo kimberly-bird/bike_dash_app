@@ -10,7 +10,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg" style="background-color: #01579b">
-    <a class="navbar-brand" href="{% url 'bikes:bike_list' %}">
+    <a class="navbar-brand" href="{% url 'bikes:bike_list' 4 %}">
         <img src="{% static '/images/bike_dash_logo.png' %}" width="60" height="60" alt="bike_logo"
             class="nav_bike_img">
     </a>
@@ -24,13 +24,13 @@
             {% if user.is_authenticated %}
             <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:dashboard' %}">Dashboard</a></li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle main-nav-link" href="{% url 'bikes:bike_list' %}" id="navbarDropdown" role="button"
+                <a class="nav-link dropdown-toggle main-nav-link" href="{% url 'bikes:bike_list' 4 %}" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     My Bikes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'bikes:add_bike' %}">Add new bike</a>
-                    <a class="dropdown-item" href="{% url 'bikes:bike_list' %}">Bikes</a>
+                    <a class="dropdown-item" href="{% url 'bikes:bike_list' 4 %}">Bikes</a>
                     <a class="dropdown-item" href="{% url 'bikes:part_list' %}">Parts</a>
                     <a class="dropdown-item" href="{% url 'bikes:labor_list' %}">Labor</a>
                     <div class="dropdown-divider"></div>
