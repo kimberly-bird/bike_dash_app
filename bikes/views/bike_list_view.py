@@ -20,15 +20,15 @@ def bike_list(request, status_id):
         all_bike_count = all_bikes.count()
 
         # bikes by in process status
-        bikes_in_process = all_bikes.filter(user_id=current_user.id, status_id=3)
+        bikes_in_process = all_bikes.filter(status_id=3)
         in_process_bikes = bikes_in_process.count()
 
         # bikes by listed status
-        bikes_listed = all_bikes.filter(user_id=current_user.id, status_id=2)
+        bikes_listed = all_bikes.filter(status_id=2)
         listed_bikes_count = bikes_listed.count()
 
         # bikes by sold status
-        bikes_sold = all_bikes.filter(user_id=current_user.id, status_id=1)
+        bikes_sold = all_bikes.filter(status_id=1)
         sold_bikes_count = bikes_sold.count()
 
         context = {
