@@ -1,15 +1,17 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render
 
 from bikes.models import Bike
-from django.contrib.auth.models import User
 
 
+@login_required
 def bike_list(request, status_id):
-    '''View for list of user's bikes
+    '''View for list of user's bikes. This view gets a list of all user's bikes, as well as filter the bike list based on status. The template renders a sub nav component which allows users to click affordances with the status name. When the user clicks a status affordance, they are presented with a list of bikes that are filtered by status. The sub nav component also calculates the number of bikes that have that status id and shows that count on a badge. 
 
         Allowed verbs: GET
 
-        returns rendered list of all bikes 
+        returns rendered list of all bikes + bikes filtered by status
     '''
     
     if request.method == "GET":

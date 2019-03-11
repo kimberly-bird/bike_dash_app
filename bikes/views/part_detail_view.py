@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 
 from bikes.models import Part
 
 
+@login_required
 def part_detail(request, pk):
     '''View for part detail
 

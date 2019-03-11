@@ -1,12 +1,13 @@
-from bikes.forms import BikeModelForm
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 
-from bikes.models import Brand
+from bikes.forms import BikeModelForm
 from bikes.models import BikeModel
+from bikes.models import Brand
+
 
 @login_required
 def add_bike_model(request, pk):

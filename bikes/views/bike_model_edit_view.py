@@ -1,9 +1,9 @@
-from bikes.forms import BikeModelForm
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 
-from bikes.models import Brand
+from bikes.forms import BikeModelForm
 from bikes.models import BikeModel
+from bikes.models import Brand
 
 
 @login_required

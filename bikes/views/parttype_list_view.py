@@ -1,10 +1,12 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 
 from bikes.models import Part
 from bikes.models import PartType
-from django.contrib.auth.models import User
 
 
+@login_required
 def parttype_list(request, pk):
     '''View for list of user's parts grouped by parttype
 

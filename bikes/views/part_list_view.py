@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from bikes.models import Part
@@ -5,6 +6,7 @@ from bikes.models import PartType
 from django.contrib.auth.models import User
 
 
+@login_required
 def part_list(request):
     '''View for list of user's parts
 

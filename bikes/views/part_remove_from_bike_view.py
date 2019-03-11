@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from bikes.models import Part
@@ -18,7 +18,7 @@ def remove_part_from_bike(request, pk):
     '''
 
     part = get_object_or_404(Part, pk=pk)
-    print("part to be updated", Part)
+    # set bike id on part to Null, thus "removing" the part from the bike
     part.bike = None
     part.save()
 

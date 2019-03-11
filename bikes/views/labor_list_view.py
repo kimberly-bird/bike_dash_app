@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render
 
 from bikes.models import Labor
-from django.contrib.auth.models import User
 
 
+@login_required
 def labor_list(request):
     '''View for list of user's labor
 
