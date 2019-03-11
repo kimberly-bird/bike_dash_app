@@ -9,7 +9,7 @@
         <h2 class="text-center display-4">Inventory</h2>
         <div class="row">
             <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                <a href="{% url 'bikes:bike_list' %}" style="color: white;">
+                <a href="{% url 'bikes:bike_list' 4 %}" style="color: white;">
                         <h2 class="total-bikes-text">Bike inventory</h2>
                         <hr style="background-color: white;" />
                         <p class="total-bikes-sold">{{ bikes_in_inventory }}</p>
@@ -38,14 +38,14 @@
         <br>    
         <div class="row">
             <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                <a href="{% url 'bikes:sold_list' %}" style="color: white;">
+                <a href="{% url 'bikes:bike_list' 1 %}" style="color: white;">
                         <h2 class="total-bikes-text">2019 Total Bikes Sold</h2>
                         <hr style="background-color: white;" />
                         <p class="total-bikes-sold">{{ sold_bikes }}</p>
                     </a>
                 </div>
                 <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                    <a href="{% url 'bikes:sold_list' %}" style="color: white;">
+                    <a href="{% url 'bikes:bike_list' 1 %}" style="color: white;">
                             <h2 class="total-bikes-text">2019 Total Bike Profit</h2>
                             <hr style="background-color: white;" />
                             <p class="total-bikes-sold">${{ total_sales }}</p>
