@@ -1,11 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.db.models import Sum
+from django.shortcuts import render, get_object_or_404
 
 from bikes.models import Bike
 from bikes.models import Labor
-from django.contrib.auth.models import User
 
 
+@login_required
 def bike_detail(request, pk):
     '''View for bike detail. This view also calculates the total amount of labor spent on this bike in both hours and dollars. The rendered template also calculates total labor for each itemized labor entry, but that calculation is done in the Labor model, with an @property decorator.
 
@@ -16,11 +18,15 @@ def bike_detail(request, pk):
     
     if request.method == "GET":
         current_user = request.user
+        # get bike details
         bike = get_object_or_404(Bike, pk=pk)
+        # get labor associated with specific bike
         labor = Labor.objects.order_by('-date').filter(bike_id=pk)
 
+        # get total amount of time spent on the bike so far to display above the list of itemized labor records
         total_time = list(labor.aggregate(Sum('time')).values())[0]
 
+        # loop over labor and calculate the $ total invested for each labor record
         total_labor = 0
         for l in labor:
             total_labor += l.time * l.rate_of_pay 

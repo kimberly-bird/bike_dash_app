@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="dash-header">
-        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:bike_list' %}"><i class="fas fa-chevron-left"></i> Back</a></button>
+        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:bike_list' 4 %}"><i class="fas fa-chevron-left"></i> Back</a></button>
         <h1 class="text-center display-4" style="display: inline-block;">{{ bike.name }}</h1>
         <hr class="mt-0 mb-4">
     </div>
