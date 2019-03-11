@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from bikes.models import Brand
 from bikes.models import BikeModel
 
 
+@login_required
 def brand_list(request):
     '''View for list of Brands 
 

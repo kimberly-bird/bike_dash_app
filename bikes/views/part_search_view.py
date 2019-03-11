@@ -1,11 +1,13 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
 from bikes.models import Part
 
 
+@login_required
 def part_search(request):
     """Displays search results when a user searches for a bike part
 

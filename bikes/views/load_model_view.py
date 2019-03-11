@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from bikes.models import BikeModel
 from bikes.models import Brand
 
 
+@login_required
 def load_models(request):
     '''View to get the brand of a bike and filter the models based on the foreign key relationship. This is used whenever a user is on a form where the user can select a bike brand and only the associated bike models are available in the dropdown. There is some more functionality for this in the static index.js file.
 

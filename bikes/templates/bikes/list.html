@@ -15,20 +15,20 @@
         {% block content %}
         <ul class="nav nav-tabs">
             <li class="nav-item ">
-                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/4' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=4 %}">All Bikes <span
-                        class="badge {% if request.get_full_path == '/bikes/mybikes/4' %}badge-light-active{% else %}badge-light{% endif %}">{{ all_bike_count }}</span></a>
+                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/status/4' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=4 %}">All Bikes <span
+                        class="badge {% if request.get_full_path == '/bikes/mybikes/status/4' %}badge-light-active{% else %}badge-light{% endif %}">{{ all_bike_count }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/1' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=1 %}">Sold Bikes <span
-                        class="badge {% if request.get_full_path == '/bikes/mybikes/1' %}badge-light-active{% else %}badge-light{% endif %}">{{ sold_bikes_count }}</span></a>
+                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/status/1' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=1 %}">Sold Bikes <span
+                        class="badge {% if request.get_full_path == '/bikes/mybikes/status/1' %}badge-light-active{% else %}badge-light{% endif %}">{{ sold_bikes_count }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/2' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=2 %}">Listed Bikes <span
-                        class="badge {% if request.get_full_path == '/bikes/mybikes/2' %}badge-light-active{% else %}badge-light{% endif %}">{{ listed_bikes_count }}</span></a>
+                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/status/2' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=2 %}">Listed Bikes <span
+                        class="badge {% if request.get_full_path == '/bikes/mybikes/status/2' %}badge-light-active{% else %}badge-light{% endif %}">{{ listed_bikes_count }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/3' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=3 %}">Bikes in Process <span
-                        class="badge {% if request.get_full_path == '/bikes/mybikes/3' %}badge-light-active{% else %}badge-light{% endif %}">{{ in_process_bikes_count }}</span></a>
+                <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/status/3' %}active{% endif %}" href="{% url 'bikes:bike_list' status_id=3 %}">Bikes in Process <span
+                        class="badge {% if request.get_full_path == '/bikes/mybikes/status/3' %}badge-light-active{% else %}badge-light{% endif %}">{{ in_process_bikes_count }}</span></a>
             </li>
         </ul>
         {% endblock %}
@@ -36,22 +36,22 @@
     </div>
     <br>
     <div class="row">
-        {% if request.get_full_path == '/bikes/mybikes/4' %}
+        {% if request.get_full_path == '/bikes/mybikes/status/4' %}
         {% for bike in bike_list %}
         {% include 'bikes/bike_list_block.html' %}
         {% endfor %}
 
-        {% elif request.get_full_path == '/bikes/mybikes/3' %}
+        {% elif request.get_full_path == '/bikes/mybikes/status/3' %}
         {% for bike in bikes_in_process %}
         {% include 'bikes/bike_list_block.html' %}
         {% endfor %}
 
-        {% elif request.get_full_path == '/bikes/mybikes/2' %}
+        {% elif request.get_full_path == '/bikes/mybikes/status/2' %}
         {% for bike in bikes_listed %}
         {% include 'bikes/bike_list_block.html' %}
         {% endfor %}
 
-        {% elif request.get_full_path == '/bikes/mybikes/1' %}
+        {% elif request.get_full_path == '/bikes/mybikes/status/1' %}
         {% for bike in bikes_sold %}
         {% include 'bikes/bike_list_block.html' %}
         {% endfor %}
