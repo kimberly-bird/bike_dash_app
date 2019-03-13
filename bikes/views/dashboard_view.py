@@ -108,7 +108,10 @@ class BikeChartView(TemplateView):
             # add that amount to the total_labor_2019 total
             total_labor_2019 += labor_calculation
         # get total profit by subtracting labor costs and part costs from total sales
-        profit_2019 = total_sales.get('sum') - total_labor_2019 - total_parts_investment
+        if total_labor_2019 != 0 or total_parts_investment != 0:
+            profit_2019 = total_sales.get('sum') - total_labor_2019 - total_parts_investment
+            # 6. 2019 total bike profit (sale price - (purchase_price + labor + parts))
+            context['total_sales'] = profit_2019
 
         # ----------------------------------------------------------------------
 
@@ -138,8 +141,7 @@ class BikeChartView(TemplateView):
         context['sales_this_year_vs'] = sales_this_year_vs.generate()
         # 5. 2019 total bikes sold
         context['sold_bikes'] = sold_bikes
-        # 6. 2019 total bike profit (sale price - (purchase_price + labor + parts))
-        context['total_sales'] = profit_2019
+        # 6. context set up in if statment above
         # 7. Labor this year (line graph)
         context['total_labor'] = total_labor.generate()
         # 8. 2019 total labor (total labor in $ and hours)

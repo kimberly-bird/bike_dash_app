@@ -39,5 +39,7 @@ def add_labor(request):
 
         newLabor.save()
         messages.success(request, 'Saved!')
-        return HttpResponseRedirect(reverse("bikes:labor_list"))
+        # after posting labor, redirect to that bike's detail page
+        return HttpResponseRedirect(reverse('bikes:bike_detail', args=(newLabor.bike.id,)))
+
 
