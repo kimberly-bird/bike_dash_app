@@ -8,6 +8,7 @@
     <div>
         <h2 class="text-center display-4">Inventory</h2>
         <div class="row">
+            {% if bikes_in_inventory %}
             <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
                 <a href="{% url 'bikes:bike_list' 4 %}" style="color: white;">
                         <h2 class="total-bikes-text">Bike inventory</h2>
@@ -16,6 +17,8 @@
                         <p class="lead">(Bikes in progress or listed)</p>
                 </a>
             </div>
+            {% endif %}
+            {% if parts_in_inventory %}
             <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
                 <a href="{% url 'bikes:part_list' %}" style="color: white;">
                     <h2 class="total-bikes-text">Parts inventory</h2>
@@ -24,19 +27,25 @@
                     <p class="lead">(Parts not installed on a bike)</p>
                 </a>
             </div>
+            {% endif %}
         </div>
         <hr />
         <h2 class="text-center display-4">Sales</h2>
         <div class="row">
+            {% if cht_bikes %}
             <div class="col-sm-12 col-md-6 col-lg-6">
                 {{ cht_bikes|safe }}
             </div>
+            {% endif %}
+            {% if sales_this_year_vs %}
             <div class="col-sm-12 col-md-6 col-lg-6">
                 {{ sales_this_year_vs|safe }}
             </div>
+            {% endif %}
         </div>
         <br>    
         <div class="row">
+            {% if sold_bikes %}
             <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
                 <a href="{% url 'bikes:bike_list' 1 %}" style="color: white;">
                         <h2 class="total-bikes-text">2019 Total Bikes Sold</h2>
@@ -44,29 +53,36 @@
                         <p class="total-bikes-sold">{{ sold_bikes }}</p>
                     </a>
                 </div>
+                {% endif %}
+                {% if total_sales %}
                 <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
                     <a href="{% url 'bikes:bike_list' 1 %}" style="color: white;">
-                            <h2 class="total-bikes-text">2019 Total Bike Profit</h2>
-                            <hr style="background-color: white;" />
-                            <p class="total-bikes-sold">${{ total_sales }}</p>
-                        </a>
-                    </div>
+                        <h2 class="total-bikes-text">2019 Total Bike Profit</h2>
+                        <hr style="background-color: white;" />
+                        <p class="total-bikes-sold">${{ total_sales }}</p>
+                    </a>
                 </div>
-                <hr />
-                <h2 class="text-center display-4">Labor</h2>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        {{ total_labor|safe }}
-                    </div>
-                    <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
-                        <a href="{% url 'bikes:labor_list' %}" style="color: white;">
-                            <h2 class="total-bikes-text">2019 Total Labor</h2>
-                            <hr style="background-color: white;" />
-                            <p class="total-labor-investment">${{ labor_2019 }}</p>
-                            <p class="total-labor-investment">{{ labor_hours_2019 }} Hours</p>
-                        </a>
-                    </div>
-                </div>
+                    {% endif %}
+        </div>
+        <hr />
+        <h2 class="text-center display-4">Labor</h2>
+        <div class="row">
+            {% if total_labor %}
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                {{ total_labor|safe }}
+            </div>
+            {% endif %}
+            {% if labor_2019 %}
+            <div class="mx-auto total-bikes-sold-div text-center col-sm-12 col-md-6 col-lg-6">
+                <a href="{% url 'bikes:labor_list' %}" style="color: white;">
+                    <h2 class="total-bikes-text">2019 Total Labor</h2>
+                    <hr style="background-color: white;" />
+                    <p class="total-labor-investment">${{ labor_2019 }}</p>
+                    <p class="total-labor-investment">{{ labor_hours_2019 }} Hours</p>
+                </a>
+            </div>
+            {% endif %}
+        </div>
     </div>
 </div>
 <br>
