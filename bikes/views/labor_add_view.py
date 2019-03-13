@@ -22,7 +22,7 @@ def add_labor(request):
 
     if request.method == "GET":
         #render the form page
-        labor_form = LaborForm()
+        labor_form = LaborForm(request)
         return render(request, 'labor/create.html', {"labor_form": labor_form})
 
     if request.method == "POST":

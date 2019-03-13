@@ -52,11 +52,14 @@ class LaborForm(forms.ModelForm):
         model = Labor
         fields = ('notes', 'time', 'rate_of_pay', 'bike')
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, request, *args, **kwargs):
+        super(LaborForm, self).__init__(*args, **kwargs)
+        current_user = request.user
         # only put bikes that are not sold in the drop down when adding labor
         bikes_not_sold = Bike.objects.exclude(status=1)
-        self.fields['bike'].queryset = bikes_not_sold
+        # filter bikes dropdown to only show bikes added by current user
+        filtered_bikes = bikes_not_sold.filter(user_id=current_user.id)
+        self.fields['bike'].queryset = filtered_bikes
 
 
 class PartForm(forms.ModelForm):
