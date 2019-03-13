@@ -7,22 +7,31 @@
             <h1 class="text-center display-4">You're ready to list the {{ bike.name }} for sale!</h1>
             <hr class="mt-0 mb-4">
         </div>
-        <div class="col-8">
-
+        <div class="col-1"></div>
+        <div class="col-4">
             <form action="{% url 'bikes:list_bike_for_sale' bike.id %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="list_price">List Price</label>
                     <input type="text" class="form-control" name="list_price" />
                 </div>
-
                 <div>
-                    <button type="submit" class="btn btn-outline-secondary">Save</button>
-                    <a href="{% url 'bikes:bike_list' %}">
-                        <button type="button" class="btn btn-outline-secondary">Go Back</button>
+                    <a href="{% url 'bikes:bike_list' 4 %}">
+                        <button type="button" class="btn btn-outline-secondary"><i class="fas fa-chevron-left"></i> Back</button>
                     </a>
+                    <button type="submit" class="btn btn-outline-secondary">Save</button>
                 </div>
             </form>
+        </div>
+        <div class="col-7">
+            <div class="card mx-auto" style="width: 22rem;">
+                <ul class="list-group text-center">
+                    <li class="list-group-item list-group-item-detail">Break-even Price: ${{ break_even_price }}</li>
+                    <li class="list-group-item">Purchase Price: ${{ bike.purchase_price }}</li>
+                    <li class="list-group-item">Labor invested: ${{ total_labor }}</li>
+                    <li class="list-group-item">Part total investment: ${{ part_sum }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -5,6 +6,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from bikes.models import Bike
+from bikes.models import Labor
+from bikes.models import Part
 from bikes.models import Status
 
 
@@ -27,5 +30,21 @@ def list_bike_for_sale(request, pk):
         bike.save()
         return HttpResponseRedirect(reverse("bikes:bike_detail", args=(pk,)))
     else:
-      context = {"bike": bike}
-      return render(request, 'bikes/list_bike.html', context)
+        # get all labor for bike
+        labor_list = Labor.objects.filter(bike_id=bike.id)
+
+        # total_labor will hold the total amount of labor spent on this bike ($ value)
+        total_labor = 0
+        for labor in labor_list:
+            # get_total_for_each_labor is a property method on the Labor model that calculates rate_of_pay*time
+            labor_calculation = labor.get_total_for_each_labor
+            total_labor += labor_calculation
+
+        # get sum of purchase price for all parts for bike
+        part_sum = Part.objects.filter(bike_id=bike.id).aggregate(sum=Sum('purchase_price'))
+
+        # calculate $ amount needed to break even on bike investment 
+        break_even_price = bike.purchase_price + total_labor + part_sum["sum"]
+
+        context = {"bike": bike, "total_labor": total_labor, "part_sum": part_sum["sum"], "break_even_price": break_even_price}
+        return render(request, 'bikes/list_bike.html', context)

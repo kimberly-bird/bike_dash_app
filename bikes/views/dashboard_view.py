@@ -1,5 +1,4 @@
 from django.db.models import Sum, F, Q
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -16,7 +15,6 @@ from bikes.charts import BikesTotalSalesThisYearAndLastBarChart
 from bikes.charts import LaborThisYearLineChart
 
 
-@login_required
 class BikeChartView(TemplateView):
     '''This view handles all of the data sent to the dashboard template. Some of the charts are rendered using pygal and others just through data sent to the template without a chart. Pygal chart data is sent from charts.py
 

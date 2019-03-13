@@ -100,7 +100,11 @@ a:hover {
     font-size: 1.25em !important;
 }
 
-
+.navbar-nav li:hover .dropdown-menu {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
 
 /* IMAGES */
 
@@ -258,3 +262,5 @@ a:hover {
 .part-list-group:hover {
     background-color: #01589b1c;
 }
+
+
