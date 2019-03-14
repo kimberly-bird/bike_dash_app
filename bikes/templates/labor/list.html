@@ -22,7 +22,8 @@
             <thead class="labor-header">
                 <tr class="d-flex">
                     <th scope="col" class="col-2">Date</th>
-                    <th scope="col" class="col-4">Notes</th>
+                    <th scope="col" class="col-2">Related ToDo</th>
+                    <th scope="col" class="col-2">Notes</th>
                     <th scope="col" class="col-2">Time Worked</th>
                     <th scope="col" class="col-2">Pay Rate</th>
                     <th scope="col" class="col-2">Bike</th>
@@ -32,7 +33,8 @@
                 {% for labor in labor_list %}
                 <tr class="d-flex">
                     <td class="col-2">{{ labor.date }}</td>
-                    <td class="col-4">{{ labor.notes }}</td>
+                    <td class="col-2">{{ labor.todo.title }}</td>
+                    <td class="col-2">{{ labor.notes }}</td>
                     <td class="col-2">{{ labor.time }} hrs.</td>
                     <td class="col-2">${{ labor.rate_of_pay }}</td>
                     <td class="col-2"><a href="{% url 'bikes:bike_detail' pk=labor.bike.id %}">{{ labor.bike.name }}</a>

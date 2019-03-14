@@ -29,6 +29,7 @@ urlpatterns = [
     path('parts/edit/<int:pk>/', views.edit_part, name='edit_part'),
     path("parts/search", views.part_search, name="part_search"),
     path('parttypes/<int:pk>/', views.parttype_list, name='parttype_list'),
+    path('todo/add', views.add_todo, name='add_todo'),
     url(r'^login$', views.login_user, name='login'),
     url(r'^logout$', views.user_logout, name='logout'),
     url(r'^register$', views.register, name='register'),

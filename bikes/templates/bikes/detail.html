@@ -2,26 +2,28 @@
 
 <div class="container">
     <div class="dash-header">
-        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:bike_list' 4 %}"><i class="fas fa-chevron-left"></i> Back</a></button>
+        <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:bike_list' 4 %}"><i
+                    class="fas fa-chevron-left"></i> Back</a></button>
         <h1 class="text-center display-4" style="display: inline-block;">{{ bike.name }}</h1>
         <hr class="mt-0 mb-4">
     </div>
 
     <div class="btn-group btn-detail-group" role="group" aria-label="Basic example">
         {% if bike.status.name != "Sold" %}
-        <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit</a></button>
+        <button type="button" class="btn btn-secondary"><a
+                href="{% url 'bikes:edit_bike' pk=bike.id %}">Edit</a></button>
         <div class="vertical-line"></div>
         <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:add_labor' %}">Record work</a></button>
-            {% endif %}
-            {% if bike.status.name == "Listed" %}
+        {% endif %}
+        {% if bike.status.name == "Listed" %}
         <div class="vertical-line"></div>
         <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:sell_bike' pk=bike.id %}">Mark as
-            sold</a></button>
-            {% endif %}
-            {% if bike.status.name == "In Process" %}
+                sold</a></button>
+        {% endif %}
+        {% if bike.status.name == "In Process" %}
         <div class="vertical-line"></div>
         <button type="button" class="btn btn-secondary"><a href="{% url 'bikes:list_bike_for_sale' pk=bike.id %}">List
-            Bike for Sale</a></button>
+                Bike for Sale</a></button>
         {% endif %}
     </div>
 
@@ -69,7 +71,6 @@
     {% if bike.part_set.all %}
     <div class="bike-detail-parts">
         <div class="text-center">
-
             <h4>Parts currently on your {{ bike.name }}</h4>
             <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_part' %}"
                     class="secondary_link">Add a part to {{ bike.name }}</a></button>
@@ -89,58 +90,58 @@
                 <p>{{ part.brand.name }} | {{ part.bikemodel.name }}</p>
                 {% endif %}
                 <p>Purchased for ${{ part.purchase_price }} | {{ part.notes }}</p>
-                <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:remove_part_from_bike' pk=part.id %}" class="secondary_link">Remove part from bike</a></button>
+                <button type="button" class="btn btn-outline-secondary"><a
+                        href="{% url 'bikes:remove_part_from_bike' pk=part.id %}" class="secondary_link">Remove part
+                        from bike</a></button>
                 <hr />
             </div>
             {% endfor %}
         </div>
     </div>
     {% endif %}
-
-    {% if bike.labor_set.all %}
     <div>
-        <div class="text-center">
-            <h4>{{ bike.name }} Labor Report</h4>
-            <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}"
-                    class="secondary_link">Record work on {{ bike.name }}</a></button>
+        {% if bike.labor_set.all %}
+        <div>
+            <div class="text-center">
+                <h3>{{ bike.name }} Labor Report</h3>
+                <button type="button" class="btn btn-outline-secondary"><a href="{% url 'bikes:add_labor' %}"
+                        class="secondary_link">Record work on {{ bike.name }}</a></button>
+            </div>
+            <br>
+            <div class="card mx-auto" style="width: 18rem;">
+                <ul class="list-group text-center">
+                    <li class="list-group-item list-group-item-info">Total labor spent so far</li>
+                    <li class="list-group-item">Total Invested: ${{ total_labor }}</li>
+                    <li class="list-group-item">Total Time: {{ total_time }} hours</li>
+                </ul>
+            </div>
+            <br>
+            {% endif %}
         </div>
-        <br>
-        <div class="card mx-auto" style="width: 18rem;">
-            <ul class="list-group text-center">
-                <li class="list-group-item list-group-item-info">Total labor spent so far</li>
-                <li class="list-group-item">Total Invested: ${{ total_labor }}</li>
-                <li class="list-group-item">Total Time: {{ total_time }} hours</li>
+        <hr class="mt-0 mb-4">
+        <h3 class="text-center">To Do List for this bike</h3>
+        <div class="to-do-container">
+            <ul class="to-do-list">
+                {% for todo in todo_list %}
+                <li class="to-do-li">
+                    <h4>{{ todo.date }}</h4>
+                    <h5>{{ todo.title }}</h5> {{ todo.notes }}
+                </li>
+                {% if todo.labor_set.all %}
+                <b>Labor details for {{ todo.title }}</b>
+                {% for td in todo.labor_set.all %}
+                <ul class="list-group">
+                    <li class="list-group-item">{{ td.date }}</li>
+                    <li class="list-group-item">{{ td.notes }}</li>
+                    <li class="list-group-item">Time: {{ td.time }} hrs. <br> Rate: ${{ td.rate_of_pay }}</li>
+                    <li class="list-group-item">Total Labor: ${{ td.get_total_for_each_labor }}</li>
+                </ul>
+                <br>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
             </ul>
         </div>
-        <br>
-        <h5 class="text-center">Itemized Labor</h5>
-
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead class="labor-header">
-                    <tr class="d-flex">
-                        <th scope="col" class="col-2">Date</th>
-                        <th scope="col" class="col-6">Notes</th>
-                        <th scope="col" class="col-2">Time Worked</th>
-                        <th scope="col" class="col-1">Pay Rate</th>
-                        <th scope="col" class="col-1">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for labor in labor_list %}
-                    <tr class="d-flex">
-                        <td class="col-2">{{ labor.date }}</td>
-                        <td class="col-6">{{ labor.notes }}</td>
-                        <td class="col-2">{{ labor.time }} hrs.</td>
-                        <td class="col-1">${{ labor.rate_of_pay }}</td>
-                        <td class="col-1">${{ labor.get_total_for_each_labor }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
     </div>
     <br>
-    {% endif %}
 </div>

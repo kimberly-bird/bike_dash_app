@@ -22,3 +22,4 @@ from .labor_add_view import add_labor
 from .parttype_list_view import parttype_list
 from .dashboard_view import BikeChartView
 from .part_search_view import part_search
+from .todo_add_view import add_todo

@@ -31,10 +31,10 @@ class Bike(SafeDeleteModel):
     year = models.CharField(max_length=4)
     description = models.CharField(max_length=255)
     purchase_price = models.PositiveIntegerField()
-    purchase_date = models.CharField(max_length=255)
+    purchase_date = models.DateField(blank=True, null=True)
     list_price = models.PositiveIntegerField(null=True)
     sale_price = models.PositiveIntegerField(null=True)
-    sale_date = models.CharField(max_length=255, blank=True, null=True)
+    sale_date = models.DateField(blank=True, null=True)
     document = models.FileField(upload_to='documents/', null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True, null=True)
 

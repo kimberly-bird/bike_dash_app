@@ -20,8 +20,8 @@ class ToDo(SafeDeleteModel):
     user = models.ForeignKey(User, on_delete=_safedelete_policy)
     title = models.CharField(max_length=55)
     notes = models.CharField(max_length=200)
-    date = models.DateField(auto_now=False, auto_now_add=True)
-    is_completed = models.BooleanField()
+    date = models.DateField(blank=True, null=True)
+    is_completed = models.BooleanField(default=False)
     bike = models.ForeignKey('Bike', on_delete=models.CASCADE)
 
     def __str__(self):

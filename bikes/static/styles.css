@@ -263,4 +263,27 @@ a:hover {
     background-color: #01589b1c;
 }
 
+ul.to-do-list {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.to-do-li {
+    background-color: #01589b1c;
+    padding: 40px 85px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-bottom: 40px;
+}
+
+.to-do-container {
+    margin: 0px 10%;
+}
+
 

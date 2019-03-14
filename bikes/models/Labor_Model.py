@@ -38,3 +38,4 @@ class Labor(SafeDeleteModel):
 
         return self.time * self.rate_of_pay
 
+
