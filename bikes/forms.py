@@ -6,6 +6,7 @@ from bikes.models import BikeModel
 from bikes.models import Bike
 from bikes.models import Labor
 from bikes.models import Part
+from bikes.models import ToDo
 
 
 class UserForm(forms.ModelForm):
@@ -50,10 +51,29 @@ class BikeForm(forms.ModelForm):
 class LaborForm(forms.ModelForm):
     class Meta:
         model = Labor
-        fields = ('notes', 'time', 'rate_of_pay', 'bike')
+        fields = ('bike', 'todo', 'notes', 'time', 'rate_of_pay')
     
     def __init__(self, request, *args, **kwargs):
         super(LaborForm, self).__init__(*args, **kwargs)
+        current_user = request.user
+        # only put bikes that are not sold in the drop down when adding labor
+        bikes_not_sold = Bike.objects.exclude(status=1)
+        # filter bikes dropdown to only show bikes added by current user
+        filtered_bikes = bikes_not_sold.filter(user_id=current_user.id)
+        # get all to-dos for current user that aren't marked as completed
+        to_do_list = ToDo.objects.filter(user_id=current_user.id, is_completed=False)
+        self.fields['bike'].queryset = filtered_bikes
+        self.fields['bike'].label = "What bike did you work on?"
+        self.fields['todo'].label = "Related To Do item"
+
+
+class ToDoForm(forms.ModelForm):
+    class Meta:
+        model = ToDo
+        fields = ('title', 'notes', 'date', 'bike')
+    
+    def __init__(self, request, *args, **kwargs):
+        super(ToDoForm, self).__init__(*args, **kwargs)
         current_user = request.user
         # only put bikes that are not sold in the drop down when adding labor
         bikes_not_sold = Bike.objects.exclude(status=1)

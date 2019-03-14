@@ -9,6 +9,7 @@ import datetime
 from bikes.forms import LaborForm
 from bikes.models import Bike
 from bikes.models import Labor
+from bikes.models import ToDo
 
 
 @login_required
@@ -35,6 +36,7 @@ def add_labor(request):
             date = datetime.date.today(),
             time = form_data['time'],
             rate_of_pay = form_data['rate_of_pay'],
+            todo = ToDo.objects.get(id=form_data['todo']),
         )
 
         newLabor.save()

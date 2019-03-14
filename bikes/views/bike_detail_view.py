@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 
 from bikes.models import Bike
 from bikes.models import Labor
+from bikes.models import ToDo
 
 
 @login_required
@@ -22,6 +23,9 @@ def bike_detail(request, pk):
         bike = get_object_or_404(Bike, pk=pk)
         # get labor associated with specific bike
         labor = Labor.objects.order_by('-date').filter(bike_id=pk)
+        # get to-dos associated with specific bike
+        todo = ToDo.objects.order_by('date').filter(bike_id=pk, is_completed=False)
+
 
         # get total amount of time spent on the bike so far to display above the list of itemized labor records
         total_time = list(labor.aggregate(Sum('time')).values())[0]
@@ -31,5 +35,5 @@ def bike_detail(request, pk):
         for l in labor:
             total_labor += l.time * l.rate_of_pay 
             
-        context = {"bike": bike, "total_labor": total_labor, "total_time": total_time, "labor_list": labor}
+        context = {"bike": bike, "total_labor": total_labor, "total_time": total_time, "labor_list": labor, "todo_list": todo}
         return render(request, 'bikes/detail.html', context)
