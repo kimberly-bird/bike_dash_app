@@ -36,8 +36,8 @@ def list_bike_for_sale(request, pk):
         # total_labor will hold the total amount of labor spent on this bike ($ value)
         total_labor = 0
         for labor in labor_list:
-            # get_total_for_each_labor is a property method on the Labor model that calculates rate_of_pay*time
-            labor_calculation = labor.get_total_for_each_labor
+            # total_for_each_labor is a property method on the Labor model that calculates rate_of_pay*time
+            labor_calculation = labor.total_for_each_labor
             total_labor += labor_calculation
 
         # get sum of purchase price for all parts for bike

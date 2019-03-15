@@ -27,5 +27,18 @@ class ToDo(SafeDeleteModel):
     def __str__(self):
         return f'{self.title}'
 
+    @property
+    def total_todo_labor(self):
+        """Property method that calculates the total amount of labor investment per to do item
+        
+        Returns:
+            int -- $ amount
+        """
+        total_labor = 0
+        # loop over labor set and calculate total time/rate of pay
+        for todo in self.labor_set.all():
+            # total_for_each_labor is a property method on the Labor model that multiplies rate*time
+            total_labor += todo.total_for_each_labor
+        return total_labor
     
 

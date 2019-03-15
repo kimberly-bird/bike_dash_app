@@ -70,16 +70,18 @@ class LaborForm(forms.ModelForm):
 class ToDoForm(forms.ModelForm):
     class Meta:
         model = ToDo
-        fields = ('title', 'notes', 'date', 'bike')
+        fields = ('title', 'notes', 'date', 'bike', 'is_completed')
     
-    def __init__(self, request, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs['instance'].user
         super(ToDoForm, self).__init__(*args, **kwargs)
-        current_user = request.user
         # only put bikes that are not sold in the drop down when adding labor
         bikes_not_sold = Bike.objects.exclude(status=1)
         # filter bikes dropdown to only show bikes added by current user
-        filtered_bikes = bikes_not_sold.filter(user_id=current_user.id)
+        filtered_bikes = bikes_not_sold.filter(user_id=self.user)
+        
         self.fields['bike'].queryset = filtered_bikes
+        self.fields['is_completed'].label = "Mark completed"
 
 
 class PartForm(forms.ModelForm):
