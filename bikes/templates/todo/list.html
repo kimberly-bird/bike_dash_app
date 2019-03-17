@@ -16,24 +16,29 @@
                 To Do</a></button>
     </div>
     <br>
+    {% for bike in bike_list %}
+    <h2>{{ bike.name }}</h2>
     <div class="row">
-    {% for todo in todo_list %}
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
+        {% for todo in bike.todo_set.all %}
+        <div class="col-sm-12 col-md-4 col-lg-4 to-do-card">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">{{ todo.title }}</h4>
                     <h6 class="card-subtitle mb-2 text-muted text-center">{{ todo.date }}</h6>
                     <p>{{ todo.notes }}</p>
-                    <p>Completed? {{ todo.is_completed }}</p>
-                    <p>Related bike: <a href="{% url 'bikes:bike_detail' todo.bike.id %}">{{ todo.bike.name }}</a></p>
+                    {% if todo.is_completed == True %}
+                    <p>Completed!</p>
+                    {% endif %}
                 </div>
                 <div class="card-footer text-center" style="background-color: rgba(36, 35, 35, 0.041)">
                     <a href="#" class="card-link">Edit</a>
                     <a href="#" class="card-link">Delete To Do</a>
                 </div>
             </div>
-            <br>
         </div>
         {% endfor %}
     </div>
+    <br>
+    {% endfor %}
+    <br>
 </div>

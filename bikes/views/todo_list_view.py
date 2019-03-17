@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
+from bikes.models import Bike
 from bikes.models import ToDo
 
 
@@ -19,5 +20,6 @@ def todo_list(request):
     if request.method == "GET":
         current_user = request.user
         todo = ToDo.objects.order_by('date').filter(user=current_user)
-        context = { "todo_list": todo }
+        bikes = Bike.objects.filter(user=current_user)
+        context = { "todo_list": todo, "bike_list": bikes }
         return render(request, 'todo/list.html', context)

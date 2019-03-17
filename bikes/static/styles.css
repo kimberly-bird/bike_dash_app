@@ -290,5 +290,9 @@ a:hover {
     background-color: #01589b1c;
  }
 
+.card to-do-card {
+    margin: 20px;
+}
+
 
 
