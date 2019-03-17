@@ -31,8 +31,8 @@
                     {% endif %}
                 </div>
                 <div class="card-footer text-center" style="background-color: rgba(36, 35, 35, 0.041)">
-                    <a href="#" class="card-link">Edit</a>
-                    <a href="#" class="card-link">Delete To Do</a>
+                    <a href="{% url 'bikes:edit_todo' pk=todo.id %}" class="card-link">Edit</a>
+                    <a href="{% url 'bikes:delete_todo' pk=todo.id %}" class="card-link">Delete To Do</a>
                 </div>
             </div>
         </div>

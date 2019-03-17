@@ -25,3 +25,4 @@ from .part_search_view import part_search
 from .todo_add_view import add_todo
 from .todo_edit_view import edit_todo
 from .todo_list_view import todo_list
+from .todo_delete_view import delete_todo

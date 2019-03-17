@@ -25,6 +25,6 @@ def edit_todo(request, pk):
             todo = todo_form.save()
             return HttpResponseRedirect(reverse('bikes:bike_list', args=(4,)))
     else:
-        todo_form = ToDoForm(instance=todo)
+        todo_form = ToDoForm(instance=todo, request=request)
 
     return render(request, 'todo/edit.html', {'todo_form': todo_form, 'pk': todo.id})
