@@ -9,15 +9,113 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|PT+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles.css' %}">
 </head>
 
 <body>
     {% include "navbar.html" %}
-    <h1>Welcome to Bike Dash!</h1>
-    <img src="{% static '/images/bike_dash_logo.png' %}" alt="bike_dash_logo" width="300px" height="300px">
-    {% if user.is_authenticated %}
-    <h1>Bike Dash says... hello {{ user.username }}!</h1>
-    {% endif %}
+    
+    <div class="container">
+        <br>
+        <div class="row about-page-header">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <h1 class="text-center"><br>Use Bike Dash to help track your bike inventory, sales, and work.</h1>
+            </div>
+            <div class="col-4">
+                <img src="{% static '/images/bike_dash_logo.png' %}" alt="bike_dash_logo" width="300px" height="300px">
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-timeline">
+                    <div class="timeline">
+                        <a href="{% url 'bikes:add_bike' %}" class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-plus-circle" style="margin-top: 14px;"></i>
+                            </div>
+                            <div class="inner-content">
+                                <h3 class="title">Add a Bike</h3>
+                                <p class="description">After you buy a bike, add it to your inventory!</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="timeline">
+                        <a href="{% url 'bikes:add_todo' %}" class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-tasks" style="margin-top: 14px;"></i>
+                            </div>
+                            <div class="inner-content">
+                                <h3 class="title">Add To Dos</h3>
+                                <p class="description">Add and mark to dos complete as you work on your bike</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="timeline">
+                        <a href="{% url 'bikes:add_labor' %}" class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
+                            <div class="inner-content">
+                                <h3 class="title">Record Work</h3>
+                                <p class="description">Record time spent on each to do to calculate your costs (optional step &mdash; to dos can be marked as complete without recording labor)</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="timeline">
+                        <a href="{% url 'bikes:bike_list' 4 %}" class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-dollar-sign" style="margin-top: 14px;"></i>
+                            </div>
+                            <div class="inner-content">
+                                <h3 class="title">List Bike for Sale</h3>
+                                <p class="description">When you're ready to sell the bike, take a look at your overall costs to help price the bike</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="timeline">
+                        <a href="{% url 'bikes:bike_list' 4 %}" class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="far fa-money-bill-alt" style="margin-top: 14px;"></i>
+                            </div>
+                            <div class="inner-content">
+                                <h3 class="title">Sell your Bike!</h3>
+                                <p class="description">Mark your bike for sale and check out your dashboard to see your profit</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="timeline">
+                        <a href="{% url 'bikes:dashboard' %}" class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-chart-line" style="margin-top: 14px;"></i>
+                            </div>
+                            <div class="inner-content">
+                                <h3 class="title">Dashboard</h3>
+                                <p class="description">Check your dashboard to view inventory, labor records, and profits</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="timeline">
+                        <a href="{% url 'bikes:add_bike' %}" class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-play" style="margin-left: 11px; margin-top: 14px;"></i>
+                            </div>
+                            <div class="inner-content">
+                                <h3 class="title">Get started now!</h3>
+                                <p class="description"><i class="fas fa-plus-circle"></i> Add your first bike</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
