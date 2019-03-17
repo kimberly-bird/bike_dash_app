@@ -290,9 +290,16 @@ a:hover {
     background-color: #01589b1c;
  }
 
-.card to-do-card {
+/* .card .to-do-card {
     margin: 20px;
+} */
+
+.add-todo-btn {
+    margin-top: 20px;
+    margin-right: 5px;
+    float: left;
 }
+
 
 
 

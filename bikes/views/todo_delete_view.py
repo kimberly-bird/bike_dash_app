@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
@@ -18,5 +19,5 @@ def delete_todo(request, pk):
     todo = get_object_or_404(ToDo, pk=pk)
 
     todo.delete()
-
+    messages.success(request, 'To do has been deleted!')
     return HttpResponseRedirect(reverse('bikes:todo_list'))
