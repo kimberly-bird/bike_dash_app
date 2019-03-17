@@ -23,7 +23,7 @@ def add_todo(request):
 
     if request.method == "GET":
         #render the form page
-        todo_form = ToDoForm(request)
+        todo_form = ToDoForm(request=request)
         return render(request, 'todo/create.html', {"todo_form": todo_form})
 
     if request.method == "POST":

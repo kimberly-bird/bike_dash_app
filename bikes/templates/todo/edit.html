@@ -1,0 +1,20 @@
+{% load crispy_forms_tags %}
+{% include "navbar.html" %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+
+            <div class="dash-header">
+                <h1 class="text-center display-4">Edit To Do</h1>
+                <hr class="mt-0 mb-4">
+            </div>
+
+            <form action="{% url 'bikes:edit_todo' pk %}" method="post">
+                {% csrf_token %}
+                {{ todo_form|crispy }}
+                <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

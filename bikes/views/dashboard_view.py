@@ -99,12 +99,12 @@ class BikeChartView(TemplateView):
         total_parts_investment = 0
         # loop over bikes that were sold in 2019
         for bike in sold_bikes_labor_2019:
-            # for each bike, get the total cost of parts (get_part_total_on_bike is a method on the bike model)
-            parts = bike.get_part_total_on_bike
+            # for each bike, get the total cost of parts (part_total_on_bike is a method on the bike model)
+            parts = bike.part_total_on_bike
             # add that amount to the variable total_parts_investment
             total_parts_investment += parts
-            # for each bike, get the total labor reports (get_total_profit is a method on the bike model)
-            labor_calculation = bike.get_total_profit
+            # for each bike, get the total labor reports (total_profit is a method on the bike model)
+            labor_calculation = bike.total_profit
             # add that amount to the total_labor_2019 total
             total_labor_2019 += labor_calculation
         # get total profit by subtracting labor costs and part costs from total sales

@@ -23,22 +23,38 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
             {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:dashboard' %}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:add_bike' %}"><i class="fas fa-plus"></i> Add Bike</a></li>
+            <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:dashboard' %}"> Dashboard</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle main-nav-link" href="{% url 'bikes:bike_list' 4 %}"
                     id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bicycle"></i> My Bikes
+                    My Bikes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'bikes:bike_list' 4 %}">Bikes</a>
-                    <a class="dropdown-item" href="{% url 'bikes:part_list' %}">Parts</a>
-                    <a class="dropdown-item" href="{% url 'bikes:add_todo' %}">Add To Do</a>
-                    <a class="dropdown-item" href="{% url 'bikes:labor_list' %}">Labor</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'bikes:brand_list' %}">Brand List</a>
+                    <a class="dropdown-item" href="{% url 'bikes:add_bike' %}">Add Bike</a>
+                    <a class="dropdown-item" href="{% url 'bikes:bike_list' 4 %}">Bike List</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle main-nav-link" href="{% url 'bikes:bike_list' 4 %}"
+                        id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        To Dos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'bikes:add_todo' %}">Add To Do</a>
+                        <a class="dropdown-item" href="{% url 'bikes:todo_list' %}">To Do List</a>
+                    </div>
+                </li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle main-nav-link" href="{% url 'bikes:bike_list' 4 %}"
+                        id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Parts & Brands
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'bikes:add_part' %}">Add Part</a>
+                        <a class="dropdown-item" href="{% url 'bikes:part_list' %}">Parts List</a>
+                        <a class="dropdown-item" href="{% url 'bikes:brand_list' %}">Brand List</a>
+                    </div>
+                </li>
             <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:logout' %}">Logout</a></li>
             {% else %}
             <li class="nav-item"><a class="nav-link main-nav-link" href="{% url 'bikes:register' %}">Register</a></li>

@@ -10,6 +10,10 @@ a {
     color: #eca400;
 }
 
+.accordion-link {
+    color: #01579b !important;
+}
+
 a:hover {
     text-decoration: none;
     color: #01579b;
@@ -263,27 +267,39 @@ a:hover {
     background-color: #01589b1c;
 }
 
-ul.to-do-list {
-    width: 100%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.to-do-btn {
+    margin-top: 7%;
+    margin-left: 5%;
 }
 
-.to-do-li {
+#accordion {
+    width: 500px;
+    margin-left: 40px;
+    margin-top: 7px;
+}
+
+.to-do-table {
+    margin: 20px !important;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #01589b1c !important;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
     background-color: #01589b1c;
-    padding: 40px 85px;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    margin-bottom: 40px;
+ }
+
+/* .card .to-do-card {
+    margin: 20px;
+} */
+
+.add-todo-btn {
+    margin-top: 20px;
+    margin-right: 5px;
+    float: left;
 }
 
-.to-do-container {
-    margin: 0px 10%;
-}
+
 
 

@@ -1,0 +1,45 @@
+{% include "navbar.html" %}
+
+<div class="container">
+    <div>
+        <div class="dash-header">
+            <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:add_todo' %}">Add New
+                    To Do</a></button>
+            <h1 class="text-center display-4" style="margin-right: 135px;">To Do List</h1>
+            <hr class="mt-0 mb-4">
+        </div>
+
+        {% for message in messages %}
+        <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+        <hr>
+        {% endfor %}
+
+
+    </div>
+    <br>
+    {% for bike in bike_list %}
+    <h2>{{ bike.name }}</h2>
+    <div class="row">
+        {% for todo in bike.todo_set.all %}
+        <div class="col-sm-12 col-md-4 col-lg-4 to-do-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">{{ todo.title }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted text-center">{{ todo.date }}</h6>
+                    <p>{{ todo.notes }}</p>
+                    {% if todo.is_completed == True %}
+                    <p>Completed!</p>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-center" style="background-color: rgba(36, 35, 35, 0.041)">
+                    <a href="{% url 'bikes:edit_todo' pk=todo.id %}" class="card-link">Edit</a>
+                    <a href="{% url 'bikes:delete_todo' pk=todo.id %}" class="card-link">Delete To Do</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    {% endfor %}
+    <br>
+</div>

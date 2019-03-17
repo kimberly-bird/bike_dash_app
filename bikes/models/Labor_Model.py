@@ -29,7 +29,7 @@ class Labor(SafeDeleteModel):
         return f'{self.date}'
 
     @property
-    def get_total_for_each_labor(self):
+    def total_for_each_labor(self):
         """method that calculates the total amount of labor in dollars based off of time and rate of pay
         
         Returns:
@@ -37,5 +37,8 @@ class Labor(SafeDeleteModel):
         """
 
         return self.time * self.rate_of_pay
+
+    
+        
 
 
