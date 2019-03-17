@@ -148,7 +148,6 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* font-size: 3em; */
 }
 
 /* LABOR TABLE */
@@ -308,7 +307,7 @@ a:hover {
     --color_3: #01579b;
     --color_4: #009688;
 }
-.main-timeline{ font-family: 'Roboto', sans-serif; }
+.main-timeline{ font-family: 'PT Sans', sans-serif; }
 .main-timeline .timeline{
     padding: 18px 15px 15px 15px;
     position: relative;
