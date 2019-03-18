@@ -1,0 +1,48 @@
+{% include "navbar.html" %}
+
+<div class="container">
+
+    <div class="dash-header">
+        <button type="button" class="btn btn-outline-secondary back-btn"><a class="secondary_link"
+                href="{% url 'bikes:bike_list' 4 %}"><i class="fas fa-chevron-left"></i> Back</a></button>
+        <h1 class="text-center display-4" style="display: inline-block; margin-right: 150px;">Search Results</h1>
+        <hr class="mt-0 mb-4">
+
+        {% include "bikes/search_form.html" %}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {% if no_results %}
+            <h6>There are no search results for {{ search_text }}</h6>
+            {% else %}
+
+            <h4>{{ length }} results for {{ search_text }}</h4>
+            <br>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="list-group align-items-center">
+        {% for bike in results %}
+        <div class="list-group-item list-group-item flex-column align-items-start" style="width: 35em;">
+            <div class="row">
+                <div class="col-4">
+                    <img src="/media/{{ bike.document }}" alt="image of bike" class="part_list_image">
+                </div>
+                <div class="col-8">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><a href="{% url 'bikes:bike_detail' pk=bike.id %}">{{ bike.name|title }}</a>
+                            <p>{{ bike.description }}</p>
+                            <p>{{ bike.status.name }}</p>
+                            <small>{{ bike.brand.name }}</small>
+                            <small>{{ bike.bikemodel.name }}</small>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+</div>
