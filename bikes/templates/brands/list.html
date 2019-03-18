@@ -16,28 +16,37 @@
                 Brand</a></button>
     </div>
     <br>
-    <div class="row">
-    {% for brand in bike_brand_list %}
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h4 class="card-title text-center">{{ brand.name }}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted text-center">{{ brand.location }}</h6>
-                    {% for model in bike_model_list %}
-                    {% if model.brand_id == brand.id %}
-                    <hr>
-                    <p class="card-text text-center">{{ model.name }} <a
-                            href="{% url 'bikes:edit_bike_model' pk=model.id %}">Edit</a></p>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="card-footer text-center" style="background-color: rgba(36, 35, 35, 0.041)">
-                    <a href="{% url 'bikes:edit_brand' pk=brand.id %}" class="card-link">Edit</a>
-                    <a href="{% url 'bikes:add_bike_model' pk=brand.id %}" class="card-link">Add Model</a>
-                </div>
-            </div>
-            <br>
-        </div>
-        {% endfor %}
+
+    <div class="table-responsive brand-table">
+        <table class="table table-hover">
+            <thead class="labor-header">
+                <tr class="d-flex">
+                    <th scope="col" class="col-2">Brand</th>
+                    <th scope="col" class="col-2">Location</th>
+                    <th scope="col" class="col-8">Models</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for brand in bike_brand_list %}
+                <tr class="d-flex">
+                    <td class="col-2">{{ brand.name }} <br><a href="{% url 'bikes:edit_brand' pk=brand.id %}" class="card-link">Edit</a></td>
+                    <td class="col-2">{{ brand.location }}</td>
+                    <td class="col-8">
+                        <a href="{% url 'bikes:add_bike_model' pk=brand.id %}" class="card-link">Add Model</a>
+                        {% for model in bike_model_list %}
+                        {% if model.brand_id == brand.id %}
+                        <ul>
+                            <li>{{ model.name }}</li>
+                        </ul>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+
+
+
 </div>
