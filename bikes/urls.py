@@ -33,6 +33,7 @@ urlpatterns = [
     path('todo/add', views.add_todo, name='add_todo'),
     path('todo/edit/<int:pk>/', views.edit_todo, name='edit_todo'),
     path('todo/list', views.todo_list, name='todo_list'),
+    path('todo/soldlist', views.sold_todo_list, name='sold_todo_list'),
     path('todo/delete/<int:pk>/', views.delete_todo, name='delete_todo'),
     url(r'^login$', views.login_user, name='login'),
     url(r'^logout$', views.user_logout, name='logout'),
