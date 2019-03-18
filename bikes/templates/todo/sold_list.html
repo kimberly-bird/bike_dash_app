@@ -3,9 +3,9 @@
 <div class="container">
     <div>
         <div class="dash-header">
-            <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:add_todo' %}">Add New
-                    To Do</a></button>
-            <h1 class="text-center display-4" style="margin-right: 135px;">To Do List</h1>
+            <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:todo_list' %}"><i
+                class="fas fa-chevron-left"></i> Back</a></button>
+            <h1 class="text-center display-4" style="margin-right: 135px;">To Do List for Sold Bikes</h1>
             <hr class="mt-0 mb-4">
         </div>
 
@@ -14,10 +14,12 @@
         <hr>
         {% endfor %}
     </div>
-    <a href="{% url 'bikes:sold_todo_list' %}">View to dos for sold bikes</a>
-    
+    <br>
+
+
+
     {% for bike in bike_list %}
-    {% if bike.status_id != 1 %}
+    {% if bike.status_id == 1 %}
     <h2>{{ bike.name }}</h2>
     <div class="row">
         {% for todo in bike.todo_set.all %}
@@ -30,10 +32,6 @@
                     {% if todo.is_completed == True %}
                     <p>Completed!</p>
                     {% endif %}
-                </div>
-                <div class="card-footer text-center" style="background-color: rgba(36, 35, 35, 0.041)">
-                    <a href="{% url 'bikes:edit_todo' pk=todo.id %}" class="card-link">Edit</a>
-                    <a href="{% url 'bikes:delete_todo' pk=todo.id %}" class="card-link">Delete To Do</a>
                 </div>
             </div>
         </div>
