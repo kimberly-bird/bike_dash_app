@@ -302,10 +302,10 @@ a:hover {
 /* HOME PAGE */
 
 :root{
-    --color_1: #009688;
-    --color_2: #01579b;
-    --color_3: #009688;
-    --color_4: #01579b;
+    --color_1: #01579b;
+    --color_2: #009688;
+    --color_3: #01579b;
+    --color_4: #009688;
 }
 .main-timeline{ font-family: 'PT Sans', sans-serif; }
 .main-timeline .timeline{
@@ -464,6 +464,24 @@ a:hover {
 
 .search-form {
     margin-left: 7.5%;
+}
+
+footer {
+    background-color: #01589bde;
+    color: white;
+}
+
+.footer-copyright {
+    background-color: #01579b;
+}
+
+.footer-icon {
+    margin: 15px;
+    color: #eca400;
+}
+
+.footer-icon:hover {
+    color: #eca500d7;
 }
 
 
