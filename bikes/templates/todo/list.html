@@ -14,10 +14,8 @@
         <hr>
         {% endfor %}
     </div>
-    <br>
-
     <a href="{% url 'bikes:sold_todo_list' %}">View to dos for sold bikes</a>
-
+    
     {% for bike in bike_list %}
     {% if bike.status_id != 1 %}
     <h2>{{ bike.name }}</h2>
