@@ -17,9 +17,11 @@ def remove_part_from_bike(request, pk):
     returns to list of parts
     '''
 
+    # redirect to page where user clicked the delete button
+    redirect_url = request.META['HTTP_REFERER']
     part = get_object_or_404(Part, pk=pk)
     # set bike id on part to Null, thus "removing" the part from the bike
     part.bike = None
     part.save()
 
-    return HttpResponseRedirect(reverse("bikes:part_list"))
+    return HttpResponseRedirect(redirect_url)

@@ -44,7 +44,14 @@ def list_bike_for_sale(request, pk):
         part_sum = Part.objects.filter(bike_id=bike.id).aggregate(sum=Sum('purchase_price'))
 
         # calculate $ amount needed to break even on bike investment 
-        break_even_price = bike.purchase_price + total_labor + part_sum["sum"]
+        if total_labor and part_sum["sum"]:
+            break_even_price = bike.purchase_price + total_labor + part_sum["sum"]
+        elif part_sum["sum"]:
+            break_even_price = bike.purchase_price + part_sum["sum"]
+        elif total_labor:
+            break_even_price = bike.purchase_price + total_labor 
+        else:
+            break_even_price = bike.purchase_price 
 
         context = {"bike": bike, "total_labor": total_labor, "part_sum": part_sum["sum"], "break_even_price": break_even_price}
         return render(request, 'bikes/list_bike.html', context)

@@ -19,6 +19,7 @@
     {% for bike in bike_list %}
     {% if bike.status_id != 1 %}
     <h2>{{ bike.name }}</h2>
+    <a href="{% url 'bikes:add_todo' %}">Add New To Do</a>
     <div class="row">
         {% for todo in bike.todo_set.all %}
         <div class="col-sm-12 col-md-4 col-lg-4 to-do-card">
