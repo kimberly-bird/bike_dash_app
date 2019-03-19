@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 h1, h2, h3, h4, h5, hr, th {
     font-family: 'Montserrat', sans-serif;
 }
@@ -9,6 +13,26 @@ h6, p, a {
 a {
     color: #eca400;
 }
+
+footer {
+    background-color: #01589bde;
+    color: white;
+    width: 100%;
+}
+
+.footer-copyright {
+    background-color: #01579b;
+}
+
+.footer-icon {
+    margin: 15px;
+    color: #eca400;
+}
+
+.footer-icon:hover {
+    color: #eca500d7;
+}
+
 
 .accordion-link {
     color: #01579b !important;
@@ -466,23 +490,6 @@ a:hover {
     margin-left: 7.5%;
 }
 
-footer {
-    background-color: #01589bde;
-    color: white;
-}
-
-.footer-copyright {
-    background-color: #01579b;
-}
-
-.footer-icon {
-    margin: 15px;
-    color: #eca400;
-}
-
-.footer-icon:hover {
-    color: #eca500d7;
-}
 
 
 

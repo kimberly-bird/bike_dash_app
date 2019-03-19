@@ -4,7 +4,8 @@
 
     <div>
         <div class="dash-header">
-            <h1 class="text-center display-4">Labor</h1>
+            <button type="button" class="btn btn-outline-info back-btn"><a href="{% url 'bikes:add_labor' %}">Add Labor</a></button>
+            <h1 class="text-center display-4" style="margin-left: -25px;">Labor</h1>
             <hr class="mt-0 mb-4">
         </div>
 
@@ -13,7 +14,6 @@
         <hr>
         {% endfor %}
 
-        <button type="button" class="btn btn-outline-info"><a href="{% url 'bikes:add_labor' %}">Add Labor</a></button>
     </div>
     <br>
 
