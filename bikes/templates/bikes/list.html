@@ -12,8 +12,6 @@
         <hr>
         {% endfor %}
 
-        {% block content %}
-
         <ul class="nav nav-tabs">
             <li class="nav-item ">
                 <a class="nav-link {% if request.get_full_path == '/bikes/mybikes/status/4' %}active{% endif %}"
@@ -39,7 +37,6 @@
                 {% include "bikes/search_form.html" %}
             </li>
         </ul>
-        {% endblock %}
 
     </div>
     <br>
