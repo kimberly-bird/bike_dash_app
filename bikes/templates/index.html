@@ -15,119 +15,17 @@
 <body>
     {% include "navbar.html" %}
 
-    <div class="container">
-        <br>
-        <div class="row about-page-header">
-            <div class="col-2"></div>
-            <div class="col-4">
-                <h1 class="text-center"><br>Use Bike Dash to track bike inventory, labor, & sales.</h1>
-            </div>
-            <div class="col-4">
-                <img src="{% static '/images/bike_dash_logo.png' %}" alt="bike_dash_logo" width="300px" height="300px">
-            </div>
-            <div class="col-2"></div>
-        </div>
-        <br>
-        <div class="how-to-container">
-            <h2 class="text-center display-4">Get Started</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="main-timeline">
-                        <div class="timeline">
-                            <a href="{% url 'bikes:add_bike' %}" class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fas fa-plus-circle" style="margin-top: 14px;"></i>
-                                </div>
-                                <div class="inner-content">
-                                    <h3 class="title">Add a Bike</h3>
-                                    <p class="description">After you buy a bike, add it to your inventory!</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="timeline">
-                            <a href="{% url 'bikes:add_todo' %}" class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fas fa-tasks" style="margin-top: 14px;"></i>
-                                </div>
-                                <div class="inner-content">
-                                    <h3 class="title">Add To Dos</h3>
-                                    <p class="description">Add & complete to dos as you work on your bike</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="timeline">
-                            <a href="{% url 'bikes:add_labor' %}" class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </div>
-                                <div class="inner-content">
-                                    <h3 class="title">Record Work</h3>
-                                    <p class="description">Track time spent on each to do to calculate your costs
-                                        (optional step &mdash; to dos can be completed without recording labor)
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="timeline">
-                            <a href="{% url 'bikes:bike_list' 4 %}" class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fas fa-dollar-sign" style="margin-top: 14px;"></i>
-                                </div>
-                                <div class="inner-content">
-                                    <h3 class="title">List Bike for Sale</h3>
-                                    <p class="description">When you're ready to sell the bike, take a look at your
-                                        overall costs to help price the bike</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="timeline">
-                            <a href="{% url 'bikes:bike_list' 4 %}" class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="far fa-money-bill-alt" style="margin-top: 14px;"></i>
-                                </div>
-                                <div class="inner-content">
-                                    <h3 class="title">Sell your Bike!</h3>
-                                    <p class="description">Mark your bike for sale & check out your dashboard to see
-                                        your profit</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="timeline">
-                            <a href="{% url 'bikes:dashboard' %}" class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fas fa-chart-line" style="margin-top: 14px;"></i>
-                                </div>
-                                <div class="inner-content">
-                                    <h3 class="title">Dashboard</h3>
-                                    <p class="description">Check your dashboard to view inventory, labor records, &
-                                        profits</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="timeline">
-                            <a href="{% url 'bikes:add_bike' %}" class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fas fa-play" style="margin-left: 11px; margin-top: 14px;"></i>
-                                </div>
-                                <div class="inner-content">
-                                    <h3 class="title">Get started now!</h3>
-                                    <p class="description"><i class="fas fa-plus-circle"></i> Add your first bike</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include "get_started.html" %}
+
+    {% block content %} {% endblock content %}
+
     <br>
-    <br>
-    <br>
-    <br>
+    {% include "footer.html" %}
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>

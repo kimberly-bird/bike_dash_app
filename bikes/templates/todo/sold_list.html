@@ -16,8 +16,6 @@
     </div>
     <br>
 
-
-
     {% for bike in bike_list %}
     {% if bike.status_id == 1 %}
     <h2>{{ bike.name }}</h2>
@@ -42,3 +40,5 @@
     {% endfor %}
     <br>
 </div>
+
+{% include "../footer.html" %}
