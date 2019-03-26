@@ -1,0 +1,6 @@
+API
+django==1.11
+djangorestframework>=3.7.0
+gunicorn>=19.7.1
+safedelete>=0.5.1
+crispy_forms>=1.7.2
