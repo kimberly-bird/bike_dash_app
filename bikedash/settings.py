@@ -25,7 +25,7 @@ SECRET_KEY = '^s22)du9di6^mf7%oy&)z_x0ur30(#3l$qy85xm+4a&+5at99('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.bike-dash.com', 'bike-dash.com', 'localhost', '46.101.186.42']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -81,12 +81,8 @@ WSGI_APPLICATION = 'bikedash.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bikedash',
-        'USER': 'kbird',
-        'PASSWORD': 'Brighton2003$',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -128,7 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Media root for image upload
 MEDIA_URL = '/media/'
