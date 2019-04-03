@@ -7,6 +7,42 @@
 ## Background
 As a hobby, my dad buys bikes from pawn shops in Salt Lake City, Utah and then he rebuilds/upgrades the bikes to sell online. I asked him how he tracks his inventory and his sales and his response was, "I start with money in an envelope, and I hope that I end up with more money in the envelope at the end of the year than what I started with". That's when I decided to build him this app.
 
+<details><summary>App Screenshots</summary>
+<p>
+
+![homepage](bikes/static/images/screenshots/bd1.png)
+
+## Bike List
+### Users can view bikes based on status: all, in process, listed for sale, sold
+![homepage](bikes/static/images/screenshots/bd2.png)
+
+## Bike Details
+### Also on the detail page, users can add labor to the bike if they did work on the bike, or they can move the bike's status (in process --> listed for sale, listed --> sold)
+![homepage](bikes/static/images/screenshots/bd3.png)
+![homepage](bikes/static/images/screenshots/bd4.png)
+![homepage](bikes/static/images/screenshots/bd5.png)
+## Listing a bike for sale
+### Users can easily see the $ amount invested (purchase price + labor + parts added) in the bike to price the bike accordingly. 
+![homepage](bikes/static/images/screenshots/bd9.png)
+## Dashboard
+### Users can see quick facts about their inventory, sales, and labor
+![homepage](bikes/static/images/screenshots/bd12.png)
+![homepage](bikes/static/images/screenshots/bd13.png)
+![homepage](bikes/static/images/screenshots/bd14.png)
+## To Dos
+### Users often have a long list of things they need to do for each bike, whether it's bike updates or maintenance. This is a list of to dos for each bike, along with the due date for it to be completed.
+![homepage](bikes/static/images/screenshots/bd6.png)
+## Labor List
+### An optional add-on to the to do items is the ability to add labor for the to do items. If it's just a small change, users are welcome to simply mark the to do as completed, but if it is more involved and the user would like to track the amount of time spent, users can then add labor to a specific to do item.
+![homepage](bikes/static/images/screenshots/bd7.png)
+## Parts
+### Users can enter the parts they have accumulated to help track their inventory. Users can also search for parts by name or description. If a part is currently installed on a bike, the part will indicate which bike it is installed on. Once a bike is marked as sold, the installed parts will no longer appear in this list.
+![homepage](bikes/static/images/screenshots/bd8.png)
+![homepage](bikes/static/images/screenshots/bd11.png)
+![homepage](bikes/static/images/screenshots/bd10.png)
+</p>
+</details>
+
 ## General app functionality 
 The following functionalities are part of Bike Dash:
 
