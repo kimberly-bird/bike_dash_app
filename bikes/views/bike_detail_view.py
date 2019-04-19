@@ -24,7 +24,7 @@ def bike_detail(request, pk):
         # get labor associated with specific bike
         labor = Labor.objects.order_by('-date').filter(bike_id=pk)
         # get to-dos associated with specific bike
-        todo = ToDo.objects.order_by('date').filter(bike_id=pk, is_completed=False)
+        todo = ToDo.objects.order_by('-date').filter(bike_id=pk, is_completed=False)
 
         # get total amount of time spent on the bike so far to display above the list of itemized labor records
         total_time = list(labor.aggregate(Sum('time')).values())[0]
